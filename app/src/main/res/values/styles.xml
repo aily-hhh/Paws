@@ -1,0 +1,12 @@
+<resources>
+    <style name="MyButton" parent="ThemeOverlay.Material3.Button">
+        <item name="backgroundTint">@color/white</item>
+        <item name="android:textColor">@color/darkBrown</item>
+        <item name="elevation">30dp</item>
+    </style>
+
+    <style name="MyAlertDialog" parent="Theme.MaterialComponents.DayNight.Dialog.Alert">
+        <item name="android:background">@color/secondaryLightBeige</item>
+        <item name="android:textColor">@color/darkBrown</item>
+    </style>
+</resources>

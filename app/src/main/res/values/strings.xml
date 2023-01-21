@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name" translatable="false">Paws</string>
+    <string name="sign_out">Выйти из профиля</string>
+    <string name="my_pets">Мои питомцы</string>
+    <string name="settings">Настройки</string>
+    <string name="theme_header">Тема</string>
+    <string name="language_header">Язык</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
