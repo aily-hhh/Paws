@@ -61,7 +61,7 @@ class MainFragment : Fragment() {
             AuthUI.getInstance()
                 .signOut(requireContext())
                 .addOnCompleteListener {
-                    toast("Вы успешно вышли из аккаунта")
+                    toast(R.string.signed_out_toast.toString())
                     Navigation.findNavController(requireActivity(), R.id.navHostFragment)
                         .navigate(R.id.action_mainFragment_to_authFragment)
                 }

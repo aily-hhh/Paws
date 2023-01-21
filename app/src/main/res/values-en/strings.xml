@@ -1,8 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="sign_out">Sign Out</string>
+    <string name="sign_out_button">Sign Out</string>
+    <string name="create_button">Create</string>
+    <string name="update_button">Update</string>
+    <string name="delete_pet_button">Delete this pet profile</string>
+    <string name="back_button">Back</string>
+    <string name="signed_out_toast">You have signed out of your profile</string>
     <string name="my_pets">My pets</string>
     <string name="settings">Settings</string>
     <string name="theme_header">Theme</string>
     <string name="language_header">Language</string>
+    <string name="deleted">Deleted</string>
+    <string name="updated">Updated</string>
+    <string name="created">Created</string>
+    <string name="choose_pet">Choose a pet:</string>
+    <string name="cancel">Cancel:</string>
+    <string name="add_pet">Add a pet</string>
+    <string name="name_pet">Name</string>
+    <string name="species">Species</string>
+    <string name="breed">Breed</string>
+    <string name="sex">Sex</string>
+    <string name="birthday">Birthday</string>
+    <string name="hair">Hair</string>
 </resources>

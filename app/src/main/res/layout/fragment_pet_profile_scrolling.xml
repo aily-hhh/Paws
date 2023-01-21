@@ -22,7 +22,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Species"
+                android:hint="@string/species"
                 android:layout_marginBottom="8dp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
@@ -35,7 +35,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Breed"
+                android:hint="@string/breed"
                 android:layout_marginBottom="8dp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
@@ -51,9 +51,9 @@
                 android:enabled="false"
                 android:fontFamily="monospace"
                 android:textColor="@color/cardview_dark_background"
-                android:paddingLeft="4dp"
-                android:text="Sex"
-                android:textSize="12dp" />
+                android:paddingStart="4dp"
+                android:text="@string/sex"
+                android:textSize="12sp" />
 
             <Spinner
                 android:id="@+id/spinnerSex"
@@ -64,7 +64,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Birthday"
+                android:hint="@string/birthday"
                 android:layout_marginBottom="8dp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
@@ -77,7 +77,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Hair"
+                android:hint="@string/hair"
                 android:layout_marginBottom="7dp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
@@ -93,7 +93,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="8dp"
                 style="@style/MyButton"
-                android:text="Update" />
+                android:text="@string/update_button" />
 
             <Button
                 android:id="@+id/buttonBack"
@@ -101,7 +101,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="8dp"
                 style="@style/MyButton"
-                android:text="Back" />
+                android:text="@string/back_button" />
 
             <View
                 android:layout_width="match_parent"
@@ -116,7 +116,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="8dp"
                 style="@style/MyButton"
-                android:text="Delete Button" />
+                android:text="@string/delete_pet_button" />
 
         </LinearLayout>
     </ScrollView>

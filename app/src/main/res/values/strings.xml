@@ -1,11 +1,25 @@
 <resources>
     <string name="app_name" translatable="false">Paws</string>
-    <string name="sign_out">Выйти из профиля</string>
+    <string name="sign_out_button">Выйти из профиля</string>
+    <string name="create_button">Создать</string>
+    <string name="update_button">Обновить</string>
+    <string name="delete_pet_button">Удалить профиль питомца</string>
+    <string name="back_button">Назад</string>
+    <string name="signed_out_toast">Вы вышли из профиля</string>
     <string name="my_pets">Мои питомцы</string>
     <string name="settings">Настройки</string>
     <string name="theme_header">Тема</string>
     <string name="language_header">Язык</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
+    <string name="deleted">Удалено</string>
+    <string name="updated">Обновлено</string>
+    <string name="created">Создано</string>
+    <string name="choose_pet">Выберите питомца:</string>
+    <string name="cancel">Отмена</string>
+    <string name="add_pet">Добавить питомца</string>
+    <string name="name_pet">Имя</string>
+    <string name="species">Вид</string>
+    <string name="breed">Порода</string>
+    <string name="sex">Пол</string>
+    <string name="birthday">День рождения</string>
+    <string name="hair">Шерсть</string>
 </resources>

@@ -16,15 +16,15 @@ fun Fragment.toast(message: String) {
 fun Fragment.alertDialogForMainFragment(adapterDialog: ArrayAdapter<String>) {
     val alertDialog = AlertDialog.Builder(requireContext())
     alertDialog.setIcon(R.mipmap.logo_paws)
-    alertDialog.setTitle("Выберите питомца: ")
+    alertDialog.setTitle(R.string.choose_pet)
     alertDialog.setAdapter(adapterDialog) { dialogInterface, i ->
         val bundle = bundleOf("pet" to i.toString())
         Navigation.findNavController(requireActivity(), R.id.navHostFragment)
             .navigate(R.id.action_mainFragment_to_petProfileFragment, bundle)
     }
-    alertDialog.setPositiveButton("Отмена",
+    alertDialog.setPositiveButton(R.string.cancel,
         DialogInterface.OnClickListener { dialogInterface, i -> dialogInterface.dismiss() })
-    alertDialog.setNeutralButton("Добавить нового питомца",
+    alertDialog.setNeutralButton(R.string.add_pet,
         DialogInterface.OnClickListener { dialogInterface, i ->
             Navigation.findNavController(requireActivity(), R.id.navHostFragment)
                 .navigate(R.id.action_mainFragment_to_newPetFragment)
