@@ -12,11 +12,16 @@
         <item name="android:alertDialogStyle">@style/MyAlertDialog</item>
         <item name="android:alertDialogTheme">@style/MyAlertDialog</item>
         <item name="alertDialogTheme">@style/MyAlertDialog</item>
+        <item name="android:textColorPrimary">@color/lightBeige</item>
+        <item name="android:textColor">@color/darkBrown</item>
+
+        <item name="android:editTextColor">@color/darkBrown</item>
+        <item name="android:textColorSecondary">@color/darkBeige</item>
+        <item name="android:textColorTertiary">@color/darkBeige</item>
+        <item name="android:textColorPrimaryInverse">@color/darkBeige</item>
+        <item name="android:textColorSecondaryInverse">@color/darkBeige</item>
+        <item name="android:textColorTertiaryInverse">@color/darkBeige</item>
+        <item name="editTextColor">@color/darkBrown</item>
+        <item name="colorOutline">@color/secondaryPrimary</item>
     </style>
-    <style name="Theme.Paws.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-    <style name="Theme.Paws.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-    <style name="Theme.Paws.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

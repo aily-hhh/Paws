@@ -1,12 +1,11 @@
 package com.hhh.paws
 
-import android.content.Intent
 import android.os.Bundle
-import android.text.TextUtils.replace
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import com.hhh.paws.databinding.ActivityMainBinding
-import com.hhh.paws.ui.auth.AuthFragment
+import com.hhh.paws.ui.start.StartFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -27,8 +26,6 @@ class MainActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.Main).launch {
             delay(1500)
             setContentView(mBinding.root)
-            Navigation.findNavController(this@MainActivity, R.id.navHostFragment)
-                .navigate(R.id.action_startFragment_to_authFragment)
         }
     }
 }

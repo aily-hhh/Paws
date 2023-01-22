@@ -10,10 +10,4 @@
         <item name="buttonStyle">@style/MyButton</item>
         <item name="android:windowBackground">@drawable/background_night</item>
     </style>
-    <style name="Theme.Paws.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-    <style name="Theme.Paws.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-    <style name="Theme.Paws.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

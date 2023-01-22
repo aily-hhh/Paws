@@ -1,8 +1,5 @@
 package com.hhh.paws.ui.main
 
-import android.app.AlertDialog
-import android.content.DialogInterface
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,20 +8,21 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ImageButton
-import android.widget.Toast
-import androidx.core.os.bundleOf
+import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.firebase.ui.auth.AuthUI
 import com.hhh.paws.R
 import com.hhh.paws.database.viewModel.PetViewModel
-import com.hhh.paws.database.viewModel.UserViewModel
 import com.hhh.paws.databinding.FragmentMainBinding
 import com.hhh.paws.util.UiState
 import com.hhh.paws.util.alertDialogForMainFragment
 import com.hhh.paws.util.toast
 import dagger.hilt.android.AndroidEntryPoint
+
+
+private var namesPetList: MutableList<String> = mutableListOf()
 
 @AndroidEntryPoint
 class MainFragment : Fragment() {
@@ -35,8 +33,8 @@ class MainFragment : Fragment() {
     private lateinit var myPetsButton: Button
     private lateinit var signOutButton: Button
     private lateinit var settingsButton: ImageButton
+    private lateinit var progressBar: ProgressBar
     private lateinit var adapterDialog: ArrayAdapter<String>
-    private var namesPetList: MutableList<String> = mutableListOf()
 
     private val viewModelPet by viewModels<PetViewModel>()
 
@@ -50,6 +48,8 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        progressBar = mBinding.progressBar
 
         myPetsButton = mBinding.myPetsButton
         myPetsButton.setOnClickListener{
@@ -76,11 +76,12 @@ class MainFragment : Fragment() {
         viewModelPet.namesPet.observe(viewLifecycleOwner) {
             when(it) {
                 is UiState.Loading -> {
+                    progressBar.visibility = View.VISIBLE
                     Log.d("UI State", "Loading")
                 }
                 is UiState.Success -> {
+                    progressBar.visibility = View.INVISIBLE
                     namesPetList = it.data.toMutableList()
-                    adapterDialog.clear()
                     adapterDialog = ArrayAdapter(
                         requireContext(),
                         android.R.layout.select_dialog_item,
@@ -89,14 +90,19 @@ class MainFragment : Fragment() {
                     Log.d("UI State", "$it")
                 }
                 is UiState.Failure -> {
+                    progressBar.visibility = View.INVISIBLE
                     Log.e("UI State", it.error.toString())
                 }
             }
         }
     }
 
-    private fun initDialogFragment() {
+    override fun onStart() {
+        super.onStart()
         viewModelPet.getNamesPet()
-        alertDialogForMainFragment(adapterDialog)
+    }
+
+    private fun initDialogFragment() {
+        alertDialogForMainFragment(adapterDialog, namesPetList)
     }
 }
