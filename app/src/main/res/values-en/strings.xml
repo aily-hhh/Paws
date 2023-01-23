@@ -22,4 +22,5 @@
     <string name="sex">Sex</string>
     <string name="birthday">Birthday</string>
     <string name="hair">Hair</string>
+    <string name="error">Error</string>
 </resources>

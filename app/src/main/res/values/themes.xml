@@ -14,7 +14,6 @@
         <item name="alertDialogTheme">@style/MyAlertDialog</item>
         <item name="android:textColorPrimary">@color/lightBeige</item>
         <item name="android:textColor">@color/darkBrown</item>
-
         <item name="android:editTextColor">@color/darkBrown</item>
         <item name="android:textColorSecondary">@color/darkBeige</item>
         <item name="android:textColorTertiary">@color/darkBeige</item>
@@ -23,5 +22,7 @@
         <item name="android:textColorTertiaryInverse">@color/darkBeige</item>
         <item name="editTextColor">@color/darkBrown</item>
         <item name="colorOutline">@color/secondaryPrimary</item>
+        <item name="android:colorAccent">@color/darkBrown</item>
+        <item name="android:datePickerDialogTheme">@style/Theme.AppCompat.Dialog.Alert</item>
     </style>
 </resources>

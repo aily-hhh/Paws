@@ -26,6 +26,8 @@ class MainActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.Main).launch {
             delay(1500)
             setContentView(mBinding.root)
+            Navigation.findNavController(this@MainActivity, R.id.navHostFragment)
+                .navigate(R.id.action_mainFragment_to_authFragment)
         }
     }
 }

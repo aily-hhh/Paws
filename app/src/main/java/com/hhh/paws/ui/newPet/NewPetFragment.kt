@@ -1,12 +1,16 @@
 package com.hhh.paws.ui.newPet
 
+import android.annotation.SuppressLint
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.DatePicker
 import android.widget.Spinner
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
@@ -21,10 +25,11 @@ import com.hhh.paws.databinding.FragmentNewPetBinding
 import com.hhh.paws.util.UiState
 import com.hhh.paws.util.toast
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
 
 
 @AndroidEntryPoint
-class NewPetFragment : Fragment() {
+class NewPetFragment : Fragment(), DatePickerDialog.OnDateSetListener {
 
     private var _binding: FragmentNewPetBinding? = null
     private val mBinding get() = _binding!!
@@ -39,6 +44,12 @@ class NewPetFragment : Fragment() {
     private lateinit var buttonCancel: Button
 
     private lateinit var pet: Pet
+    private var day = 0
+    private var month = 0
+    private var year = 0
+    private var savedDay = 0
+    private var savedMonth = 0
+    private var savedYear = 0
 
     private val viewModelPet by viewModels<PetViewModel>()
 
@@ -47,7 +58,6 @@ class NewPetFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentNewPetBinding.inflate(inflater, container, false)
-
         return mBinding.root
     }
 
@@ -74,9 +84,22 @@ class NewPetFragment : Fragment() {
         petNameNew = mBinding.petNameNew
         petSpeciesNew = mBinding.petSpeciesNew
         petBreedNew = mBinding.petBreedNew
-        petBirthdayNew = mBinding.petBirthdayNew
         petHairNew = mBinding.petHairNew
+
+        petBirthdayNew = mBinding.petBirthdayNew
+        petBirthdayNew.setOnClickListener {
+            getDateCalendar()
+            DatePickerDialog(requireContext(), this, year, month, day).show()
+        }
+
         spinnerSexNew = mBinding.spinnerSexNew
+        val adapterSex = ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.sexArray,
+            android.R.layout.simple_spinner_item
+        )
+        adapterSex.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerSexNew.adapter = adapterSex
 
         buttonCreate = mBinding.buttonCreate
         buttonCreate.setOnClickListener{
@@ -84,7 +107,7 @@ class NewPetFragment : Fragment() {
                 petNameNew.text.toString().trim(),
                 petSpeciesNew.text.toString().trim(),
                 petBreedNew.text.toString().trim(),
-                "girl",
+                spinnerSexNew.selectedItem.toString().trim(),
                 petBirthdayNew.text.toString().trim(),
                 petHairNew.text.toString().trim()
             )
@@ -106,9 +129,24 @@ class NewPetFragment : Fragment() {
 
         buttonCancel = mBinding.buttonCancel
         buttonCancel.setOnClickListener{
-            findNavController().popBackStack()
             Navigation.findNavController(requireActivity(), R.id.navHostFragment)
                 .navigate(R.id.action_newPetFragment_to_mainFragment)
         }
+    }
+
+    private fun getDateCalendar() {
+        val calendar = Calendar.getInstance()
+        day = calendar.get(Calendar.DAY_OF_MONTH)
+        month = calendar.get(Calendar.MONTH)
+        year = calendar.get(Calendar.YEAR)
+    }
+
+    @SuppressLint("SetTextI18n")
+    override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+        savedDay = dayOfMonth
+        savedMonth = month
+        savedYear = year
+
+        petBirthdayNew.setText("$savedDay.$savedMonth.$savedYear")
     }
 }

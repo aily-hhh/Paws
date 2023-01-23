@@ -29,7 +29,7 @@ class PetRepository @Inject constructor(private val database: FirebaseFirestore)
                 result.invoke((UiState.Success(pet)))
             }
             .addOnFailureListener{
-                result.invoke(UiState.Failure(it.localizedMessage))
+                result.invoke(UiState.Failure(R.string.error.toString()))
             }
     }
 
@@ -48,7 +48,7 @@ class PetRepository @Inject constructor(private val database: FirebaseFirestore)
             }
             .addOnFailureListener { exception ->
                 Log.d(TAG, "Error getting documents: ", exception)
-                result.invoke(UiState.Failure(exception.localizedMessage))
+                result.invoke(UiState.Failure(R.string.error.toString()))
             }
     }
 
@@ -60,7 +60,7 @@ class PetRepository @Inject constructor(private val database: FirebaseFirestore)
                 result.invoke(UiState.Success(R.string.updated.toString()))
             }
             .addOnFailureListener {
-                result.invoke(UiState.Failure(it.localizedMessage))
+                result.invoke(UiState.Failure(R.string.error.toString()))
             }
     }
 
@@ -72,7 +72,7 @@ class PetRepository @Inject constructor(private val database: FirebaseFirestore)
                 result.invoke(UiState.Success(R.string.created.toString()))
             }
             .addOnFailureListener {
-                UiState.Failure(it.localizedMessage)
+                UiState.Failure(R.string.error.toString())
             }
     }
 
@@ -84,7 +84,7 @@ class PetRepository @Inject constructor(private val database: FirebaseFirestore)
                 result.invoke(UiState.Success(R.string.deleted.toString()))
             }
             .addOnFailureListener {
-                result.invoke(UiState.Failure(it.localizedMessage))
+                result.invoke(UiState.Failure(R.string.error.toString()))
             }
     }
 }
