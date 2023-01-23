@@ -10,5 +10,44 @@
         android:name="com.hhh.paws.ui.petProfile.menu.notes.NotesFragment"
         android:label="@string/menu_notes"
         tools:layout="@layout/fragment_notes" />
+    <fragment
+        android:id="@+id/galleryFragment"
+        android:name="com.hhh.paws.ui.petProfile.menu.gallery.GalleryFragment"
+        android:label="fragment_gallery"
+        tools:layout="@layout/fragment_gallery" />
+    <fragment
+        android:id="@+id/vaccinesFragment"
+        android:name="com.hhh.paws.ui.petProfile.menu.vaccines.VaccinesFragment"
+        android:label="fragment_vaccines"
+        tools:layout="@layout/fragment_vaccines" />
+    <fragment
+        android:id="@+id/proceduresFragment"
+        android:name="com.hhh.paws.ui.petProfile.menu.procedures.ProceduresFragment"
+        android:label="fragment_procedures"
+        tools:layout="@layout/fragment_procedures" />
+    <fragment
+        android:id="@+id/treatmentFragment"
+        android:name="com.hhh.paws.ui.petProfile.menu.treatment.TreatmentFragment"
+        android:label="fragment_treatment"
+        tools:layout="@layout/fragment_treatment" />
+    <fragment
+        android:id="@+id/dehelmintizationFragment"
+        android:name="com.hhh.paws.ui.petProfile.menu.dehelmintization.DehelmintizationFragment"
+        android:label="fragment_dehelmintization"
+        tools:layout="@layout/fragment_dehelmintization" />
+    <fragment
+        android:id="@+id/reproductionFragment"
+        android:name="com.hhh.paws.ui.petProfile.menu.reproduction.ReproductionFragment"
+        android:label="fragment_reproduction"
+        tools:layout="@layout/fragment_reproduction" />
+    <fragment
+        android:id="@+id/identificationFragment"
+        android:name="com.hhh.paws.ui.petProfile.menu.identification.IdentificationFragment"
+        android:label="fragment_identification"
+        tools:layout="@layout/fragment_identification" />
+    <fragment
+        android:id="@+id/settingsFragment2"
+        android:name="com.hhh.paws.ui.settings.SettingsFragment"
+        android:label="SettingsFragment" />
 
 </navigation>

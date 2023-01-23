@@ -37,7 +37,14 @@ class VetPassportActivity : AppCompatActivity() {
             setOf(
                 R.id.nav_notes,
                 R.id.nav_gallery,
-                R.id.nav_procedures
+                R.id.nav_vaccines,
+                R.id.nav_procedures,
+                R.id.nav_treatment,
+                R.id.nav_dehelmintization,
+                R.id.nav_reproduction,
+                R.id.nav_identification,
+                R.id.nav_settings,
+                R.id.nav_signOut
             ),
             drawerLayout
         )
