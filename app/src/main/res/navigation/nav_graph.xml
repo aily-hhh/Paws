@@ -58,8 +58,8 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
-            android:id="@+id/action_mainFragment_to_petProfileFragment"
-            app:destination="@id/petProfileFragment"
+            android:id="@+id/action_mainFragment_to_vetPassportActivity"
+            app:destination="@id/vetPassportActivity"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
@@ -105,4 +105,9 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
+    <activity
+        android:id="@+id/vetPassportActivity"
+        android:name="com.hhh.paws.ui.petProfile.VetPassportActivity"
+        android:label="app_bar_vet_passport"
+        tools:layout="@layout/app_bar_vet_passport" />
 </navigation>

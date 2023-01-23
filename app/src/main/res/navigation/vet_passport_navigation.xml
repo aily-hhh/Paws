@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/vet_passport_navigation">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/vet_passport_navigation"
+    app:startDestination="@+id/nav_notes">
+
+    <fragment
+        android:id="@+id/nav_notes"
+        android:name="com.hhh.paws.ui.petProfile.menu.notes.NotesFragment"
+        android:label="@string/menu_notes"
+        tools:layout="@layout/fragment_notes" />
 
 </navigation>

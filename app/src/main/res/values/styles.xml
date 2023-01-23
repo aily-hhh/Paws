@@ -6,8 +6,15 @@
     </style>
 
     <style name="MyAlertDialog" parent="Theme.MaterialComponents.DayNight.Dialog.Alert">
-        <item name="android:background">@color/lightGreen</item>
-        <item name="android:textColor">@color/darkBeige</item>
+        <item name="android:background">@color/superLightGreen</item>
+        <item name="android:textColor">@color/darkBrown</item>
+        <item name="android:textColorAlertDialogListItem">@color/darkBeige</item>
+        <item name="buttonBarNegativeButtonStyle">@style/AlertButtonStyle</item>
+        <item name="buttonBarPositiveButtonStyle">@style/AlertButtonStyle</item>
+    </style>
+
+    <style name="AlertButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/darkBrown</item>
     </style>
 
     <style name="TextInput" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">

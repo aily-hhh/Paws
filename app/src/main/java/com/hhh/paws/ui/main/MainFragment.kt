@@ -13,6 +13,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.firebase.ui.auth.AuthUI
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 import com.hhh.paws.R
 import com.hhh.paws.database.viewModel.PetViewModel
 import com.hhh.paws.databinding.FragmentMainBinding

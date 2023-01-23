@@ -4,19 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.petProfile.VetPassportFragment">
+    tools:context=".ui.petProfile.VetPassportActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/Theme.Paws">
+        android:layout_height="56dp"
+        android:theme="@style/Theme.Paws.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/toolbarVetPassport"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/darkBrown"
-            app:popupTheme="@style/Theme.Paws" />
+            app:popupTheme="@style/Theme.Paws.PopupOverlay" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
