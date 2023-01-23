@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.appcompat.widget.AppCompatSpinner
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
@@ -36,7 +37,7 @@ class PetProfileFragment : Fragment(), DatePickerDialog.OnDateSetListener {
     private lateinit var petBreed: TextInputEditText
     private lateinit var petBirthday: TextInputEditText
     private lateinit var petHair: TextInputEditText
-    private lateinit var spinnerSex: Spinner
+    private lateinit var spinnerSex: AppCompatSpinner
     private lateinit var buttonUpdate: Button
     private lateinit var buttonBack: Button
     private lateinit var buttonDelete: Button
