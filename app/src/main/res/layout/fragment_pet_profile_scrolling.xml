@@ -89,17 +89,19 @@
 
             <Button
                 android:id="@+id/buttonUpdate"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_marginTop="8dp"
+                android:layout_gravity="center"
                 style="@style/MyButton"
                 android:text="@string/update_button" />
 
             <Button
                 android:id="@+id/buttonBack"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_marginTop="8dp"
+                android:layout_gravity="center"
                 style="@style/MyButton"
                 android:text="@string/back_button" />
 
@@ -112,9 +114,10 @@
 
             <Button
                 android:id="@+id/buttonDelete"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_marginTop="8dp"
+                android:layout_gravity="center"
                 style="@style/MyButton"
                 android:text="@string/delete_pet_button" />
 

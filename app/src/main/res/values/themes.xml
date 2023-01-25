@@ -6,8 +6,8 @@
         <item name="colorOnPrimary">@color/white</item>
         <item name="colorSecondary">@color/darkBrown</item>
         <item name="colorSecondaryVariant">@color/secondaryPrimary</item>
-        <item name="colorOnSecondary">@color/lightGreen</item>
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="colorOnSecondary">@color/lightBeige</item>
+        <item name="android:statusBarColor">@color/darkGreen</item>
         <item name="buttonStyle">@style/MyButton</item>
         <item name="android:windowBackground">@drawable/background_light</item>
         <item name="android:alertDialogStyle">@style/MyAlertDialog</item>
@@ -16,6 +16,7 @@
         <item name="android:textColorPrimary">@color/lightGreen</item>
         <item name="android:textColor">@color/darkBrown</item>
         <item name="android:editTextColor">@color/darkBrown</item>
+        <item name="floatingActionButtonStyle">@style/MyFloatActionButton</item>
     </style>
 
     <style name="Theme.Paws.NoActionBar">
