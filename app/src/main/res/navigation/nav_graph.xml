@@ -109,5 +109,9 @@
         android:id="@+id/vetPassportActivity"
         android:name="com.hhh.paws.ui.petProfile.VetPassportActivity"
         android:label="app_bar_vet_passport"
-        tools:layout="@layout/app_bar_vet_passport" />
+        tools:layout="@layout/app_bar_vet_passport">
+        <argument
+            android:name="pet"
+            app:argType="string" />
+    </activity>
 </navigation>

@@ -23,6 +23,7 @@
     <string name="birthday">День рождения</string>
     <string name="hair">Шерсть</string>
     <string name="error">Ошибка</string>
+    <string name="not_elem">тут пока нет элементов</string>
 
     <string name="nav_header_desc">Navigation header</string>
     <string name="nav_header_title">Pets name</string>

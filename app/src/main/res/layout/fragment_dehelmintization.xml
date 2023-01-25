@@ -29,6 +29,7 @@
         android:layout_height="match_parent"
         android:textStyle="bold"
         android:gravity="center"
+        android:text="@string/not_elem"
         android:textIsSelectable="false"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

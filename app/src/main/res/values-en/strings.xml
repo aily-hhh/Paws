@@ -23,4 +23,18 @@
     <string name="birthday">Birthday</string>
     <string name="hair">Hair</string>
     <string name="error">Error</string>
+    <string name="not_elem">тут пока нет элементов</string>
+
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="nav_header_title">Pets name</string>
+    <string name="nav_header_subtitle">Pets age</string>
+
+    <string name="menu_notes">Notes</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_vaccines">Vaccines</string>
+    <string name="menu_procedures">Procedures</string>
+    <string name="menu_from_external_parasites">From external parasites</string>
+    <string name="menu_dehelmintization">Dehelmintization</string>
+    <string name="menu_reproduction">Reproduction</string>
+    <string name="menu_identification">Identification</string>
 </resources>

@@ -27,6 +27,7 @@
         android:id="@+id/notElemProcedures"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:text="@string/not_elem"
         android:textStyle="bold"
         android:gravity="center"
         android:textIsSelectable="false"/>
