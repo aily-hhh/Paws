@@ -4,6 +4,7 @@
     <string name="create_button">Создать</string>
     <string name="update_button">Обновить</string>
     <string name="delete_pet_button">Удалить профиль питомца</string>
+    <string name="delete_user_button">Удалить профиль</string>
     <string name="back_button">Назад</string>
     <string name="signed_out_toast">Вы вышли из профиля</string>
     <string name="my_pets">Мои питомцы</string>
