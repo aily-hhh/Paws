@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/fragment_pet_profile"
-    tools:context=".ui.petProfile.PetProfileFragment">
+    tools:showIn="@layout/activity_pet_profile"
+    tools:context=".ui.petProfile.PetProfileActivity">
 
     <ScrollView
         android:layout_width="match_parent"

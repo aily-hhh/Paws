@@ -15,13 +15,14 @@ public class Pet {
 
     public Pet(){}
 
-    public Pet(String name, String species, String breed, String sex, String birthday, String hair) {
+    public Pet(String name, String species, String breed, String sex, String birthday, String hair, Uri photoUri) {
         this.name = name;
         this.species = species;
         this.breed = breed;
         this.sex = sex;
         this.birthday = birthday;
         this.hair = hair;
+        this.photoUri = photoUri;
     }
 
     public String getName() {

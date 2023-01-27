@@ -1,36 +1,48 @@
 package com.hhh.paws.ui.petProfile
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.app.DatePickerDialog
+import android.net.Uri
+import android.os.Build
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.ext.SdkExtensions
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.*
+import android.view.Window
+import android.view.WindowManager
+import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.DatePicker
+import android.widget.ImageView
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.appcompat.widget.AppCompatSpinner
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.navigation.navArgs
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputEditText
 import com.hhh.paws.R
 import com.hhh.paws.database.model.Pet
 import com.hhh.paws.database.viewModel.PetViewModel
-import com.hhh.paws.databinding.FragmentPetProfileBinding
+import com.hhh.paws.databinding.ActivityPetProfileBinding
 import com.hhh.paws.util.UiState
 import com.hhh.paws.util.toast
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.Calendar
+import java.util.*
 
 
 @AndroidEntryPoint
-class PetProfileFragment : Fragment(), DatePickerDialog.OnDateSetListener {
+class PetProfileActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
 
-    private var _binding: FragmentPetProfileBinding? = null
+    private var _binding: ActivityPetProfileBinding? = null
     private val mBinding get() = _binding!!
 
     private lateinit var petSpecies: TextInputEditText
@@ -47,9 +59,10 @@ class PetProfileFragment : Fragment(), DatePickerDialog.OnDateSetListener {
     private lateinit var changeImagePetFab: FloatingActionButton
 
     private val viewModelPet by viewModels<PetViewModel>()
-    private val bundleArgs: PetProfileFragmentArgs by navArgs()
+    private val bundleArgs: PetProfileActivityArgs by navArgs()
 
     private lateinit var petNameThis: String
+    private var photoUri: Uri? = null
     private var day = 0
     private var month = 0
     private var year = 0
@@ -57,17 +70,17 @@ class PetProfileFragment : Fragment(), DatePickerDialog.OnDateSetListener {
     private var savedMonth = 0
     private var savedYear = 0
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentPetProfileBinding.inflate(inflater, container, false)
-        return mBinding.root
-    }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        val w: Window = window
+        w.setFlags(
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+        )
+
+        _binding = ActivityPetProfileBinding.inflate(layoutInflater)
+        setContentView(mBinding.root)
 
         petNameThis = bundleArgs.pet
 
@@ -81,12 +94,12 @@ class PetProfileFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         petBirthday = mBinding.root.findViewById(R.id.petBirthday)
         petBirthday.setOnClickListener {
             getDateCalendar()
-            DatePickerDialog(requireContext(), this, year, month, day).show()
+            DatePickerDialog(this, this, year, month, day).show()
         }
 
         spinnerSex = mBinding.root.findViewById(R.id.spinnerSex)
         val adapterSex = ArrayAdapter.createFromResource(
-            requireContext(),
+            this,
             R.array.sexArray,
             android.R.layout.simple_spinner_item
         )
@@ -101,17 +114,18 @@ class PetProfileFragment : Fragment(), DatePickerDialog.OnDateSetListener {
                 petBreed.text.toString(),
                 spinnerSex.selectedItem.toString(),
                 petBirthday.text.toString(),
-                petHair.text.toString()
+                petHair.text.toString(),
+                photoUri
             )
             viewModelPet.updatePet(pet)
         }
-        viewModelPet.update.observe(viewLifecycleOwner) {
+        viewModelPet.update.observe(this) {
             when (it) {
                 is UiState.Loading -> {
                     Log.d("UI State", "Loading")
                 }
                 is UiState.Success -> {
-                    toast(it.data)
+                    toast(this, it.data)
                 }
                 is UiState.Failure -> {
                     Log.e("UI State", it.error.toString())
@@ -121,22 +135,32 @@ class PetProfileFragment : Fragment(), DatePickerDialog.OnDateSetListener {
 
         buttonBack = mBinding.root.findViewById(R.id.buttonBack)
         buttonBack.setOnClickListener {
-            findNavController().popBackStack()
+            // findNavController().popBackStack()
         }
 
         buttonDelete = mBinding.root.findViewById(R.id.buttonDelete)
         buttonDelete.setOnClickListener {
-            // диалог с уточнением
-            viewModelPet.deletePet(petNameThis)
-            Navigation.findNavController(requireActivity(), R.id.action_petProfileFragment_to_mainFragment)
+            val alertDialog = AlertDialog.Builder(this)
+            alertDialog.setIcon(R.mipmap.logo_paws)
+            alertDialog.setTitle(R.string.delete_profile)
+            alertDialog.setMessage(R.string.delete_profile_msg)
+            alertDialog.setPositiveButton(R.string.cancel
+            ) { dialogInterface, i -> dialogInterface.dismiss() }
+            alertDialog.setNeutralButton(R.string.delete_yes
+            ) { dialogInterface, i ->
+                viewModelPet.deletePet(petNameThis)
+            }
+            alertDialog.show()
+
+            // Navigation.findNavController(requireActivity(), R.id.action_petProfileFragment_to_mainFragment)
         }
-        viewModelPet.delete.observe(viewLifecycleOwner) {
+        viewModelPet.delete.observe(this) {
             when (it) {
                 is UiState.Loading -> {
                     Log.d("UI State", "Loading")
                 }
                 is UiState.Success -> {
-                    toast(it.data)
+                    toast(this, it.data)
                 }
                 is UiState.Failure -> {
                     Log.e("UI State", it.error.toString())
@@ -146,9 +170,12 @@ class PetProfileFragment : Fragment(), DatePickerDialog.OnDateSetListener {
 
         petPhoto = mBinding.petPhoto
         changeImagePetFab = mBinding.changeImagePetFab
+        changeImagePetFab.setOnClickListener {
+            updatePetPhoto()
+        }
 
         viewModelPet.getPet(petNameThis)
-        viewModelPet.pet.observe(viewLifecycleOwner) {
+        viewModelPet.pet.observe(this) {
             when (it) {
                 is UiState.Loading -> {
                     Log.d("UI State", "Loading")
@@ -161,6 +188,7 @@ class PetProfileFragment : Fragment(), DatePickerDialog.OnDateSetListener {
                     petHair.setText(it.data.hair)
                     val pos = adapterSex.getPosition(it.data.sex)
                     spinnerSex.setSelection(pos)
+                    // petPhoto.setImageURI(it.data.photoUri)
                 }
                 is UiState.Failure -> {
                     Log.d("UI State", it.error.toString())
@@ -183,5 +211,41 @@ class PetProfileFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         savedYear = year
 
         petBirthday.setText("$savedDay.$savedMonth.$savedYear")
+    }
+
+    private fun isPhotoPickerAvailable(): Boolean {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            true
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                SdkExtensions.getExtensionVersion(Build.VERSION_CODES.R) >= 2
+            } else {
+                TODO("VERSION.SDK_INT < TIRAMISU")
+            }
+        } else {
+            false
+        }
+    }
+
+    private fun updatePetPhoto() {
+        if (isPhotoPickerAvailable()) {
+            pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+        } else {
+            mGetContent.launch("image/*")
+        }
+    }
+
+    private val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+        uri?.let { setImage(it) }
+    }
+
+    private var mGetContent: ActivityResultLauncher<String> = registerForActivityResult(
+        ActivityResultContracts.GetContent()) { uri ->
+        uri?.let { setImage(it) }
+    }
+
+    private fun setImage(uri: Uri) {
+        photoUri = uri
+        petPhoto.setImageURI(photoUri)
     }
 }

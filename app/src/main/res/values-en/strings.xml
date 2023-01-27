@@ -24,6 +24,8 @@
     <string name="hair">Hair</string>
     <string name="error">Error</string>
     <string name="not_elem">тут пока нет элементов</string>
+    <string name="delete_profile">Вы действительно хотите удалить профиль?</string>
+    <string name="delete_profile_msg">Отменить действие будет невозможно!</string>
 
     <string name="nav_header_desc">Navigation header</string>
     <string name="nav_header_title">Pets name</string>

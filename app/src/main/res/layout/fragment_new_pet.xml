@@ -7,124 +7,82 @@
     android:fitsSystemWindows="true"
     tools:context=".ui.newPet.NewPetFragment">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/TextInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:layout_marginBottom="8dp"
+            android:hint="@string/name_pet"
+            android:paddingBottom="56dp"
+            app:helperText="!! Warning !!">
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/TextInput"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/petNameNew"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:helperText="!! Warning !!"
-                android:layout_marginBottom="8dp"
-                android:paddingBottom="56dp"
-                android:hint="@string/name_pet">
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/petNameNew"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/TextInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:hint="@string/species">
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/TextInput"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/petSpeciesNew"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:hint="@string/species">
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/petSpeciesNew"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:fontFamily="monospace"
+            android:paddingStart="18dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/sex"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="12sp"
+            tools:ignore="RtlSymmetry" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/TextInput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:hint="@string/breed">
+        <Spinner
+            android:id="@+id/spinnerSexNew"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/petBreedNew"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </com.google.android.material.textfield.TextInputLayout>
+        <Button
+            android:id="@+id/buttonCreate"
+            style="@style/MyButton"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:text="@string/create_button" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:enabled="false"
-                android:fontFamily="monospace"
-                android:paddingStart="4dp"
-                android:text="@string/sex"
-                android:textColor="@color/cardview_dark_background"
-                android:textSize="12sp" />
+        <Button
+            android:id="@+id/buttonCancel"
+            style="@style/MyButton"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:text="@string/cancel" />
 
-            <Spinner
-                android:id="@+id/spinnerSexNew"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/TextInput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:hint="@string/birthday">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/petBirthdayNew"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/TextInput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:hint="@string/hair">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/petHairNew"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <Button
-                android:id="@+id/buttonCreate"
-                style="@style/MyButton"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginEnd="32dp"
-                android:text="@string/create_button" />
-
-            <Button
-                android:id="@+id/buttonCancel"
-                style="@style/MyButton"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginEnd="32dp"
-                android:text="@string/cancel" />
-
-        </LinearLayout>
-    </ScrollView>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

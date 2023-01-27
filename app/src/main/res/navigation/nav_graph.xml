@@ -75,31 +75,15 @@
         android:label="fragment_new_pet"
         tools:layout="@layout/fragment_new_pet" >
         <action
-            android:id="@+id/action_newPetFragment_to_petProfileFragment"
-            app:destination="@id/petProfileFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-        <action
             android:id="@+id/action_newPetFragment_to_mainFragment"
             app:destination="@id/mainFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-    </fragment>
-    <fragment
-        android:id="@+id/petProfileFragment"
-        android:name="com.hhh.paws.ui.petProfile.PetProfileFragment"
-        android:label="fragment_pet_profile"
-        tools:layout="@layout/fragment_pet_profile" >
-        <argument
-            android:name="pet"
-            app:argType="string" />
         <action
-            android:id="@+id/action_petProfileFragment_to_mainFragment"
-            app:destination="@id/mainFragment"
+            android:id="@+id/action_newPetFragment_to_petProfileActivity"
+            app:destination="@id/petProfileActivity"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
@@ -110,6 +94,15 @@
         android:name="com.hhh.paws.ui.petProfile.VetPassportActivity"
         android:label="app_bar_vet_passport"
         tools:layout="@layout/app_bar_vet_passport">
+        <argument
+            android:name="pet"
+            app:argType="string" />
+    </activity>
+    <activity
+        android:id="@+id/petProfileActivity"
+        android:name="com.hhh.paws.ui.petProfile.PetProfileActivity"
+        android:label="activity_pet_profile"
+        tools:layout="@layout/activity_pet_profile">
         <argument
             android:name="pet"
             app:argType="string" />

@@ -8,7 +8,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.bundleOf
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.navArgs
 import androidx.navigation.ui.AppBarConfiguration
@@ -78,7 +80,9 @@ class VetPassportActivity : AppCompatActivity() {
         val agePetProfile = header.findViewById<TextView>(R.id.agePetProfile)
         iconPetProfile = header.findViewById<ImageView>(R.id.iconPetProfile)
         iconPetProfile.setOnClickListener {
-            
+            val bundle = bundleOf("pet" to petNameThis)
+            Navigation.findNavController(this@VetPassportActivity, R.id.nav_host_fragment_content_vet_passport)
+                .navigate(R.id.action_nav_notes_to_petProfileActivity, bundle)
         }
 
     }
