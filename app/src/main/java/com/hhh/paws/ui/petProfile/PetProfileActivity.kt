@@ -3,11 +3,15 @@ package com.hhh.paws.ui.petProfile
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.DatePickerDialog
+import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.ext.SdkExtensions
+import android.provider.MediaStore
 import android.util.Log
 import android.view.Window
 import android.view.WindowManager
@@ -33,6 +37,7 @@ import com.hhh.paws.R
 import com.hhh.paws.database.model.Pet
 import com.hhh.paws.database.viewModel.PetViewModel
 import com.hhh.paws.databinding.ActivityPetProfileBinding
+import com.hhh.paws.ui.main.MainFragment
 import com.hhh.paws.util.UiState
 import com.hhh.paws.util.toast
 import dagger.hilt.android.AndroidEntryPoint
@@ -135,7 +140,9 @@ class PetProfileActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListen
 
         buttonBack = mBinding.root.findViewById(R.id.buttonBack)
         buttonBack.setOnClickListener {
-            // findNavController().popBackStack()
+            val intent = Intent(this, VetPassportActivity::class.java)
+            intent.putExtra("pet", petNameThis)
+            startActivity(intent)
         }
 
         buttonDelete = mBinding.root.findViewById(R.id.buttonDelete)
@@ -152,7 +159,7 @@ class PetProfileActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListen
             }
             alertDialog.show()
 
-            // Navigation.findNavController(requireActivity(), R.id.action_petProfileFragment_to_mainFragment)
+            val intent = Intent(this, MainFragment::class.java)
         }
         viewModelPet.delete.observe(this) {
             when (it) {
@@ -188,7 +195,7 @@ class PetProfileActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListen
                     petHair.setText(it.data.hair)
                     val pos = adapterSex.getPosition(it.data.sex)
                     spinnerSex.setSelection(pos)
-                    // petPhoto.setImageURI(it.data.photoUri)
+                    //petPhoto.setImageURI(it.data.photoUri)
                 }
                 is UiState.Failure -> {
                     Log.d("UI State", it.error.toString())
@@ -246,6 +253,6 @@ class PetProfileActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListen
 
     private fun setImage(uri: Uri) {
         photoUri = uri
-        petPhoto.setImageURI(photoUri)
+        petPhoto.setImageURI(uri)
     }
 }
