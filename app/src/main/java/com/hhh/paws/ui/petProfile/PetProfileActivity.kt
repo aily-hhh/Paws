@@ -4,14 +4,10 @@ import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.ext.SdkExtensions
-import android.provider.MediaStore
 import android.util.Log
 import android.view.Window
 import android.view.WindowManager
@@ -23,16 +19,14 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatSpinner
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.LifecycleOwner
-import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import androidx.navigation.navArgs
+import com.bumptech.glide.Glide
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.storage.FirebaseStorage
 import com.hhh.paws.R
 import com.hhh.paws.database.model.Pet
 import com.hhh.paws.database.viewModel.PetViewModel
@@ -120,7 +114,7 @@ class PetProfileActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListen
                 spinnerSex.selectedItem.toString(),
                 petBirthday.text.toString(),
                 petHair.text.toString(),
-                photoUri
+                photoUri.toString()
             )
             viewModelPet.updatePet(pet)
         }
@@ -195,7 +189,15 @@ class PetProfileActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListen
                     petHair.setText(it.data.hair)
                     val pos = adapterSex.getPosition(it.data.sex)
                     spinnerSex.setSelection(pos)
-                    //petPhoto.setImageURI(it.data.photoUri)
+                    FirebaseStorage.getInstance().reference
+                        .child("images/" + it.data.photoUri).downloadUrl
+                        .addOnSuccessListener { uri ->
+                            Glide.with(applicationContext)
+                                .load(uri)
+                                .into(petPhoto)
+                        }.addOnFailureListener {
+                            Log.d("UI State", "Failure image: ${it.localizedMessage}")
+                        }
                 }
                 is UiState.Failure -> {
                     Log.d("UI State", it.error.toString())

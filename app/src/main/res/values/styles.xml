@@ -19,11 +19,12 @@
         <item name="startIconTint">@color/green</item>
     </style>
 
-    <style name="MyDatePicker" parent="@android:style/Widget.Material.Light.DatePicker">
+   <!-- <style name="MyDatePicker" parent="@android:style/Widget.Material.Light.DatePicker">
         <item name="backgroundColor">@color/lightBeige</item>
-    </style>
+    </style> -->
 
-    <style name="MyFloatActionButton" parent="Widget.MaterialComponents.FloatingActionButton">
+    <style name="MyFloatActionButton" parent="Widget.Design.FloatingActionButton">
+        <item name="colorOnSecondary">@color/darkBrown</item>
         <item name="android:backgroundTint">@color/darkGreen</item>
         <item name="tint">@color/white</item>
     </style>

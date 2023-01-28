@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.hhh.paws.R;
-import com.hhh.paws.databinding.FragmentPetProfileBinding;
 import com.hhh.paws.databinding.FragmentProceduresBinding;
 
 import dagger.hilt.android.AndroidEntryPoint;

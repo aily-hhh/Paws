@@ -11,11 +11,11 @@ public class Pet {
     private String sex;
     private String birthday;
     private String hair;
-    private Uri photoUri;
+    private String photoUri;
 
     public Pet(){}
 
-    public Pet(String name, String species, String breed, String sex, String birthday, String hair, Uri photoUri) {
+    public Pet(String name, String species, String breed, String sex, String birthday, String hair, String photoUri) {
         this.name = name;
         this.species = species;
         this.breed = breed;
@@ -73,10 +73,10 @@ public class Pet {
         this.hair = hair;
     }
 
-    public Uri getPhotoUri() {
+    public String getPhotoUri() {
         return photoUri;
     }
-    public void setPhotoUri(Uri photoUri){
+    public void setPhotoUri(String photoUri){
         this.photoUri = photoUri;
     }
 }

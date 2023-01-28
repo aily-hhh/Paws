@@ -1,17 +1,20 @@
 package com.hhh.paws.database.repository
 
 import android.content.ContentValues
+import android.content.ContentValues.TAG
 import android.util.Log
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
-import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import com.hhh.paws.R
 import com.hhh.paws.database.dao.NotesDao
 import com.hhh.paws.database.model.Notes
 import com.hhh.paws.util.FireStoreTables
 import com.hhh.paws.util.UiState
+import java.util.*
 import javax.inject.Inject
 
 
@@ -56,13 +59,41 @@ class NotesRepository @Inject constructor(private val database: FirebaseFirestor
 
     override fun addNote(note: Notes, petName: String, result: (UiState<String>) -> Unit) {
         val uID = FirebaseAuth.getInstance().currentUser!!.uid
+
+        database.collection(FireStoreTables.USER).document(uID)
+            .collection(FireStoreTables.PET).document(petName)
+            .collection(FireStoreTables.NOTES).document(UUID.randomUUID().toString()).set(note)
+            .addOnSuccessListener {
+                result.invoke(UiState.Success("Note added"))
+            }
+            .addOnFailureListener {
+                result.invoke(UiState.Failure(R.string.error.toString()))
+            }
     }
 
     override fun updateNote(note: Notes, petName: String, result: (UiState<String>) -> Unit) {
         val uID = FirebaseAuth.getInstance().currentUser!!.uid
+        database.collection(FireStoreTables.USER).document(uID)
+            .collection(FireStoreTables.PET).document(petName)
+            .collection(FireStoreTables.NOTES).document(note.id).set(note)
+            .addOnSuccessListener {
+                result.invoke(UiState.Success("Note updated"))
+            }
+            .addOnFailureListener {
+                result.invoke(UiState.Failure(R.string.error.toString()))
+            }
     }
 
     override fun deleteNote(noteID: String, petName: String, result: (UiState<String>) -> Unit) {
         val uID = FirebaseAuth.getInstance().currentUser!!.uid
+        database.collection(FireStoreTables.USER).document(uID)
+            .collection(FireStoreTables.PET).document(petName)
+            .collection(FireStoreTables.NOTES).document(noteID).delete()
+            .addOnSuccessListener {
+                result.invoke(UiState.Success("Note deleted"))
+            }
+            .addOnFailureListener {
+                result.invoke(UiState.Failure(R.string.error.toString()))
+            }
     }
 }
