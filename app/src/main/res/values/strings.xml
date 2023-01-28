@@ -43,4 +43,7 @@
     <string name="menu_reproduction">Reproduction</string>
     <string name="menu_identification">Identification</string>
 
+    <string name="title_notes">Title</string>
+    <string name="description">Description</string>
+
 </resources>
