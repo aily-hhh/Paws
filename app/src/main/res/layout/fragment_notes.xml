@@ -28,8 +28,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="@string/not_elem"
+        android:visibility="invisible"
         android:textStyle="bold"
         android:gravity="center"
         android:textIsSelectable="false"/>
+
+    <ProgressBar
+        android:id="@+id/progressBarNotes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="invisible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

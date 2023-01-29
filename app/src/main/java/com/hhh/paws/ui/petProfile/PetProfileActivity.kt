@@ -27,6 +27,7 @@ import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.storage.FirebaseStorage
+import com.hhh.paws.MainActivity
 import com.hhh.paws.R
 import com.hhh.paws.database.model.Pet
 import com.hhh.paws.database.viewModel.PetViewModel
@@ -51,6 +52,7 @@ class PetProfileActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListen
     private lateinit var spinnerSex: AppCompatSpinner
     private lateinit var buttonUpdate: Button
     private lateinit var buttonBack: Button
+    private lateinit var buttonToMainFragment: Button
     private lateinit var buttonDelete: Button
     private lateinit var toolbarLayoutPet: CollapsingToolbarLayout
 
@@ -136,6 +138,12 @@ class PetProfileActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListen
         buttonBack.setOnClickListener {
             val intent = Intent(this, VetPassportActivity::class.java)
             intent.putExtra("pet", petNameThis)
+            startActivity(intent)
+        }
+
+        buttonToMainFragment = mBinding.root.findViewById(R.id.buttonToMainFragment)
+        buttonToMainFragment.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
 

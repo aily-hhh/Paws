@@ -1,12 +1,12 @@
 package com.hhh.paws.database.model;
 
-import com.google.type.Date;
 
 public class Notes {
     String id;
-    String name;
+    String title;
     String description;
-    Date date;
+    String date;
+    Boolean pinned;
 
     public String getId() {
         return id;
@@ -16,12 +16,12 @@ public class Notes {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {
@@ -32,12 +32,20 @@ public class Notes {
         this.description = description;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
+    }
+
+    public Boolean getPinned() {
+        return pinned;
+    }
+
+    public void setPinned(Boolean pinned) {
+        this.pinned = pinned;
     }
 }
 

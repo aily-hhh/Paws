@@ -15,8 +15,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class DetailNoteFragment : Fragment() {
 
-    private lateinit var saveNote: ImageView
-    private lateinit var backNote: ImageView
     private lateinit var titleNotesDetail: EditText
     private lateinit var descriptionNotesDetail: EditText
 
@@ -34,8 +32,6 @@ class DetailNoteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        saveNote = mBinding.saveNote
-        backNote = mBinding.backNote
         titleNotesDetail = mBinding.titleNotesDetail
         descriptionNotesDetail = mBinding.descriptionNotesDetail
     }
