@@ -13,12 +13,14 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.hhh.paws.R
 import com.hhh.paws.database.viewModel.NotesViewModel
 import com.hhh.paws.databinding.FragmentNotesBinding
 import com.hhh.paws.ui.petProfile.VetPassportActivity
 import com.hhh.paws.util.UiState
+import com.hhh.paws.util.toast
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -53,11 +55,15 @@ class NotesFragment: Fragment() {
 
         recyclerNotes = mBinding.recyclerNotes
         initAdapter()
-//        notesAdapter.setOnItemClickListener {
-//            val bundle = bundleOf("note" to it)
-//            Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_vet_passport)
-//                .navigate(R.id.action_nav_notes_to_detailNoteFragment, bundle)
-//        }
+        notesAdapter.setOnItemClickListener {
+            val bundle = bundleOf("note" to it)
+            Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_vet_passport)
+                .navigate(R.id.action_nav_notes_to_detailNoteFragment, bundle)
+        }
+        notesAdapter.setOnItemLongClickListener {
+            // menu
+            toast("Long click")
+        }
 
         addNotesButton = mBinding.addNotesButton
         addNotesButton.setOnClickListener {
@@ -92,7 +98,7 @@ class NotesFragment: Fragment() {
         notesAdapter = NotesAdapter()
         recyclerNotes.apply {
             adapter = notesAdapter
-            layoutManager = LinearLayoutManager(activity)
+            layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
         }
     }
 }

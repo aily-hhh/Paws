@@ -7,7 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import com.hhh.paws.R
+import com.hhh.paws.database.model.Notes
+import com.hhh.paws.database.viewModel.NotesViewModel
 import com.hhh.paws.databinding.FragmentDetailNoteBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,6 +25,11 @@ class DetailNoteFragment : Fragment() {
     private var _binding: FragmentDetailNoteBinding? = null
     private val mBinding get() = _binding!!
 
+    private var noteThis: Notes? = null
+
+    private val viewModelNotes by viewModels<NotesViewModel>()
+    private val bundleArgs: DetailNoteFragmentArgs by navArgs()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,7 +41,15 @@ class DetailNoteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        noteThis = bundleArgs.note
         titleNotesDetail = mBinding.titleNotesDetail
         descriptionNotesDetail = mBinding.descriptionNotesDetail
+
+        if (noteThis != null) {
+            titleNotesDetail.setText(noteThis!!.title.toString())
+            descriptionNotesDetail.setText(noteThis!!.description.toString())
+        }
+
+
     }
 }

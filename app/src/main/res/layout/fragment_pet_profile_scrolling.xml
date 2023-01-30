@@ -51,7 +51,7 @@
                 android:enabled="false"
                 android:fontFamily="monospace"
                 android:textColor="@color/cardview_dark_background"
-                android:paddingStart="4dp"
+                android:paddingStart="18dp"
                 android:text="@string/sex"
                 android:textSize="12sp"
                 tools:ignore="RtlSymmetry" />
@@ -71,6 +71,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/petBirthday"
+                    android:focusable="false"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
             </com.google.android.material.textfield.TextInputLayout>

@@ -57,6 +57,12 @@ class NotesAdapter: RecyclerView.Adapter<NotesAdapter.NotesViewHolder>() {
                     it(currentNote)
                 }
             }
+            setOnLongClickListener {
+                onItemLongClickListener?.let {
+                    it(currentNote)
+                }
+                true
+            }
         }
     }
 
@@ -67,5 +73,10 @@ class NotesAdapter: RecyclerView.Adapter<NotesAdapter.NotesViewHolder>() {
     private var onItemClickListener: ((Notes) -> Unit)? = null
     fun setOnItemClickListener(listener: (Notes) -> Unit) {
         onItemClickListener = listener
+    }
+
+    private var onItemLongClickListener: ((Notes) -> Unit)? = null
+    fun setOnItemLongClickListener(listener: (Notes) -> Unit) {
+        onItemLongClickListener = listener
     }
 }

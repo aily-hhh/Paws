@@ -31,7 +31,12 @@ class NotesRepository @Inject constructor(private val database: FirebaseFirestor
             .addOnSuccessListener {
                 for (document in it) {
                     Log.d(ContentValues.TAG, "${document.id} => ${document.data}")
-                    val newNote = document.toObject(Notes::class.java)
+                    val newNote = Notes()
+                    newNote.id = document.id
+                    newNote.title = document.data["title"].toString()
+                    newNote.description = document.data["description"].toString()
+                    newNote.date = document.data["date"].toString()
+                    newNote.pinned = document.data["pinned"] as Boolean?
                     notes.add(newNote)
                 }
                 result.invoke(UiState.Success(notes))
@@ -57,7 +62,7 @@ class NotesRepository @Inject constructor(private val database: FirebaseFirestor
             }
     }
 
-    override fun addNote(note: Notes, petName: String, result: (UiState<String>) -> Unit) {
+    override suspend fun addNote(note: Notes, petName: String, result: (UiState<String>) -> Unit) {
         val uID = FirebaseAuth.getInstance().currentUser!!.uid
 
         database.collection(FireStoreTables.USER).document(uID)
@@ -71,7 +76,7 @@ class NotesRepository @Inject constructor(private val database: FirebaseFirestor
             }
     }
 
-    override fun updateNote(note: Notes, petName: String, result: (UiState<String>) -> Unit) {
+    override suspend fun updateNote(note: Notes, petName: String, result: (UiState<String>) -> Unit) {
         val uID = FirebaseAuth.getInstance().currentUser!!.uid
         database.collection(FireStoreTables.USER).document(uID)
             .collection(FireStoreTables.PET).document(petName)
@@ -84,7 +89,7 @@ class NotesRepository @Inject constructor(private val database: FirebaseFirestor
             }
     }
 
-    override fun deleteNote(noteID: String, petName: String, result: (UiState<String>) -> Unit) {
+    override suspend fun deleteNote(noteID: String, petName: String, result: (UiState<String>) -> Unit) {
         val uID = FirebaseAuth.getInstance().currentUser!!.uid
         database.collection(FireStoreTables.USER).document(uID)
             .collection(FireStoreTables.PET).document(petName)

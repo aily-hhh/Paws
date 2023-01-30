@@ -11,15 +11,15 @@
         <item name="buttonStyle">@style/MyButton</item>
         <item name="android:buttonStyle">@style/MyButton</item>
         <item name="android:windowBackground">@drawable/background_light</item>
-        <!-- <item name="android:alertDialogStyle">@style/MyAlertDialog</item>
-        <item name="android:alertDialogTheme">@style/MyAlertDialog</item>
-        <item name="alertDialogTheme">@style/MyAlertDialog</item> -->
-        <item name="android:textColorPrimary">@color/darkBrown</item>
+        <item name="android:textColorPrimary">@color/lightGreen</item>
         <item name="android:textColor">@color/darkBrown</item>
         <item name="android:editTextColor">@color/darkBrown</item>
         <item name="floatingActionButtonStyle">@style/MyFloatActionButton</item>
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:alertDialogTheme">@style/MyAlertDialog</item>
+        <item name="alertDialogTheme">@style/MyAlertDialog</item>
+        <item name="android:datePickerDialogTheme">@style/MyAlertDialog</item>
     </style>
 
     <style name="Theme.Paws.NoActionBar">

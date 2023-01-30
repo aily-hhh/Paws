@@ -3,10 +3,12 @@ package com.hhh.paws.database.viewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.hhh.paws.database.model.Notes
 import com.hhh.paws.database.repository.NotesRepository
 import com.hhh.paws.util.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import org.checkerframework.checker.guieffect.qual.UI
 import javax.inject.Inject
 
@@ -36,8 +38,10 @@ class NotesViewModel @Inject constructor( private val repository: NotesRepositor
     val add: LiveData<UiState<String>> get() = _add
     fun addNote(note: Notes, petName: String) {
         _add.value = UiState.Loading
-        repository.addNote(note, petName) {
-            _add.value = it
+        viewModelScope.launch {
+            repository.addNote(note, petName) {
+                _add.value = it
+            }
         }
     }
 
@@ -45,8 +49,10 @@ class NotesViewModel @Inject constructor( private val repository: NotesRepositor
     val update: LiveData<UiState<String>> get() = _update
     fun updateNote(note: Notes, petName: String) {
         _update.value = UiState.Loading
-        repository.updateNote(note, petName) {
-            _update.value = it
+        viewModelScope.launch {
+            repository.updateNote(note, petName) {
+                _update.value = it
+            }
         }
     }
 
@@ -54,8 +60,10 @@ class NotesViewModel @Inject constructor( private val repository: NotesRepositor
     val delete: LiveData<UiState<String>> get() = _delete
     fun deleteNote(noteID: String, petName: String) {
         _delete.value = UiState.Loading
-        repository.deleteNote(noteID, petName) {
-            _delete.value = it
+        viewModelScope.launch {
+            repository.deleteNote(noteID, petName) {
+                _delete.value = it
+            }
         }
     }
 }

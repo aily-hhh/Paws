@@ -77,6 +77,12 @@
         android:id="@+id/detailNoteFragment"
         android:name="com.hhh.paws.ui.petProfile.menu.notes.DetailNoteFragment"
         android:label="fragment_detail_note"
-        tools:layout="@layout/fragment_detail_note" />
+        tools:layout="@layout/fragment_detail_note" >
+        <argument
+            android:name="note"
+            app:argType="com.hhh.paws.database.model.Notes"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
 
 </navigation>
