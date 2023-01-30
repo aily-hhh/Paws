@@ -10,7 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.hhh.paws.R;
+import com.google.android.material.textfield.TextInputEditText;
 import com.hhh.paws.databinding.FragmentIdentificationBinding;
 
 import dagger.hilt.android.AndroidEntryPoint;
@@ -24,6 +24,12 @@ public class IdentificationFragment extends Fragment {
         return _binding;
     }
 
+    private TextInputEditText microchipNumber;
+    private TextInputEditText dateOfMicrochipping;
+    private TextInputEditText microchipLocation;
+    private TextInputEditText tattooNumber;
+    private TextInputEditText dateOfTattooing;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -35,5 +41,10 @@ public class IdentificationFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        microchipNumber = getBinding().microchipNumber;
+        dateOfMicrochipping = getBinding().dateOfMicrochipping;
+        microchipLocation = getBinding().microchipLocation;
+        tattooNumber = getBinding().tattooNumber;
+        dateOfTattooing = getBinding().dateOfTattooing;
     }
 }

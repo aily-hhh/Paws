@@ -1,7 +1,8 @@
 package com.hhh.paws.util
 
 object FireStoreTables {
-    val USER = "users"
-    val PET = "pets"
-    val NOTES = "notes"
+    const val USER = "users"
+    const val PET = "pets"
+    const val NOTES = "notes"
+    const val IDENTIFICATION = "identification"
 }

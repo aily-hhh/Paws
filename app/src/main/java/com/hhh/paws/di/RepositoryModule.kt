@@ -1,9 +1,11 @@
 package com.hhh.paws.di
 
 import com.google.firebase.firestore.FirebaseFirestore
+import com.hhh.paws.database.dao.IdentificationDao
 import com.hhh.paws.database.dao.NotesDao
 import com.hhh.paws.database.dao.PetDao
 import com.hhh.paws.database.dao.UserDao
+import com.hhh.paws.database.repository.IdentificationRepository
 import com.hhh.paws.database.repository.NotesRepository
 import com.hhh.paws.database.repository.PetRepository
 import com.hhh.paws.database.repository.UserRepository
@@ -33,5 +35,11 @@ object RepositoryModule {
     @Singleton
     fun provideNotesRepository(database: FirebaseFirestore): NotesDao {
         return NotesRepository(database)
+    }
+
+    @Provides
+    @Singleton
+    fun provideIdentificationRepository(database: FirebaseFirestore): IdentificationDao {
+        return IdentificationRepository(database)
     }
 }

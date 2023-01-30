@@ -1,21 +1,26 @@
 package com.hhh.paws.ui.petProfile.menu.notes
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.hhh.paws.R
+import com.hhh.paws.database.model.Notes
 import com.hhh.paws.database.viewModel.NotesViewModel
 import com.hhh.paws.databinding.FragmentNotesBinding
 import com.hhh.paws.ui.petProfile.VetPassportActivity
@@ -36,6 +41,7 @@ class NotesFragment: Fragment() {
     private lateinit var progressBarNotes: ProgressBar
 
     private val viewModelNotes by viewModels<NotesViewModel>()
+    private lateinit var petNameThis: String
     private lateinit var notesAdapter: NotesAdapter
 
     override fun onCreateView(
@@ -50,6 +56,9 @@ class NotesFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        petNameThis = "Котик"
+        requireActivity().actionBar?.title = "My note"
+
         notElemNotes = mBinding.notElemNotes
         progressBarNotes = mBinding.progressBarNotes
 
@@ -61,8 +70,21 @@ class NotesFragment: Fragment() {
                 .navigate(R.id.action_nav_notes_to_detailNoteFragment, bundle)
         }
         notesAdapter.setOnItemLongClickListener {
-            // menu
-            toast("Long click")
+            showPopUpMenu(it)
+        }
+
+        viewModelNotes.update.observe(viewLifecycleOwner) {
+            when(it) {
+                is UiState.Loading -> {
+
+                }
+                is UiState.Success -> {
+                    toast("Long click")
+                }
+                is UiState.Failure -> {
+
+                }
+            }
         }
 
         addNotesButton = mBinding.addNotesButton
@@ -71,7 +93,7 @@ class NotesFragment: Fragment() {
                 .navigate(R.id.action_nav_notes_to_detailNoteFragment)
         }
 
-        viewModelNotes.getAllNotes("Котик")
+        viewModelNotes.getAllNotes(petNameThis)
         viewModelNotes.allNotes.observe(viewLifecycleOwner) {
             when(it) {
                 is UiState.Loading -> {
@@ -100,5 +122,31 @@ class NotesFragment: Fragment() {
             adapter = notesAdapter
             layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
         }
+    }
+
+    private fun showPopUpMenu(noteForMenu: Notes) {
+        val popup = PopupMenu(requireContext(), view)
+        popup.inflate(R.menu.long_click_menu)
+        popup.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item: MenuItem? ->
+
+            when (item!!.itemId) {
+                R.id.pinMenu -> {
+                    noteForMenu.pinned = true
+                    viewModelNotes.updateNote(
+                        noteForMenu,
+                        petNameThis
+                    )
+                }
+                R.id.deleteMenu -> {
+                    viewModelNotes.deleteNote(
+                        noteForMenu.id,
+                        petNameThis
+                    )
+                }
+            }
+
+            true
+        })
+        popup.show()
     }
 }
