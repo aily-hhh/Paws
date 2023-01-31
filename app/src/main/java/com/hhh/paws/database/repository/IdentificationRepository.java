@@ -39,31 +39,28 @@ public class IdentificationRepository implements IdentificationDao {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         Identification identification = new Identification();
-                        identification.setDateOfTattooing(
-                                Objects.requireNonNull(documentSnapshot
-                                                .get("dateOfTattooing"))
-                                                .toString()
-                        );
-                        identification.setDateOfMicrochipping(
-                                Objects.requireNonNull(documentSnapshot
-                                                .get("dateOfMicrochipping"))
-                                                .toString()
-                        );
-                        identification.setMicrochipLocation(
-                                Objects.requireNonNull(documentSnapshot
-                                                .get("microchipLocation"))
-                                                .toString()
-                        );
-                        identification.setMicrochipNumber(
-                                Objects.requireNonNull(documentSnapshot
-                                                .get("microchipNumber"))
-                                                .toString()
-                        );
-                        identification.setTattooNumber(
-                                Objects.requireNonNull(documentSnapshot
-                                                .get("tattooNumber"))
-                                                .toString()
-                        );
+//                        if (!documentSnapshot.exists()) {
+//                            identification.setDateOfTattooing(
+//                                    String.valueOf(documentSnapshot.getData()
+//                                            .getOrDefault("dateOfTattooing", ""))
+//                            );
+//                            identification.setDateOfMicrochipping(
+//                                    String.valueOf(documentSnapshot.getData()
+//                                            .getOrDefault("dateOfMicrochipping", ""))
+//                            );
+//                            identification.setMicrochipLocation(
+//                                    String.valueOf(documentSnapshot.getData()
+//                                            .getOrDefault("microchipLocation", ""))
+//                            );
+//                            identification.setMicrochipNumber(
+//                                    String.valueOf(documentSnapshot.getData()
+//                                            .getOrDefault("microchipNumber", ""))
+//                            );
+//                            identification.setTattooNumber(
+//                                    String.valueOf(documentSnapshot.getData()
+//                                            .getOrDefault("tattooNumber", ""))
+//                            );
+//                        }
 
                         result.invoke(new UiState.Success<>(identification));
                     }

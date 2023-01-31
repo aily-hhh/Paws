@@ -1,4 +1,4 @@
-package com.hhh.paws.database.dao.dehelmintization;
+package com.hhh.paws.ui.petProfile.menu.dehelmintization;
 
 import android.os.Bundle;
 

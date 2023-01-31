@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,8 +38,7 @@ public class IdentificationFragment extends Fragment {
     private TextInputEditText tattooNumber;
     private TextInputEditText dateOfTattooing;
 
-    private IdentificationViewModel viewModelIdentification =
-            new ViewModelProvider(requireActivity()).get(IdentificationViewModel.class);
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,6 +50,9 @@ public class IdentificationFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        IdentificationViewModel viewModelIdentification =
+                new ViewModelProvider(IdentificationFragment.this).get(IdentificationViewModel.class);
 
         microchipNumber = getBinding().microchipNumber;
         dateOfMicrochipping = getBinding().dateOfMicrochipping;

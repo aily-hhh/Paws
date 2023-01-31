@@ -13,10 +13,21 @@
         <item name="android:windowBackground">@color/fui_transparent</item>
         <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
         <item name="android:colorBackgroundCacheHint">@null</item>
-        <item name="android:background">@color/lightBeige</item>
+        <item name="android:background">@color/superLightBeige</item>
         <item name="android:textColorPrimary">@color/darkBrown</item>
         <item name="colorPrimary">@color/darkBrown</item>
-        <item name="colorSecondary">@color/darkGreen</item>
+    </style>
+
+    <style name="MyDatePickerDialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowBackground">@color/superLightBeige</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:textColorPrimary">@color/darkBrown</item>
+        <item name="colorPrimary">@color/darkGreen</item>
     </style>
 
     <style name="TextInput" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">

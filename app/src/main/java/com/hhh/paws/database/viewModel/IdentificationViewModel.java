@@ -1,6 +1,5 @@
 package com.hhh.paws.database.viewModel;
 
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -12,7 +11,7 @@ import com.hhh.paws.util.UiState;
 import javax.inject.Inject;
 
 import dagger.hilt.android.lifecycle.HiltViewModel;
-import kotlin.jvm.functions.Function1;
+
 
 @HiltViewModel
 public class IdentificationViewModel extends ViewModel {
