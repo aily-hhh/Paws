@@ -45,5 +45,7 @@
 
     <string name="title_notes">Title</string>
     <string name="description">Description</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

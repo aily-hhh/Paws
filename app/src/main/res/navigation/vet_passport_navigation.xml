@@ -66,7 +66,7 @@
     </fragment>
     <fragment
         android:id="@+id/nav_dehelmintization"
-        android:name="com.hhh.paws.ui.petProfile.menu.dehelmintization.DehelmintizationFragment"
+        android:name="com.hhh.paws.database.dao.dehelmintization.DehelmintizationFragment"
         android:label="@string/menu_dehelmintization"
         tools:layout="@layout/fragment_dehelmintization">
         <argument

@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/dehelmintizationContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="8dp"
+    android:layout_margin="8dp"
+    app:cardElevation="8dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/lightGreen">
+
+            <TextView
+                android:id="@+id/dateDehelmintizationList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:ellipsize="marquee"
+                android:fontFamily="monospace"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:padding="8dp"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:text="Date"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/nameDescript"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@+id/timeDescript"
+                android:ellipsize="marquee"
+                android:fontFamily="monospace"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:paddingTop="2dp"
+                android:layout_marginStart="6dp"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:text="nameList"
+                android:textSize="10sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/nameDehelmintizationList"
+                android:layout_width="190dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/nameDescript"
+                android:ellipsize="marquee"
+                android:fontFamily="monospace"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:paddingBottom="6dp"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:text="name"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/timeDescript"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_toEndOf="@+id/nameDehelmintizationList"
+                android:ellipsize="marquee"
+                android:fontFamily="monospace"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:paddingTop="2dp"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:text="timeList"
+                android:textSize="10sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/timeDehelmintizationList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/timeDescript"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="2dp"
+                android:layout_toEndOf="@+id/nameDehelmintizationList"
+                android:ellipsize="marquee"
+                android:fontFamily="monospace"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:paddingTop="2dp"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:text="Time"
+                android:textSize="10sp"
+                android:textStyle="normal" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/manufacturerDescript"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_toStartOf="@+id/doseDescript"
+                android:ellipsize="marquee"
+                android:fontFamily="monospace"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:paddingTop="2dp"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:text="manufacturerList"
+                android:textSize="10sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/manufacturerDehelmintizationList"
+                android:layout_width="190dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/manufacturerDescript"
+                android:fontFamily="monospace"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
+                android:paddingBottom="6dp"
+                android:text="Manufacturer"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/doseDescript"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_toEndOf="@+id/manufacturerDehelmintizationList"
+                android:ellipsize="marquee"
+                android:fontFamily="monospace"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:paddingTop="2dp"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:text="doseList"
+                android:textSize="10sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/doseDehelmintizationList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/doseDescript"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="2dp"
+                android:layout_toEndOf="@+id/manufacturerDehelmintizationList"
+                android:ellipsize="marquee"
+                android:fontFamily="monospace"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:paddingTop="2dp"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:text="Dose"
+                android:textSize="10sp"
+                android:textStyle="normal" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/veterinarianDescript"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:padding="8dp"
+                android:text="veterinarianList"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/veterinarianDehelmintizationList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_toEndOf="@+id/veterinarianDescript"
+                android:ellipsize="marquee"
+                android:fontFamily="monospace"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:padding="8dp"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:text="Veterinarian"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
