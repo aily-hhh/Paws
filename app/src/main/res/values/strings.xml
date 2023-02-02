@@ -29,6 +29,7 @@
     <string name="delete_profile">Вы действительно хотите удалить профиль?</string>
     <string name="delete_profile_msg">Отменить действие будет невозможно!</string>
     <string name="delete_yes">Удалить</string>
+    <string name="add">добавить</string>
 
     <string name="nav_header_desc">Navigation header</string>
     <string name="nav_header_title">Pets name</string>

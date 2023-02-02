@@ -56,7 +56,7 @@
         android:visibility="invisible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="добавить"
+        android:text="@string/add"
         android:textColor="@color/darkBeige"
         android:textSize="12sp"
         android:textStyle="bold"

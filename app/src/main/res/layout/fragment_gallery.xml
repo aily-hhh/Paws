@@ -27,9 +27,40 @@
         android:id="@+id/notElemGallery"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="invisible"
         android:text="@string/not_elem"
         android:textStyle="bold"
         android:gravity="center"
         android:textIsSelectable="false"/>
+
+    <ImageView
+        android:id="@+id/addArrow"
+        android:layout_width="48dp"
+        android:layout_height="64dp"
+        android:rotation="60"
+        android:src="@drawable/ic_arrow"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.713"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.886" />
+
+    <TextView
+        android:id="@+id/addTextView"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add"
+        android:textColor="@color/darkBeige"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.682"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.807" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
