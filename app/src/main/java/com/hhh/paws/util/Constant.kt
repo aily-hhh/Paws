@@ -5,4 +5,5 @@ object FireStoreTables {
     const val PET = "pets"
     const val NOTES = "notes"
     const val IDENTIFICATION = "identification"
+    const val DEHELMINTIZATION = "dehelmintization"
 }

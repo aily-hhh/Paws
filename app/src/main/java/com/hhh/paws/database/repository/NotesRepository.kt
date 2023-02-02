@@ -30,7 +30,7 @@ class NotesRepository @Inject constructor(private val database: FirebaseFirestor
             .get()
             .addOnSuccessListener {
                 for (document in it) {
-                    Log.d(ContentValues.TAG, "${document.id} => ${document.data}")
+                    Log.d(TAG, "${document.id} => ${document.data}")
                     val newNote = Notes()
                     newNote.id = document.id
                     newNote.title = document.data["title"].toString()
@@ -41,7 +41,7 @@ class NotesRepository @Inject constructor(private val database: FirebaseFirestor
                 }
                 result.invoke(UiState.Success(notes))
             }.addOnFailureListener { exception ->
-                Log.d(ContentValues.TAG, "Error getting documents: ", exception)
+                Log.d(TAG, "Error getting documents: ", exception)
                 result.invoke(UiState.Failure(R.string.error.toString()))
             }
     }

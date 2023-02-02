@@ -211,6 +211,7 @@ class PetProfileActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListen
         val sexList = resources.getStringArray(R.array.sexArray)
         val adapterSex = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, sexList)
         spinnerSex.setAdapter(adapterSex)
+        spinnerSex.threshold = 0
     }
 
     private fun getDateCalendar() {

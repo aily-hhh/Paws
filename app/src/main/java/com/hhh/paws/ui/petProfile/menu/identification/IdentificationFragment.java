@@ -38,8 +38,6 @@ public class IdentificationFragment extends Fragment {
     private TextInputEditText tattooNumber;
     private TextInputEditText dateOfTattooing;
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
