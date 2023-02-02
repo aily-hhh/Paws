@@ -1,6 +1,5 @@
 package com.hhh.paws.ui.petProfile.menu.notes
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,10 +14,10 @@ import com.hhh.paws.database.model.Notes
 class NotesAdapter: RecyclerView.Adapter<NotesAdapter.NotesViewHolder>() {
 
     inner class NotesViewHolder(view: View): RecyclerView.ViewHolder(view) {
-        val title = view.findViewById<TextView>(R.id.titleNotes)
-        val description = view.findViewById<TextView>(R.id.descriptionNotes)
-        val date = view.findViewById<TextView>(R.id.dateNotes)
-        val pin = view.findViewById<ImageView>(R.id.pinnedNotes)
+        val title: TextView = view.findViewById(R.id.titleNotes)
+        val description: TextView = view.findViewById(R.id.descriptionNotes)
+        val date: TextView = view.findViewById(R.id.dateNotes)
+        val pin: ImageView = view.findViewById(R.id.pinnedNotes)
     }
 
     private val callback = object: DiffUtil.ItemCallback<Notes>() {
@@ -26,9 +25,15 @@ class NotesAdapter: RecyclerView.Adapter<NotesAdapter.NotesViewHolder>() {
             return oldItem.id == newItem.id
         }
 
-        @SuppressLint("DiffUtilEquals")
         override fun areContentsTheSame(oldItem: Notes, newItem: Notes): Boolean {
-            return oldItem == newItem
+            return when {
+                oldItem.id != newItem.id -> false
+                oldItem.title != newItem.title -> false
+                oldItem.description != newItem.description -> false
+                oldItem.date != newItem.date -> false
+                oldItem.pinned != newItem.pinned -> false
+                else -> true
+            }
         }
     }
 

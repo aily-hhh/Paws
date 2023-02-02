@@ -1,12 +1,12 @@
 package com.hhh.paws.ui.petProfile.menu.notes
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.PopupMenu
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -39,6 +39,8 @@ class NotesFragment: Fragment() {
     private lateinit var addNotesButton: FloatingActionButton
     private lateinit var notElemNotes: TextView
     private lateinit var progressBarNotes: ProgressBar
+    private lateinit var addArrow: ImageView
+    private lateinit var addTextView: TextView
 
     private val viewModelNotes by viewModels<NotesViewModel>()
     private lateinit var petNameThis: String
@@ -57,10 +59,11 @@ class NotesFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         petNameThis = "Котик"
-        requireActivity().actionBar?.title = "My note"
 
         notElemNotes = mBinding.notElemNotes
         progressBarNotes = mBinding.progressBarNotes
+        addArrow = mBinding.addArrow
+        addTextView = mBinding.addTextView
 
         recyclerNotes = mBinding.recyclerNotes
         initAdapter()
@@ -104,8 +107,12 @@ class NotesFragment: Fragment() {
                     notesAdapter.differ.submitList(it.data)
                     if (notesAdapter.differ.currentList.isEmpty()) {
                         notElemNotes.visibility = View.VISIBLE
+                        addArrow.visibility = View.VISIBLE
+                        addTextView.visibility = View.VISIBLE
                     } else {
                         notElemNotes.visibility = View.INVISIBLE
+                        addArrow.visibility = View.INVISIBLE
+                        addTextView.visibility = View.INVISIBLE
                     }
                 }
                 is UiState.Failure -> {
@@ -127,8 +134,7 @@ class NotesFragment: Fragment() {
     private fun showPopUpMenu(noteForMenu: Notes) {
         val popup = PopupMenu(requireContext(), view)
         popup.inflate(R.menu.long_click_menu)
-        popup.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item: MenuItem? ->
-
+        popup.setOnMenuItemClickListener { item: MenuItem? ->
             when (item!!.itemId) {
                 R.id.pinMenu -> {
                     noteForMenu.pinned = true
@@ -144,9 +150,8 @@ class NotesFragment: Fragment() {
                     )
                 }
             }
-
             true
-        })
+        }
         popup.show()
     }
 }

@@ -39,28 +39,37 @@ public class IdentificationRepository implements IdentificationDao {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         Identification identification = new Identification();
-//                        if (!documentSnapshot.exists()) {
-//                            identification.setDateOfTattooing(
-//                                    String.valueOf(documentSnapshot.getData()
-//                                            .getOrDefault("dateOfTattooing", ""))
-//                            );
-//                            identification.setDateOfMicrochipping(
-//                                    String.valueOf(documentSnapshot.getData()
-//                                            .getOrDefault("dateOfMicrochipping", ""))
-//                            );
-//                            identification.setMicrochipLocation(
-//                                    String.valueOf(documentSnapshot.getData()
-//                                            .getOrDefault("microchipLocation", ""))
-//                            );
-//                            identification.setMicrochipNumber(
-//                                    String.valueOf(documentSnapshot.getData()
-//                                            .getOrDefault("microchipNumber", ""))
-//                            );
-//                            identification.setTattooNumber(
-//                                    String.valueOf(documentSnapshot.getData()
-//                                            .getOrDefault("tattooNumber", ""))
-//                            );
-//                        }
+                        if (documentSnapshot.get("dateOfTattooing") != null) {
+                            identification.setDateOfTattooing(
+                                    String.valueOf(documentSnapshot.getData()
+                                            .get("dateOfTattooing"))
+                            );
+                        }
+                        if (documentSnapshot.get("dateOfMicrochipping") != null) {
+                            identification.setDateOfMicrochipping(
+                                    String.valueOf(documentSnapshot.getData()
+                                            .getOrDefault("dateOfMicrochipping", ""))
+                            );
+                        }
+                        if (documentSnapshot.get("microchipLocation") != null) {
+                            identification.setMicrochipLocation(
+                                    String.valueOf(documentSnapshot.getData()
+                                            .getOrDefault("microchipLocation", ""))
+                            );
+                        }
+                        if (documentSnapshot.get("microchipNumber") != null) {
+                            identification.setMicrochipNumber(
+                                    String.valueOf(documentSnapshot.getData()
+                                            .getOrDefault("microchipNumber", ""))
+                            );
+                        }
+                        if (documentSnapshot.get("tattooNumber") != null) {
+                            identification.setTattooNumber(
+                                    String.valueOf(documentSnapshot.getData()
+                                            .getOrDefault("tattooNumber", ""))
+                            );
+                        }
+
 
                         result.invoke(new UiState.Success<>(identification));
                     }

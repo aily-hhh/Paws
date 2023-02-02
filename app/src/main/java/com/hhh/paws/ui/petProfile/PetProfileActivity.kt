@@ -25,6 +25,7 @@ import androidx.navigation.navArgs
 import com.bumptech.glide.Glide
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.textfield.MaterialAutoCompleteTextView
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.storage.FirebaseStorage
 import com.hhh.paws.MainActivity
@@ -49,7 +50,7 @@ class PetProfileActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListen
     private lateinit var petBreed: TextInputEditText
     private lateinit var petBirthday: TextInputEditText
     private lateinit var petHair: TextInputEditText
-    private lateinit var spinnerSex: AppCompatSpinner
+    private lateinit var spinnerSex: MaterialAutoCompleteTextView
     private lateinit var buttonUpdate: Button
     private lateinit var buttonBack: Button
     private lateinit var buttonToMainFragment: Button
@@ -60,7 +61,6 @@ class PetProfileActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListen
     private lateinit var changeImagePetFab: FloatingActionButton
 
     private val viewModelPet by viewModels<PetViewModel>()
-    private val bundleArgs: PetProfileActivityArgs by navArgs()
 
     private lateinit var petNameThis: String
     private var photoUri: Uri? = null
@@ -83,7 +83,7 @@ class PetProfileActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListen
         _binding = ActivityPetProfileBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
 
-        petNameThis = bundleArgs.pet
+        petNameThis = intent.getStringExtra("pet").toString()
 
         toolbarLayoutPet = mBinding.toolbarLayoutPet
         toolbarLayoutPet.title = petNameThis
@@ -91,6 +91,7 @@ class PetProfileActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListen
         petSpecies = mBinding.root.findViewById(R.id.petSpecies)
         petBreed = mBinding.root.findViewById(R.id.petBreed)
         petHair = mBinding.root.findViewById(R.id.petHair)
+        spinnerSex = mBinding.root.findViewById(R.id.spinnerSex)
 
         petBirthday = mBinding.root.findViewById(R.id.petBirthday)
         petBirthday.setOnClickListener {
@@ -98,25 +99,16 @@ class PetProfileActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListen
             DatePickerDialog(this, this, year, month, day).show()
         }
 
-        spinnerSex = mBinding.root.findViewById(R.id.spinnerSex)
-        val adapterSex = ArrayAdapter.createFromResource(
-            this,
-            R.array.sexArray,
-            android.R.layout.simple_spinner_item
-        )
-        adapterSex.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinnerSex.adapter = adapterSex
-
         buttonUpdate = mBinding.root.findViewById(R.id.buttonUpdate)
         buttonUpdate.setOnClickListener {
             val pet = Pet(
                 petNameThis,
-                petSpecies.text.toString(),
-                petBreed.text.toString(),
-                spinnerSex.selectedItem.toString(),
-                petBirthday.text.toString(),
-                petHair.text.toString(),
-                photoUri.toString()
+                petSpecies.text.toString().trim(),
+                petBreed.text.toString().trim(),
+                spinnerSex.text.toString().trim(),
+                petBirthday.text.toString().trim(),
+                petHair.text.toString().trim(),
+                photoUri.toString().trim()
             )
             viewModelPet.updatePet(pet)
         }
@@ -162,6 +154,7 @@ class PetProfileActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListen
             alertDialog.show()
 
             val intent = Intent(this, MainFragment::class.java)
+            startActivity(intent)
         }
         viewModelPet.delete.observe(this) {
             when (it) {
@@ -195,8 +188,7 @@ class PetProfileActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListen
                     petBreed.setText(it.data.breed)
                     petBirthday.setText(it.data.birthday)
                     petHair.setText(it.data.hair)
-                    val pos = adapterSex.getPosition(it.data.sex)
-                    spinnerSex.setSelection(pos)
+                    spinnerSex.setText(it.data.sex)
                     FirebaseStorage.getInstance().reference
                         .child("images/" + it.data.photoUri).downloadUrl
                         .addOnSuccessListener { uri ->
@@ -212,6 +204,13 @@ class PetProfileActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListen
                 }
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val sexList = resources.getStringArray(R.array.sexArray)
+        val adapterSex = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, sexList)
+        spinnerSex.setAdapter(adapterSex)
     }
 
     private fun getDateCalendar() {

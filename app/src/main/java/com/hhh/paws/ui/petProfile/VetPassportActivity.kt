@@ -1,5 +1,6 @@
 package com.hhh.paws.ui.petProfile
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.Window
@@ -83,9 +84,9 @@ class VetPassportActivity : AppCompatActivity() {
         val agePetProfile = header.findViewById<TextView>(R.id.agePetProfile)
         iconPetProfile = header.findViewById<ImageView>(R.id.iconPetProfile)
         iconPetProfile.setOnClickListener {
-            val bundle = bundleOf("pet" to petNameThis)
-            Navigation.findNavController(this@VetPassportActivity, R.id.nav_host_fragment_content_vet_passport)
-                .navigate(R.id.action_nav_notes_to_petProfileActivity, bundle)
+            val intent = Intent(this, PetProfileActivity::class.java)
+            intent.putExtra("pet", petNameThis)
+            startActivity(intent)
         }
 
     }
