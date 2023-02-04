@@ -103,9 +103,9 @@ public class DehelmintizationFragment extends Fragment {
             @Override
             public void onChanged(UiState<List<Dehelmintization>> listUiState) {
                 if (listUiState == UiState.Loading.INSTANCE) {
-                    progressBarDehelmintization.setVisibility(View.INVISIBLE);
-                } else if (listUiState.getClass() == UiState.Success.class) {
                     progressBarDehelmintization.setVisibility(View.VISIBLE);
+                } else if (listUiState.getClass() == UiState.Success.class) {
+                    progressBarDehelmintization.setVisibility(View.INVISIBLE);
                     adapter.differ.submitList(((UiState.Success<List<Dehelmintization>>) listUiState).getData());
                     if (adapter.differ.getCurrentList().isEmpty()) {
                         notElemDehelmintization.setVisibility(View.VISIBLE);

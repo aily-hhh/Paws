@@ -5,9 +5,10 @@ import com.hhh.paws.util.UiState;
 
 import java.util.function.Function;
 
+import io.reactivex.rxjava3.core.Observable;
 import kotlin.jvm.functions.Function1;
 
 public interface IdentificationDao {
-    void getIdentification(String petName, final Function1 result);
-    void setIdentification(String petName, Identification identification, final Function1 result);
+    Observable<Identification> getIdentification(String petName);
+    void setIdentification(String petName, Identification identification);
 }

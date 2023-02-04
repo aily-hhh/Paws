@@ -26,6 +26,9 @@ import com.hhh.paws.databinding.FragmentIdentificationBinding;
 import com.hhh.paws.util.UiState;
 
 import dagger.hilt.android.AndroidEntryPoint;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 
 @AndroidEntryPoint
@@ -42,6 +45,7 @@ public class IdentificationFragment extends Fragment {
     private TextInputEditText tattooNumber;
     private TextInputEditText dateOfTattooing;
 
+    private Disposable disposableGet;
     private IdentificationViewModel viewModelIdentification;
     private String petNameThis;
 
@@ -74,56 +78,19 @@ public class IdentificationFragment extends Fragment {
         tattooNumber = getBinding().tattooNumber;
         dateOfTattooing = getBinding().dateOfTattooing;
 
-        viewModelIdentification.getIdentification(petNameThis);
-        viewModelIdentification.getIdentification
-                .observe(getViewLifecycleOwner(), new Observer<UiState<Identification>>() {
-            @Override
-            public void onChanged(UiState<Identification> identificationUiState) {
-                if (identificationUiState == UiState.Loading.INSTANCE) {
-                    Toast.makeText(requireContext(), "loading..", Toast.LENGTH_SHORT).show();
-                } else if (identificationUiState.getClass() == UiState.Success.class) {
-                    microchipLocation.setText(
-                            ((UiState.Success<Identification>) identificationUiState)
-                                    .getData().getMicrochipLocation()
-                    );
-                    dateOfMicrochipping.setText(
-                            ((UiState.Success<Identification>) identificationUiState)
-                                    .getData().getDateOfMicrochipping()
-                    );
-                    microchipNumber.setText(
-                            ((UiState.Success<Identification>) identificationUiState)
-                                    .getData().getMicrochipNumber()
-                    );
-                    tattooNumber.setText(
-                            ((UiState.Success<Identification>) identificationUiState)
-                                    .getData().getTattooNumber()
-                    );
-                    dateOfTattooing.setText(
-                            ((UiState.Success<Identification>) identificationUiState)
-                                    .getData().getDateOfTattooing()
-                    );
-                } else if (identificationUiState.getClass() == UiState.Failure.class) {
-                    Toast.makeText(requireContext(), "error", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        viewModelIdentification.setIdentification.observe(getViewLifecycleOwner(), new Observer<UiState<String>>() {
-            @Override
-            public void onChanged(UiState<String> stringUiState) {
-                if (stringUiState == UiState.Loading.INSTANCE) {
-                    Toast.makeText(requireContext(), "loading..", Toast.LENGTH_SHORT).show();
-                } else if (stringUiState.getClass() == UiState.Success.class) {
-                    Toast.makeText(
-                            requireContext(),
-                            ((UiState.Success<String>) stringUiState).getData(),
-                            Toast.LENGTH_SHORT
-                    ).show();
-                } else if (stringUiState.getClass() == UiState.Failure.class) {
-                    Toast.makeText(requireContext(), "error", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+        disposableGet = viewModelIdentification.getIdentification(petNameThis)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe( it -> {
+                    microchipNumber.setText(it.getMicrochipNumber());
+                    dateOfMicrochipping.setText(it.getDateOfMicrochipping());
+                    microchipLocation.setText(it.getMicrochipLocation());
+                    tattooNumber.setText(it.getTattooNumber());
+                    dateOfTattooing.setText(it.getDateOfTattooing());
+                    }, it -> {
+                        Toast.makeText(requireContext(), "error", Toast.LENGTH_SHORT).show();
+                    }
+                );
     }
 
     @Override
@@ -141,11 +108,17 @@ public class IdentificationFragment extends Fragment {
             newIdentification.setDateOfMicrochipping(dateOfMicrochipping.getText().toString().trim());
             newIdentification.setDateOfTattooing(dateOfTattooing.getText().toString().trim());
 
-            viewModelIdentification.setIdentification(petNameThis, newIdentification);
+            // viewModelIdentification.setIdentification(petNameThis, newIdentification);
 
             return true;
         } else {
             return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        disposableGet.dispose();
     }
 }
