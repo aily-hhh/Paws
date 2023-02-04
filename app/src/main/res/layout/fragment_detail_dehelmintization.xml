@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ui.petProfile.menu.dehelmintization.DetailDehelmintizationFragment">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -24,7 +21,7 @@
                 android:hint="nameProduct">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/nameDehelmintizationTaker"
+                    android:id="@+id/nameDehelmintizationDetail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="monospace" />
@@ -38,7 +35,7 @@
                 android:hint="manufacturer">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/manufacturerDehelmintizationTaker"
+                    android:id="@+id/manufacturerDehelmintizationDetail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -51,7 +48,7 @@
                 android:hint="dose">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/doseDehelmintizationTaker"
+                    android:id="@+id/doseDehelmintizationDetail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -64,7 +61,7 @@
                 android:hint="dateDehelmintization">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/dateDehelmintizationTaker"
+                    android:id="@+id/dateDehelmintizationDetail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:focusable="false"/>
@@ -78,7 +75,7 @@
                 android:hint="timeDehelmintization">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/timeDehelmintizationTaker"
+                    android:id="@+id/timeDehelmintizationDetail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:focusable="false"/>
@@ -92,7 +89,7 @@
                 android:hint="veterinarian">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/veterinarianDehelmintizationTaker"
+                    android:id="@+id/veterinarianDehelmintizationDetail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -105,7 +102,7 @@
                 android:hint="@string/description">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/descriptionDehelmintizationTaker"
+                    android:id="@+id/descriptionDehelmintizationDetail"
                     android:singleLine="false"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -113,6 +110,5 @@
 
         </LinearLayout>
 
-    </ScrollView>
 
-</LinearLayout>
+</ScrollView>

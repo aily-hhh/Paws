@@ -5,6 +5,7 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.textfield.TextInputEditText
 import com.hhh.paws.R
 import com.hhh.paws.database.model.Dehelmintization
 import com.hhh.paws.database.model.Notes
@@ -18,6 +19,14 @@ class DetailDehelmintizationFragment : Fragment() {
 
     private var _binding: FragmentDetailDehelmintizationBinding? = null
     private val mBinding get() = _binding!!
+
+    private var nameDehelmintizationDetail: TextInputEditText? = null
+    private var manufacturerDehelmintizationDetail: TextInputEditText? = null
+    private var doseDehelmintizationDetail: TextInputEditText? = null
+    private var dateDehelmintizationDetail: TextInputEditText? = null
+    private var timeDehelmintizationDetail: TextInputEditText? = null
+    private var veterinarianDehelmintizationDetail: TextInputEditText? = null
+    private var descriptionDehelmintizationDetail: TextInputEditText? = null
 
     private var dehelmintizationThis: Dehelmintization? = null
     private lateinit var petName: String
@@ -43,6 +52,24 @@ class DetailDehelmintizationFragment : Fragment() {
 
         petName = "Котик"
         dehelmintizationThis = bundleArgs.dehelmintization
+
+        nameDehelmintizationDetail = mBinding.nameDehelmintizationDetail
+        manufacturerDehelmintizationDetail = mBinding.manufacturerDehelmintizationDetail
+        doseDehelmintizationDetail = mBinding.doseDehelmintizationDetail
+        dateDehelmintizationDetail = mBinding.dateDehelmintizationDetail
+        timeDehelmintizationDetail = mBinding.timeDehelmintizationDetail
+        veterinarianDehelmintizationDetail = mBinding.veterinarianDehelmintizationDetail
+        descriptionDehelmintizationDetail = mBinding.descriptionDehelmintizationDetail
+
+        if (dehelmintizationThis != null) {
+            nameDehelmintizationDetail!!.setText(dehelmintizationThis!!.name)
+            manufacturerDehelmintizationDetail!!.setText(dehelmintizationThis!!.manufacturer)
+            doseDehelmintizationDetail!!.setText(dehelmintizationThis!!.dose)
+            dateDehelmintizationDetail!!.setText(dehelmintizationThis!!.date)
+            timeDehelmintizationDetail!!.setText(dehelmintizationThis!!.time)
+            veterinarianDehelmintizationDetail!!.setText(dehelmintizationThis!!.veterinarian)
+            descriptionDehelmintizationDetail!!.setText(dehelmintizationThis!!.description)
+        }
 
     }
 

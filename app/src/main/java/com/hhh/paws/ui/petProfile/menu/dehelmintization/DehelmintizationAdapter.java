@@ -13,10 +13,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.hhh.paws.R;
 import com.hhh.paws.database.model.Dehelmintization;
+import com.hhh.paws.ui.petProfile.menu.ItemClickListener;
 
 import java.util.Objects;
 
-public class DehelmintizationAdapter extends RecyclerView.Adapter<DehelmintizationAdapter.DehelmintizationViewHolder> {
+public class DehelmintizationAdapter extends RecyclerView.Adapter<DehelmintizationAdapter.DehelmintizationViewHolder>{
 
     static class DehelmintizationViewHolder extends RecyclerView.ViewHolder {
 
@@ -79,13 +80,14 @@ public class DehelmintizationAdapter extends RecyclerView.Adapter<Dehelmintizati
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                clickListener.onItemClickListener(v);
             }
         });
 
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
+                clickListener.onItemLongClickListener(v);
                 return false;
             }
         });
@@ -96,5 +98,8 @@ public class DehelmintizationAdapter extends RecyclerView.Adapter<Dehelmintizati
         return differ.getCurrentList().size();
     }
 
-    //TODO: interface onClickListener
+    private ItemClickListener clickListener;
+    public void setClickListener(ItemClickListener clickListener) {
+        this.clickListener = clickListener;
+    }
 }

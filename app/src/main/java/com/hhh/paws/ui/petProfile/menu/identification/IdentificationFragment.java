@@ -70,6 +70,22 @@ public class IdentificationFragment extends Fragment {
                             ((UiState.Success<Identification>) identificationUiState)
                                     .getData().getMicrochipLocation()
                     );
+                    dateOfMicrochipping.setText(
+                            ((UiState.Success<Identification>) identificationUiState)
+                                    .getData().getDateOfMicrochipping()
+                    );
+                    microchipNumber.setText(
+                            ((UiState.Success<Identification>) identificationUiState)
+                                    .getData().getMicrochipNumber()
+                    );
+                    tattooNumber.setText(
+                            ((UiState.Success<Identification>) identificationUiState)
+                                    .getData().getTattooNumber()
+                    );
+                    dateOfTattooing.setText(
+                            ((UiState.Success<Identification>) identificationUiState)
+                                    .getData().getDateOfTattooing()
+                    );
                 } else if (identificationUiState.getClass() == UiState.Failure.class) {
                     Toast.makeText(requireContext(), "error", Toast.LENGTH_SHORT).show();
                 }
