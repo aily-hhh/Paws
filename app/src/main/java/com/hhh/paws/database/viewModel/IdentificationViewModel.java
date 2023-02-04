@@ -23,14 +23,23 @@ public class IdentificationViewModel extends ViewModel {
     }
 
     private MutableLiveData<UiState<Identification>> _getIdentification = new MutableLiveData<>();
-    public LiveData<UiState<Identification>> getIdentification() {
-        return _getIdentification;
-    }
-    public void getIdent(String petName) {
+    public LiveData<UiState<Identification>> getIdentification = _getIdentification;
+    public void getIdentification(String petName) {
         _getIdentification.setValue(UiState.Loading.INSTANCE);
         repository.getIdentification(petName, it -> {
             _getIdentification.setValue((UiState<Identification>) it);
             return _getIdentification;
         });
     }
+
+    private MutableLiveData<UiState<String>> _setIdentification = new MutableLiveData<>();
+    public LiveData<UiState<String>> setIdentification = _setIdentification;
+    public void setIdentification(String petName, Identification identification) {
+        _setIdentification.setValue(UiState.Loading.INSTANCE);
+        repository.setIdentification(petName, identification, it -> {
+            _setIdentification.setValue((UiState<String>) it);
+            return setIdentification;
+        });
+    }
+
 }

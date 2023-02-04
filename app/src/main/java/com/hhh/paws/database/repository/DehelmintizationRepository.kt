@@ -43,23 +43,7 @@ class DehelmintizationRepository @Inject constructor(private val database: Fireb
             }
     }
 
-    override suspend fun addDehelmintization(
-        dehelmintization: Dehelmintization,
-        petName: String,
-        result: (UiState<String>) -> Unit
-    ) {
-        val uID = FirebaseAuth.getInstance().currentUser!!.uid
-
-        database.collection(FireStoreTables.USER).document(uID).collection(FireStoreTables.PET)
-            .document(petName).collection(FireStoreTables.DEHELMINTIZATION).document()
-            .set(dehelmintization).addOnSuccessListener {
-                result.invoke(UiState.Success("added"))
-            }.addOnFailureListener {
-                result.invoke(UiState.Failure("error"))
-            }
-    }
-
-    override suspend fun updateDehelmintization(
+    override suspend fun setDehelmintization(
         dehelmintization: Dehelmintization,
         petName: String,
         result: (UiState<String>) -> Unit

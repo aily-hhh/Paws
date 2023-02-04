@@ -24,24 +24,13 @@ class DehelmintizationViewModel @Inject constructor(private val repository: Dehe
         }
     }
 
-    private var _add = MutableLiveData<UiState<String>>()
-    val add: LiveData<UiState<String>> get() = _add
-    fun addDehelmintization(dehelmintization: Dehelmintization, petName: String) {
-        _add.value = UiState.Loading
+    private var _addDehelmintization = MutableLiveData<UiState<String>>()
+    val addDehelmintization: LiveData<UiState<String>> get() = _addDehelmintization
+    fun setDehelmintization(dehelmintization: Dehelmintization, petName: String) {
+        _addDehelmintization.value = UiState.Loading
         viewModelScope.launch {
-            repository.addDehelmintization(dehelmintization, petName) {
-                _add.value = it
-            }
-        }
-    }
-
-    private var _update = MutableLiveData<UiState<String>>()
-    val update: LiveData<UiState<String>> get() = _update
-    fun updateDehelmintization(dehelmintization: Dehelmintization, petName: String) {
-        _update.value = UiState.Loading
-        viewModelScope.launch {
-            repository.updateDehelmintization(dehelmintization, petName) {
-                _update.value = it
+            repository.setDehelmintization(dehelmintization, petName) {
+                _addDehelmintization.value = it
             }
         }
     }

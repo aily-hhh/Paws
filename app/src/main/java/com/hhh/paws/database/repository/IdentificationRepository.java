@@ -82,7 +82,21 @@ public class IdentificationRepository implements IdentificationDao {
     }
 
     @Override
-    public UiState<String> setIdentification(String petName, Identification identification) {
-        return null;
+    public void setIdentification(String petName, Identification identification, final Function1 result) {
+        String uID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        database.collection(FireStoreTables.USER).document(uID).collection(FireStoreTables.IDENTIFICATION)
+                .document(FireStoreTables.IDENTIFICATION).set(identification)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        result.invoke(new UiState.Success("saved"));
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        result.invoke(new UiState.Failure("error"));
+                    }
+                });
     }
 }

@@ -9,5 +9,5 @@ import kotlin.jvm.functions.Function1;
 
 public interface IdentificationDao {
     void getIdentification(String petName, final Function1 result);
-    UiState<String> setIdentification(String petName, Identification identification);
+    void setIdentification(String petName, Identification identification, final Function1 result);
 }
