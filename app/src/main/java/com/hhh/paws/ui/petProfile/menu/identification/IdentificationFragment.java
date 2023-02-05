@@ -108,7 +108,7 @@ public class IdentificationFragment extends Fragment {
             newIdentification.setDateOfMicrochipping(dateOfMicrochipping.getText().toString().trim());
             newIdentification.setDateOfTattooing(dateOfTattooing.getText().toString().trim());
 
-            // viewModelIdentification.setIdentification(petNameThis, newIdentification);
+            viewModelIdentification.setIdentification(petNameThis, newIdentification);
 
             return true;
         } else {

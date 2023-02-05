@@ -51,6 +51,7 @@ public class DehelmintizationFragment extends Fragment {
 
     private DehelmintizationViewModel viewModelDehelmintization;
     private DehelmintizationAdapter adapter;
+    private String petNameThis;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -65,6 +66,8 @@ public class DehelmintizationFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        petNameThis = "Котик";
 
         recyclerDehelmintization = getBinding().recyclerDehelmintization;
         initAdapter();
@@ -97,7 +100,7 @@ public class DehelmintizationFragment extends Fragment {
         addArrow = getBinding().addArrow;
         progressBarDehelmintization = getBinding().progressBarDehelmintization;
 
-        viewModelDehelmintization.getAllDehelmintization("Котик");
+        viewModelDehelmintization.getAllDehelmintization(petNameThis);
         viewModelDehelmintization.getDehelmintizationList().observe(getViewLifecycleOwner(),
                 new Observer<UiState<List<Dehelmintization>>>() {
             @Override
