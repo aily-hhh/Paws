@@ -1,9 +1,12 @@
 package com.hhh.paws.ui.petProfile.menu.procedures;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -13,14 +16,17 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.hhh.paws.R;
+import com.hhh.paws.database.model.Dehelmintization;
 import com.hhh.paws.database.model.SurgicalProcedure;
 import com.hhh.paws.database.viewModel.ProcedureViewModel;
 import com.hhh.paws.databinding.FragmentProceduresBinding;
@@ -72,7 +78,6 @@ public class ProceduresFragment extends Fragment {
 
         recyclerProcedures = getBinding().recyclerProcedures;
         initAdapter();
-        adapter.differ.getCurrentList().clear();
         adapter.setClickListener(new ItemClickListener() {
             @Override
             public void onItemClickListener(Object object) {
@@ -83,8 +88,8 @@ public class ProceduresFragment extends Fragment {
             }
 
             @Override
-            public void onItemLongClickListener(Object object) {
-                // popup menu
+            public void onItemLongClickListener(Object object, CardView cardView) {
+                showPopUp((SurgicalProcedure) object, cardView);
             }
         });
 
@@ -100,8 +105,9 @@ public class ProceduresFragment extends Fragment {
         disposableGet = viewModelProcedure.getAllProcedures(petNameThis)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(procedure -> {
-                    adapter.differ.getCurrentList().add(procedure);
+                .subscribe(procedures -> {
+                    adapter.differ.getCurrentList().clear();
+                    adapter.differ.submitList(procedures);
                 }, error -> {
                     Log.d("Procedure", error.getLocalizedMessage());
                 });
@@ -111,6 +117,38 @@ public class ProceduresFragment extends Fragment {
         adapter = new ProceduresAdapter();
         recyclerProcedures.setAdapter(adapter);
         recyclerProcedures.setLayoutManager(new StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL));
+    }
+
+    private void showPopUp(SurgicalProcedure currentProcedure, CardView cardView) {
+        PopupMenu popupMenu = new PopupMenu(this.getContext(), cardView);
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                if (item.getItemId() == R.id.deleteMenu) {
+                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(requireContext());
+                    alertDialog.setIcon(R.mipmap.logo_paws);
+                    alertDialog.setTitle("deleteQuestion");
+                    alertDialog.setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            viewModelProcedure.deleteProcedure(petNameThis, currentProcedure);
+                            adapter.differ.getCurrentList().remove(currentProcedure);
+                        }
+                    });
+                    alertDialog.setNegativeButton("no", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    });
+                    alertDialog.show();
+                    return true;
+                }
+                return false;
+            }
+        });
+        popupMenu.inflate(R.menu.long_click_menu);
+        popupMenu.show();
     }
 
     @Override

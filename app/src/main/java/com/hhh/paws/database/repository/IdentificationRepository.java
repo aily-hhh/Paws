@@ -38,58 +38,56 @@ public class IdentificationRepository implements IdentificationDao {
 
     @Override
     public Observable<Identification> getIdentification(String petName) {
-        return Observable.fromSingle(new Single<Identification>() {
-            @Override
-            protected void subscribeActual(@io.reactivex.rxjava3.annotations.NonNull SingleObserver<? super Identification> observer) {
-                String uID = FirebaseAuth.getInstance().getUid();
+        return Observable.create(emitter -> {
+            String uID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-                database.collection(FireStoreTables.USER).document(uID)
-                        .collection(FireStoreTables.PET).document(petName)
-                        .collection(FireStoreTables.IDENTIFICATION).document(petName)
-                        .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                            @Override
-                            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                Identification identification = new Identification();
-                                if (documentSnapshot.get("dateOfTattooing") != null) {
-                                    identification.setDateOfTattooing(
-                                            String.valueOf(documentSnapshot.getData()
-                                                    .get("dateOfTattooing"))
-                                    );
-                                }
-                                if (documentSnapshot.get("dateOfMicrochipping") != null) {
-                                    identification.setDateOfMicrochipping(
-                                            String.valueOf(documentSnapshot.getData()
-                                                    .getOrDefault("dateOfMicrochipping", ""))
-                                    );
-                                }
-                                if (documentSnapshot.get("microchipLocation") != null) {
-                                    identification.setMicrochipLocation(
-                                            String.valueOf(documentSnapshot.getData()
-                                                    .getOrDefault("microchipLocation", ""))
-                                    );
-                                }
-                                if (documentSnapshot.get("microchipNumber") != null) {
-                                    identification.setMicrochipNumber(
-                                            String.valueOf(documentSnapshot.getData()
-                                                    .getOrDefault("microchipNumber", ""))
-                                    );
-                                }
-                                if (documentSnapshot.get("tattooNumber") != null) {
-                                    identification.setTattooNumber(
-                                            String.valueOf(documentSnapshot.getData()
-                                                    .getOrDefault("tattooNumber", ""))
-                                    );
-                                }
+            database.collection(FireStoreTables.USER).document(uID)
+                    .collection(FireStoreTables.PET).document(petName)
+                    .collection(FireStoreTables.IDENTIFICATION).document(petName)
+                    .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            Identification identification = new Identification();
+                            if (documentSnapshot.get("dateOfTattooing") != null) {
+                                identification.setDateOfTattooing(
+                                        String.valueOf(documentSnapshot.getData()
+                                                .get("dateOfTattooing"))
+                                );
+                            }
+                            if (documentSnapshot.get("dateOfMicrochipping") != null) {
+                                identification.setDateOfMicrochipping(
+                                        String.valueOf(documentSnapshot.getData()
+                                                .getOrDefault("dateOfMicrochipping", ""))
+                                );
+                            }
+                            if (documentSnapshot.get("microchipLocation") != null) {
+                                identification.setMicrochipLocation(
+                                        String.valueOf(documentSnapshot.getData()
+                                                .getOrDefault("microchipLocation", ""))
+                                );
+                            }
+                            if (documentSnapshot.get("microchipNumber") != null) {
+                                identification.setMicrochipNumber(
+                                        String.valueOf(documentSnapshot.getData()
+                                                .getOrDefault("microchipNumber", ""))
+                                );
+                            }
+                            if (documentSnapshot.get("tattooNumber") != null) {
+                                identification.setTattooNumber(
+                                        String.valueOf(documentSnapshot.getData()
+                                                .getOrDefault("tattooNumber", ""))
+                                );
+                            }
 
-                                observer.onSuccess(identification);
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.d("data source", "identification failed");
-                            }
-                        });
-            }
+                            emitter.onNext(identification);
+                            emitter.onComplete();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.d("Identification", e.getLocalizedMessage());
+                        }
+                    });
         });
     }
 
@@ -110,6 +108,7 @@ public class IdentificationRepository implements IdentificationDao {
                         @Override
                         public void onSuccess(Void unused) {
                             Log.d("Firestore", "Identification success");
+
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override

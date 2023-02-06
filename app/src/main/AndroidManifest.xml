@@ -20,6 +20,7 @@
         android:roundIcon="@mipmap/logo_paws"
         android:supportsRtl="true"
         android:theme="@style/Theme.Paws"
+        android:enableOnBackInvokedCallback="true"
         tools:targetApi="31">
         <activity
             android:name=".ui.petProfile.PetProfileActivity"

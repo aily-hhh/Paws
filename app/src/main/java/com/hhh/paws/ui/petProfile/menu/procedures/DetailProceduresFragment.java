@@ -120,4 +120,10 @@ public class DetailProceduresFragment extends Fragment {
             return super.onOptionsItemSelected(item);
         }
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        _binding = null;
+    }
 }

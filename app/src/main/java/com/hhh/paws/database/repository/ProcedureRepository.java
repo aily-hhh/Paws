@@ -8,6 +8,9 @@ import com.hhh.paws.database.dao.ProcedureDao;
 import com.hhh.paws.database.model.SurgicalProcedure;
 import com.hhh.paws.util.FireStoreTables;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 
 import io.reactivex.rxjava3.core.Observable;
@@ -21,7 +24,7 @@ public class ProcedureRepository implements ProcedureDao {
     }
 
     @Override
-    public Observable<SurgicalProcedure> getAllProcedures(String petName) {
+    public Observable<List<SurgicalProcedure>> getAllProcedures(String petName) {
         return Observable.create( emitter -> {
             String uID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
@@ -33,10 +36,19 @@ public class ProcedureRepository implements ProcedureDao {
                             emitter.onError(e);
                         }
                     }).addOnSuccessListener( documents -> {
+                        List<SurgicalProcedure> list = new ArrayList<>();
                         for (QueryDocumentSnapshot document: documents) {
-                            SurgicalProcedure procedure = document.toObject(SurgicalProcedure.class);
-                            emitter.onNext(procedure);
+                            SurgicalProcedure procedure = new SurgicalProcedure();
+                            procedure.setId(document.getId());
+                            procedure.setName(String.valueOf(document.getData().get("name")));
+                            procedure.setType(String.valueOf(document.getData().get("type")));
+                            procedure.setVeterinarian(String.valueOf(document.getData().get("veterinarian")));
+                            procedure.setDescription(String.valueOf(document.getData().get("description")));
+                            procedure.setDate(String.valueOf(document.getData().get("date")));
+                            procedure.setAnesthesia(String.valueOf(document.getData().get("anesthesia")));
+                            list.add(procedure);
                         }
+                        emitter.onNext(list);
                         emitter.onComplete();
                     });
         });

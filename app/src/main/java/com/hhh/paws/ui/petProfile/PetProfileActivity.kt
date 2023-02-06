@@ -20,8 +20,6 @@ import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatSpinner
-import androidx.navigation.navArgs
 import com.bumptech.glide.Glide
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -264,5 +262,10 @@ class PetProfileActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListen
     private fun setImage(uri: Uri) {
         photoUri = uri
         petPhoto.setImageURI(uri)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

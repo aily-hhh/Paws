@@ -22,7 +22,7 @@ public class ProcedureViewModel extends ViewModel {
         this.repository = repository;
     }
 
-    public Observable<SurgicalProcedure> getAllProcedures(String petName) {
+    public Observable<List<SurgicalProcedure>> getAllProcedures(String petName) {
         return repository.getAllProcedures(petName);
     }
 

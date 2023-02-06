@@ -36,4 +36,10 @@ public class ReproductionFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        _binding = null;
+    }
 }

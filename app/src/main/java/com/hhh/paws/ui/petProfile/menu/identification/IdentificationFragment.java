@@ -121,4 +121,10 @@ public class IdentificationFragment extends Fragment {
         super.onDestroyView();
         disposableGet.dispose();
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        _binding = null;
+    }
 }

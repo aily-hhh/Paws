@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.AsyncListDiffer;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,6 +25,7 @@ public class ProceduresAdapter extends RecyclerView.Adapter<ProceduresAdapter.Pr
             super(itemView);
         }
 
+        CardView surgicalProceduresContainer = itemView.findViewById(R.id.surgicalProceduresContainer);
         TextView nameSurgicalProcedureItem = itemView.findViewById(R.id.nameSurgicalProcedureItem);
         TextView dateSurgicalProcedureItem = itemView.findViewById(R.id.dateSurgicalProcedureItem);
         TextView anesthesiaSurgicalProcedureItem = itemView.findViewById(R.id.anesthesiaSurgicalProcedureItem);
@@ -78,14 +80,17 @@ public class ProceduresAdapter extends RecyclerView.Adapter<ProceduresAdapter.Pr
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickListener.onItemClickListener(v);
+                clickListener.onItemClickListener(differ.getCurrentList().get(holder.getAdapterPosition()));
             }
         });
 
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                clickListener.onItemLongClickListener(v);
+                clickListener.onItemLongClickListener(
+                        differ.getCurrentList().get(holder.getAdapterPosition()),
+                        holder.surgicalProceduresContainer
+                );
                 return false;
             }
         });

@@ -1,9 +1,14 @@
 package com.hhh.paws.ui.petProfile.menu.dehelmintization;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -14,9 +19,11 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.os.Parcelable;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,7 +31,6 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.hhh.paws.R;
 import com.hhh.paws.database.model.Dehelmintization;
-import com.hhh.paws.database.model.Identification;
 import com.hhh.paws.database.viewModel.DehelmintizationViewModel;
 import com.hhh.paws.databinding.FragmentDehelmintizationBinding;
 import com.hhh.paws.ui.petProfile.menu.ItemClickListener;
@@ -81,8 +87,8 @@ public class DehelmintizationFragment extends Fragment {
             }
 
             @Override
-            public void onItemLongClickListener(Object object) {
-                // popup menu
+            public void onItemLongClickListener(Object object, CardView cardView) {
+                showPopUp((Dehelmintization) object, cardView);
             }
         });
 
@@ -133,5 +139,43 @@ public class DehelmintizationFragment extends Fragment {
         recyclerDehelmintization.setLayoutManager(new StaggeredGridLayoutManager(
                 1, LinearLayoutManager.VERTICAL)
         );
+    }
+
+    private void showPopUp(Dehelmintization currentDehelmintization, CardView cardView) {
+        PopupMenu popupMenu = new PopupMenu(this.getContext(), cardView);
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                if (item.getItemId() == R.id.deleteMenu) {
+                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(requireContext());
+                    alertDialog.setIcon(R.mipmap.logo_paws);
+                    alertDialog.setTitle("deleteQuestion");
+                    alertDialog.setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            viewModelDehelmintization.deleteDehelmintization(currentDehelmintization.getId(), petNameThis);
+                            adapter.differ.getCurrentList().remove(currentDehelmintization);
+                        }
+                    });
+                    alertDialog.setNegativeButton("no", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    });
+                    alertDialog.show();
+                    return true;
+                }
+                return false;
+            }
+        });
+        popupMenu.inflate(R.menu.long_click_menu);
+        popupMenu.show();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        _binding = null;
     }
 }

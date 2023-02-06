@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.AsyncListDiffer;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,6 +26,7 @@ public class DehelmintizationAdapter extends RecyclerView.Adapter<Dehelmintizati
             super(itemView);
         }
 
+        CardView dehelmintizationContainer = itemView.findViewById(R.id.dehelmintizationContainer);
         TextView nameDehelmintizationItem = itemView.findViewById(R.id.nameDehelmintizationItem);
         TextView timeDehelmintizationItem = itemView.findViewById(R.id.timeDehelmintizationItem);
         TextView manufacturerDehelmintizationItem = itemView.findViewById(R.id.manufacturerDehelmintizationItem);
@@ -80,14 +82,17 @@ public class DehelmintizationAdapter extends RecyclerView.Adapter<Dehelmintizati
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickListener.onItemClickListener(v);
+                clickListener.onItemClickListener(differ.getCurrentList().get(holder.getAdapterPosition()));
             }
         });
 
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                clickListener.onItemLongClickListener(v);
+                clickListener.onItemLongClickListener(
+                        differ.getCurrentList().get(holder.getAdapterPosition()),
+                        holder.dehelmintizationContainer
+                );
                 return false;
             }
         });

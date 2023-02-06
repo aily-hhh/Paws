@@ -1,11 +1,10 @@
 package com.hhh.paws.ui.start
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.hhh.paws.R
+import androidx.fragment.app.Fragment
 import com.hhh.paws.databinding.FragmentStartBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,5 +20,10 @@ class StartFragment : Fragment() {
     ): View? {
         _binding = FragmentStartBinding.inflate(inflater, container, false)
         return mBinding.root
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

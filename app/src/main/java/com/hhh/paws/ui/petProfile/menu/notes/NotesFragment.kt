@@ -2,12 +2,14 @@ package com.hhh.paws.ui.petProfile.menu.notes
 
 import android.os.Bundle
 import android.util.Log
-import android.view.*
+import android.view.LayoutInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.PopupMenu
 import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.appcompat.widget.Toolbar
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -16,12 +18,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.hhh.paws.MainActivity
 import com.hhh.paws.R
 import com.hhh.paws.database.model.Notes
 import com.hhh.paws.database.viewModel.NotesViewModel
 import com.hhh.paws.databinding.FragmentNotesBinding
-import com.hhh.paws.ui.petProfile.VetPassportActivity
 import com.hhh.paws.util.UiState
 import com.hhh.paws.util.toast
 import dagger.hilt.android.AndroidEntryPoint
@@ -130,18 +130,18 @@ class NotesFragment: Fragment() {
     }
 
     private fun showPopUpMenu(noteForMenu: Notes) {
-        val popup = PopupMenu(requireContext(), view)
-        popup.inflate(R.menu.long_click_menu)
+        val popup = PopupMenu(requireContext(), recyclerNotes.focusedChild)
+        popup.inflate(R.menu.long_click_menu_note)
         popup.setOnMenuItemClickListener { item: MenuItem? ->
             when (item!!.itemId) {
-                R.id.pinMenu -> {
+                R.id.pinMenuNote -> {
                     noteForMenu.pinned = true
                     viewModelNotes.updateNote(
                         noteForMenu,
                         petNameThis
                     )
                 }
-                R.id.deleteMenu -> {
+                R.id.deleteMenuNote -> {
                     viewModelNotes.deleteNote(
                         noteForMenu.id,
                         petNameThis
@@ -153,4 +153,8 @@ class NotesFragment: Fragment() {
         popup.show()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }

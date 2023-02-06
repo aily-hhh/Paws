@@ -1,6 +1,5 @@
 package com.hhh.paws
 
-import android.os.Build
 import android.os.Bundle
 import android.view.Window
 import android.view.WindowManager
@@ -38,5 +37,10 @@ class MainActivity : AppCompatActivity() {
             Navigation.findNavController(this@MainActivity, R.id.navHostFragment)
                 .navigate(R.id.action_mainFragment_to_authFragment)
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

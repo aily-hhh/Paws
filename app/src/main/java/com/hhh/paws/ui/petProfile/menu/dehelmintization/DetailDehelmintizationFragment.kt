@@ -10,7 +10,6 @@ import androidx.navigation.fragment.navArgs
 import com.google.android.material.textfield.TextInputEditText
 import com.hhh.paws.R
 import com.hhh.paws.database.model.Dehelmintization
-import com.hhh.paws.database.model.Notes
 import com.hhh.paws.database.viewModel.DehelmintizationViewModel
 import com.hhh.paws.databinding.FragmentDetailDehelmintizationBinding
 import com.hhh.paws.util.UiState
@@ -127,5 +126,10 @@ class DetailDehelmintizationFragment : Fragment() {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }
