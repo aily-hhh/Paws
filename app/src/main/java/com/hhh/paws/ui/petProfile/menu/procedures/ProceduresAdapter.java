@@ -15,6 +15,8 @@ import com.hhh.paws.R;
 import com.hhh.paws.database.model.SurgicalProcedure;
 import com.hhh.paws.ui.petProfile.menu.ItemClickListener;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class ProceduresAdapter extends RecyclerView.Adapter<ProceduresAdapter.ProceduresViewHolder> {
@@ -26,6 +28,7 @@ public class ProceduresAdapter extends RecyclerView.Adapter<ProceduresAdapter.Pr
         }
 
         CardView surgicalProceduresContainer = itemView.findViewById(R.id.surgicalProceduresContainer);
+        TextView typeSurgicalProcedureItem = itemView.findViewById(R.id.typeSurgicalProcedureItem);
         TextView nameSurgicalProcedureItem = itemView.findViewById(R.id.nameSurgicalProcedureItem);
         TextView dateSurgicalProcedureItem = itemView.findViewById(R.id.dateSurgicalProcedureItem);
         TextView anesthesiaSurgicalProcedureItem = itemView.findViewById(R.id.anesthesiaSurgicalProcedureItem);
@@ -33,7 +36,8 @@ public class ProceduresAdapter extends RecyclerView.Adapter<ProceduresAdapter.Pr
 
     }
 
-    public final AsyncListDiffer<SurgicalProcedure> differ = new AsyncListDiffer<SurgicalProcedure>(
+    private List<SurgicalProcedure> oldList = new ArrayList<>();
+    private final AsyncListDiffer<SurgicalProcedure> differ = new AsyncListDiffer<SurgicalProcedure>(
             this, callback
     );
     private static final DiffUtil.ItemCallback<SurgicalProcedure> callback = new DiffUtil.ItemCallback<SurgicalProcedure>() {
@@ -62,6 +66,17 @@ public class ProceduresAdapter extends RecyclerView.Adapter<ProceduresAdapter.Pr
         }
     };
 
+    public void setDiffer(List<SurgicalProcedure> procedureList) {
+        this.oldList.clear();
+        this.oldList = procedureList;
+        this.differ.submitList(oldList);
+    }
+
+    public void removeItemFromDiffer(SurgicalProcedure procedure) {
+        this.oldList.remove(procedure);
+        differ.submitList(oldList);
+    }
+
     @NonNull
     @Override
     public ProceduresViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -72,6 +87,7 @@ public class ProceduresAdapter extends RecyclerView.Adapter<ProceduresAdapter.Pr
     @Override
     public void onBindViewHolder(@NonNull ProceduresViewHolder holder, int position) {
         SurgicalProcedure procedure = differ.getCurrentList().get(position);
+        holder.typeSurgicalProcedureItem.setText(procedure.getType());
         holder.anesthesiaSurgicalProcedureItem.setText(procedure.getAnesthesia());
         holder.nameSurgicalProcedureItem.setText(procedure.getName());
         holder.dateSurgicalProcedureItem.setText(procedure.getDate());

@@ -8,6 +8,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -32,6 +36,9 @@ import com.hhh.paws.database.viewModel.ProcedureViewModel;
 import com.hhh.paws.databinding.FragmentProceduresBinding;
 import com.hhh.paws.ui.petProfile.menu.ItemClickListener;
 
+import java.util.List;
+import java.util.Objects;
+
 import dagger.hilt.android.AndroidEntryPoint;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.Disposable;
@@ -51,6 +58,8 @@ public class ProceduresFragment extends Fragment {
     private TextView notElemProcedures,addTextView;
     private ImageView addArrow;
     private ProgressBar progressBarProcedures;
+
+    private LiveData<List<SurgicalProcedure>> listLiveData = new MutableLiveData<>();
 
     private Disposable disposableGet;
     private ProcedureViewModel viewModelProcedure;
@@ -74,7 +83,9 @@ public class ProceduresFragment extends Fragment {
         notElemProcedures = getBinding().notElemProcedures;
         addTextView = getBinding().addTextView;
         addArrow = getBinding().addArrow;
+
         progressBarProcedures = getBinding().progressBarProcedures;
+        progressBarProcedures.setVisibility(View.VISIBLE);
 
         recyclerProcedures = getBinding().recyclerProcedures;
         initAdapter();
@@ -106,8 +117,17 @@ public class ProceduresFragment extends Fragment {
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(procedures -> {
-                    adapter.differ.getCurrentList().clear();
-                    adapter.differ.submitList(procedures);
+                    adapter.setDiffer(procedures);
+                    progressBarProcedures.setVisibility(View.INVISIBLE);
+                    if (adapter.getItemCount() == 0) {
+                        notElemProcedures.setVisibility(View.VISIBLE);
+                        addArrow.setVisibility(View.VISIBLE);
+                        addTextView.setVisibility(View.VISIBLE);
+                    } else {
+                        notElemProcedures.setVisibility(View.INVISIBLE);
+                        addArrow.setVisibility(View.INVISIBLE);
+                        addTextView.setVisibility(View.INVISIBLE);
+                    }
                 }, error -> {
                     Log.d("Procedure", error.getLocalizedMessage());
                 });
@@ -132,7 +152,7 @@ public class ProceduresFragment extends Fragment {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             viewModelProcedure.deleteProcedure(petNameThis, currentProcedure);
-                            adapter.differ.getCurrentList().remove(currentProcedure);
+                            adapter.removeItemFromDiffer(currentProcedure);
                         }
                     });
                     alertDialog.setNegativeButton("no", new DialogInterface.OnClickListener() {
