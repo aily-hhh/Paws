@@ -34,7 +34,9 @@ import io.reactivex.rxjava3.disposables.Disposable;
 public class DetailProceduresFragment extends Fragment {
 
     private FragmentProceduresDetailBinding _binding = null;
-    private FragmentProceduresDetailBinding mBinding = _binding;
+    private FragmentProceduresDetailBinding getBinding() {
+        return _binding;
+    }
 
     private ProgressBar progressBarProcedureDetail;
     private MaterialAutoCompleteTextView spinnerTypeSurgicalProcedure;
@@ -62,7 +64,7 @@ public class DetailProceduresFragment extends Fragment {
                 DetailProceduresFragment.this).get(ProcedureViewModel.class
 
         );
-        return mBinding.getRoot();
+        return getBinding().getRoot();
     }
 
     @Override
@@ -72,13 +74,13 @@ public class DetailProceduresFragment extends Fragment {
         petNameThis = "Котик";
         procedure = getArguments().getParcelable("procedure");
 
-        progressBarProcedureDetail = mBinding.progressBarProcedureDetail;
-        spinnerTypeSurgicalProcedure = mBinding.spinnerTypeSurgicalProcedure;
-        nameSurgicalProcedure = mBinding.nameSurgicalProcedure;
-        anesthesiaSurgicalProcedure = mBinding.anesthesiaSurgicalProcedure;
-        dateSurgicalProcedure = mBinding.dateSurgicalProcedure;
-        veterinarianSurgicalProcedure = mBinding.veterinarianSurgicalProcedure;
-        descriptionSurgicalProcedure = mBinding.descriptionSurgicalProcedure;
+        progressBarProcedureDetail = getBinding().progressBarProcedureDetail;
+        spinnerTypeSurgicalProcedure = getBinding().spinnerTypeSurgicalProcedure;
+        nameSurgicalProcedure = getBinding().nameSurgicalProcedure;
+        anesthesiaSurgicalProcedure = getBinding().anesthesiaSurgicalProcedure;
+        dateSurgicalProcedure = getBinding().dateSurgicalProcedure;
+        veterinarianSurgicalProcedure = getBinding().veterinarianSurgicalProcedure;
+        descriptionSurgicalProcedure = getBinding().descriptionSurgicalProcedure;
 
         if (procedure != null) {
             spinnerTypeSurgicalProcedure.setText(procedure.getType());

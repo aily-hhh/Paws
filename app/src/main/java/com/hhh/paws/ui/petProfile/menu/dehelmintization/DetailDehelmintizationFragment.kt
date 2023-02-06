@@ -15,9 +15,11 @@ import com.hhh.paws.database.viewModel.DehelmintizationViewModel
 import com.hhh.paws.databinding.FragmentDetailDehelmintizationBinding
 import com.hhh.paws.util.UiState
 import com.hhh.paws.util.toast
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
 
+@AndroidEntryPoint
 class DetailDehelmintizationFragment : Fragment() {
 
     private var _binding: FragmentDetailDehelmintizationBinding? = null

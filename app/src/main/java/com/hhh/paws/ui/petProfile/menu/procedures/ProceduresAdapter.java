@@ -31,7 +31,7 @@ public class ProceduresAdapter extends RecyclerView.Adapter<ProceduresAdapter.Pr
 
     }
 
-    private final AsyncListDiffer<SurgicalProcedure> differ = new AsyncListDiffer<SurgicalProcedure>(
+    public final AsyncListDiffer<SurgicalProcedure> differ = new AsyncListDiffer<SurgicalProcedure>(
             this, callback
     );
     private static final DiffUtil.ItemCallback<SurgicalProcedure> callback = new DiffUtil.ItemCallback<SurgicalProcedure>() {
