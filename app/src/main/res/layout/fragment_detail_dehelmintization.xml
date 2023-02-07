@@ -36,7 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="7dp"
-                android:hint="nameProduct">
+                android:hint="@string/nameitem">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/nameDehelmintizationDetail"
@@ -50,7 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="7dp"
-                android:hint="manufacturer">
+                android:hint="@string/manufacturer_item">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/manufacturerDehelmintizationDetail"
@@ -63,7 +63,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="7dp"
-                android:hint="dose">
+                android:hint="@string/dose_item">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/doseDehelmintizationDetail"
@@ -76,7 +76,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="7dp"
-                android:hint="dateDehelmintization">
+                android:hint="@string/date_dehelmintization">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/dateDehelmintizationDetail"
@@ -90,7 +90,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="7dp"
-                android:hint="timeDehelmintization">
+                android:hint="@string/time_dehelmintization">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/timeDehelmintizationDetail"
@@ -104,7 +104,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="7dp"
-                android:hint="veterinarian">
+                android:hint="@string/veterinarian_item">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/veterinarianDehelmintizationDetail"

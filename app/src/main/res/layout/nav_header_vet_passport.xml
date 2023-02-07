@@ -2,6 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layoutHeader"
     android:layout_width="match_parent"
     android:layout_height="@dimen/nav_header_height"
@@ -41,7 +42,8 @@
         android:paddingStart="6dp"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:text="@string/nav_header_title"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        tools:ignore="RtlSymmetry" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -54,6 +56,7 @@
             android:elevation="10dp"
             android:paddingStart="6dp"
             android:text="@string/nav_header_subtitle"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            tools:ignore="RtlSymmetry" />
     </RelativeLayout>
 </LinearLayout>

@@ -1,5 +1,7 @@
 package com.hhh.paws.ui.petProfile.menu.procedures;
 
+import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,6 +17,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
 import android.widget.ProgressBar;
 
 import com.google.android.material.textfield.MaterialAutoCompleteTextView;
@@ -24,6 +27,7 @@ import com.hhh.paws.database.model.SurgicalProcedure;
 import com.hhh.paws.database.viewModel.ProcedureViewModel;
 import com.hhh.paws.databinding.FragmentProceduresDetailBinding;
 
+import java.util.Calendar;
 import java.util.UUID;
 
 import dagger.hilt.android.AndroidEntryPoint;
@@ -31,20 +35,26 @@ import io.reactivex.rxjava3.disposables.Disposable;
 
 
 @AndroidEntryPoint
-public class DetailProceduresFragment extends Fragment {
+public class DetailProceduresFragment extends Fragment implements DatePickerDialog.OnDateSetListener {
 
     private FragmentProceduresDetailBinding _binding = null;
     private FragmentProceduresDetailBinding getBinding() {
         return _binding;
     }
 
-    private ProgressBar progressBarProcedureDetail;
     private MaterialAutoCompleteTextView spinnerTypeSurgicalProcedure;
     private TextInputEditText nameSurgicalProcedure;
     private TextInputEditText anesthesiaSurgicalProcedure;
     private TextInputEditText dateSurgicalProcedure;
     private TextInputEditText veterinarianSurgicalProcedure;
     private TextInputEditText descriptionSurgicalProcedure;
+
+    private int day = 0;
+    private int month = 0;
+    private int year = 0;
+    private int savedDay = 0;
+    private int savedMonth = 0;
+    private int savedYear = 0;
 
     private ProcedureViewModel viewModelProcedures;
     private String petNameThis;
@@ -74,13 +84,17 @@ public class DetailProceduresFragment extends Fragment {
         petNameThis = "Котик";
         procedure = getArguments().getParcelable("procedure");
 
-        progressBarProcedureDetail = getBinding().progressBarProcedureDetail;
         spinnerTypeSurgicalProcedure = getBinding().spinnerTypeSurgicalProcedure;
         nameSurgicalProcedure = getBinding().nameSurgicalProcedure;
         anesthesiaSurgicalProcedure = getBinding().anesthesiaSurgicalProcedure;
-        dateSurgicalProcedure = getBinding().dateSurgicalProcedure;
         veterinarianSurgicalProcedure = getBinding().veterinarianSurgicalProcedure;
         descriptionSurgicalProcedure = getBinding().descriptionSurgicalProcedure;
+
+        dateSurgicalProcedure = getBinding().dateSurgicalProcedure;
+        dateSurgicalProcedure.setOnClickListener(v -> {
+            getDateSet();
+            new DatePickerDialog(requireContext(), this, year, month, day);
+        });
 
         if (procedure != null) {
             spinnerTypeSurgicalProcedure.setText(procedure.getType());
@@ -125,5 +139,21 @@ public class DetailProceduresFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         _binding = null;
+    }
+
+    private void getDateSet() {
+        day = Calendar.DAY_OF_WEEK_IN_MONTH;
+        month = Calendar.MONTH;
+        year = Calendar.YEAR;
+    }
+
+    @SuppressLint("SetTextI18n")
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        savedDay = dayOfMonth;
+        savedMonth = month + 1;
+        savedYear = year;
+
+        dateSurgicalProcedure.setText(savedDay + "." + savedMonth + "." + savedYear);
     }
 }

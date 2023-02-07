@@ -24,7 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="7dp"
-                android:hint="microchipNumber">
+                android:hint="@string/microchip_number">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/microchipNumber"
@@ -38,7 +38,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="7dp"
-                android:hint="dateOfMicrochipping">
+                android:hint="@string/date_of_microchipping">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/dateOfMicrochipping"
@@ -52,7 +52,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="7dp"
-                android:hint="microchipLocation">
+                android:hint="@string/microchip_location">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/microchipLocation"
@@ -65,7 +65,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="7dp"
-                android:hint="tattooNumber">
+                android:hint="@string/tattoo_number">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tattooNumber"
@@ -78,7 +78,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="7dp"
-                android:hint="dateOfTattooing">
+                android:hint="@string/date_of_tattooing">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/dateOfTattooing"

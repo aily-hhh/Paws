@@ -1,11 +1,38 @@
 package com.hhh.paws.database.model;
 
-public class Reproduction {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
+public class Reproduction implements Parcelable {
     String id;
     String dateOfHeat;
     String dateOfMating;
     String dateOfBirth;
     String numberOfTheLitter;
+
+    public Reproduction(){}
+
+    protected Reproduction(Parcel in) {
+        id = in.readString();
+        dateOfHeat = in.readString();
+        dateOfMating = in.readString();
+        dateOfBirth = in.readString();
+        numberOfTheLitter = in.readString();
+    }
+
+    public static final Creator<Reproduction> CREATOR = new Creator<Reproduction>() {
+        @Override
+        public Reproduction createFromParcel(Parcel in) {
+            return new Reproduction(in);
+        }
+
+        @Override
+        public Reproduction[] newArray(int size) {
+            return new Reproduction[size];
+        }
+    };
 
     public String getId() {
         return id;
@@ -45,5 +72,19 @@ public class Reproduction {
 
     public void setNumberOfTheLitter(String numberOfTheLitter) {
         this.numberOfTheLitter = numberOfTheLitter;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(dateOfBirth);
+        dest.writeString(dateOfHeat);
+        dest.writeString(dateOfMating);
+        dest.writeString(numberOfTheLitter);
     }
 }

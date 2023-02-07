@@ -7,4 +7,5 @@ object FireStoreTables {
     const val IDENTIFICATION = "identification"
     const val DEHELMINTIZATION = "dehelmintization"
     const val PROCEDURES = "procedures"
+    const val REPRODUCTION = "reproduction"
 }

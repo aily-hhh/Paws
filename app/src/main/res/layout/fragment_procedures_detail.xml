@@ -37,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="7dp"
-                android:hint="type">
+                android:hint="@string/type">
 
                 <com.google.android.material.textfield.MaterialAutoCompleteTextView
                     android:id="@+id/spinnerTypeSurgicalProcedure"
@@ -55,7 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="7dp"
-                android:hint="name">
+                android:hint="@string/nameitem">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/nameSurgicalProcedure"
@@ -68,7 +68,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="7dp"
-                android:hint="anesthesia">
+                android:hint="@string/anesthesia">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/anesthesiaSurgicalProcedure"
@@ -81,7 +81,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="7dp"
-                android:hint="date_of_surgical_procedure">
+                android:hint="@string/date_of_surgical_procedure">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/dateSurgicalProcedure"
@@ -95,7 +95,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="7dp"
-                android:hint="veterinarian">
+                android:hint="@string/veterinarian_item">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/veterinarianSurgicalProcedure"

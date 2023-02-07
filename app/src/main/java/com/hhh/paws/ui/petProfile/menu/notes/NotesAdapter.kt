@@ -5,15 +5,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.hhh.paws.R
 import com.hhh.paws.database.model.Notes
+import com.hhh.paws.ui.petProfile.menu.ItemClickListener
 
 class NotesAdapter: RecyclerView.Adapter<NotesAdapter.NotesViewHolder>() {
 
     inner class NotesViewHolder(view: View): RecyclerView.ViewHolder(view) {
+        val notesContainer: CardView = view.findViewById(R.id.notesContainer)
         val title: TextView = view.findViewById(R.id.titleNotes)
         val description: TextView = view.findViewById(R.id.descriptionNotes)
         val date: TextView = view.findViewById(R.id.dateNotes)
@@ -58,15 +61,14 @@ class NotesAdapter: RecyclerView.Adapter<NotesAdapter.NotesViewHolder>() {
 
         holder.itemView.apply {
             setOnClickListener {
-                onItemClickListener?.let {
-                    it(currentNote)
-                }
+                clickListener!!.onItemClickListener(differ.currentList[holder.adapterPosition])
             }
             setOnLongClickListener {
-                onItemLongClickListener?.let {
-                    it(currentNote)
-                }
-                true
+                clickListener!!.onItemLongClickListener(
+                    differ.currentList[holder.adapterPosition],
+                    holder.notesContainer
+                )
+                false
             }
         }
     }
@@ -75,13 +77,8 @@ class NotesAdapter: RecyclerView.Adapter<NotesAdapter.NotesViewHolder>() {
         return differ.currentList.size
     }
 
-    private var onItemClickListener: ((Notes) -> Unit)? = null
-    fun setOnItemClickListener(listener: (Notes) -> Unit) {
-        onItemClickListener = listener
-    }
-
-    private var onItemLongClickListener: ((Notes) -> Unit)? = null
-    fun setOnItemLongClickListener(listener: (Notes) -> Unit) {
-        onItemLongClickListener = listener
+    private var clickListener: ItemClickListener? = null
+    fun setClickListener(clickListener: ItemClickListener) {
+        this.clickListener = clickListener
     }
 }

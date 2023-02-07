@@ -4,7 +4,7 @@
     <string name="create_button">Создать</string>
     <string name="update_button">Обновить</string>
     <string name="delete_pet_button">Удалить профиль питомца</string>
-    <string name="delete_user_button">Удалить профиль</string>
+    <string name="delete_user_button">Удалить профиль пользователя</string>
     <string name="back_button">Назад</string>
     <string name="to_main_fragment_button">На главную страницу</string>
     <string name="signed_out_toast">Вы вышли из профиля</string>
@@ -35,18 +35,33 @@
     <string name="nav_header_title">Pets name</string>
     <string name="nav_header_subtitle">Pets age</string>
 
-    <string name="menu_notes">Notes</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_vaccines">Vaccines</string>
-    <string name="menu_procedures">Procedures</string>
-    <string name="menu_from_external_parasites">From external parasites</string>
-    <string name="menu_dehelmintization">Dehelmintization</string>
-    <string name="menu_reproduction">Reproduction</string>
-    <string name="menu_identification">Identification</string>
+    <string name="menu_notes">Заметки</string>
+    <string name="menu_gallery">Галерея</string>
+    <string name="menu_vaccines">Вакцинация</string>
+    <string name="menu_procedures">Операции</string>
+    <string name="menu_from_external_parasites">От внешних паразитов</string>
+    <string name="menu_dehelmintization">Дегельминтизация</string>
+    <string name="menu_reproduction">Репродукция</string>
+    <string name="menu_identification">Идентификация</string>
 
-    <string name="title_notes">Title</string>
-    <string name="description">Description</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_notes">Название</string>
+    <string name="description">Описание</string>
+    <string name="date">Дата</string>
+    <string name="nameitem">Название</string>
+    <string name="time_date">Дата / Время</string>
+    <string name="time">Время</string>
+    <string name="manufacturer_item">Производитель</string>
+    <string name="dose_item">Доза</string>
+    <string name="veterinarian_item">Ветеринар</string>
+    <string name="date_dehelmintization">Дата дегельминтизации</string>
+    <string name="time_dehelmintization">Время дегельминтизации</string>
+    <string name="microchip_number">Номер микрочипа</string>
+    <string name="date_of_microchipping">Дата чипирования</string>
+    <string name="microchip_location">Место чипирования</string>
+    <string name="date_of_tattooing">Date of tattooing</string>
+    <string name="tattoo_number">Tattoo number</string>
+    <string name="type">Тип</string>
+    <string name="anesthesia">Анастезия</string>
+    <string name="date_of_surgical_procedure">Дата операции</string>
 
 </resources>

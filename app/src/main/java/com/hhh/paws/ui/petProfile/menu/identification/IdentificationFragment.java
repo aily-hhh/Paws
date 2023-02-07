@@ -1,5 +1,7 @@
 package com.hhh.paws.ui.petProfile.menu.identification;
 
+import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,6 +18,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
@@ -25,6 +28,8 @@ import com.hhh.paws.database.viewModel.IdentificationViewModel;
 import com.hhh.paws.databinding.FragmentIdentificationBinding;
 import com.hhh.paws.util.UiState;
 
+import java.util.Calendar;
+
 import dagger.hilt.android.AndroidEntryPoint;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.Disposable;
@@ -32,7 +37,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 
 @AndroidEntryPoint
-public class IdentificationFragment extends Fragment {
+public class IdentificationFragment extends Fragment implements DatePickerDialog.OnDateSetListener {
 
     private FragmentIdentificationBinding _binding = null;
     private FragmentIdentificationBinding getBinding() {
@@ -44,6 +49,16 @@ public class IdentificationFragment extends Fragment {
     private TextInputEditText microchipLocation;
     private TextInputEditText tattooNumber;
     private TextInputEditText dateOfTattooing;
+
+    private int day = 0;
+    private int month = 0;
+    private int year = 0;
+    private int savedDay = 0;
+    private int savedMonth = 0;
+    private int savedYear = 0;
+    private int flag = 0;
+    private static int DATE_TATTOO = 1;
+    private static int DATE_CHIP = 2;
 
     private Disposable disposableGet;
     private IdentificationViewModel viewModelIdentification;
@@ -73,10 +88,22 @@ public class IdentificationFragment extends Fragment {
         petNameThis = "Котик";
 
         microchipNumber = getBinding().microchipNumber;
-        dateOfMicrochipping = getBinding().dateOfMicrochipping;
         microchipLocation = getBinding().microchipLocation;
         tattooNumber = getBinding().tattooNumber;
+
         dateOfTattooing = getBinding().dateOfTattooing;
+        dateOfTattooing.setOnClickListener(v -> {
+            flag = DATE_TATTOO;
+            getDateSet();
+            new DatePickerDialog(requireContext(), this, year, month, day);
+        });
+
+        dateOfMicrochipping = getBinding().dateOfMicrochipping;
+        dateOfMicrochipping.setOnClickListener(v -> {
+            flag = DATE_CHIP;
+            getDateSet();
+            new DatePickerDialog(requireContext(), this, year, month, day);
+        });
 
         disposableGet = viewModelIdentification.getIdentification(petNameThis)
                 .subscribeOn(Schedulers.newThread())
@@ -126,5 +153,27 @@ public class IdentificationFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         _binding = null;
+    }
+
+    private void getDateSet() {
+        day = Calendar.DAY_OF_MONTH;
+        month = Calendar.MONTH;
+        year = Calendar.YEAR;
+    }
+
+    @SuppressLint("SetTextI18n")
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        savedDay = dayOfMonth;
+        savedMonth = month + 1;
+        savedYear = year;
+
+        if (flag == DATE_TATTOO) {
+            dateOfTattooing.setText(savedDay + "." + savedMonth + "." + savedYear);
+        } else if (flag == DATE_CHIP) {
+            dateOfMicrochipping.setText(savedDay + "." + savedMonth + "." + savedYear);
+        }
+
+        flag = 0;
     }
 }

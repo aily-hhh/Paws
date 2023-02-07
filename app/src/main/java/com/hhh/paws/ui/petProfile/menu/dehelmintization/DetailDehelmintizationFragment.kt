@@ -1,8 +1,13 @@
 package com.hhh.paws.ui.petProfile.menu.dehelmintization
 
+import android.annotation.SuppressLint
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.os.Bundle
 import android.view.*
+import android.widget.DatePicker
 import android.widget.ProgressBar
+import android.widget.TimePicker
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
@@ -19,7 +24,7 @@ import java.util.*
 
 
 @AndroidEntryPoint
-class DetailDehelmintizationFragment : Fragment() {
+class DetailDehelmintizationFragment : Fragment(), DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
 
     private var _binding: FragmentDetailDehelmintizationBinding? = null
     private val mBinding get() = _binding!!
@@ -32,6 +37,17 @@ class DetailDehelmintizationFragment : Fragment() {
     private var veterinarianDehelmintizationDetail: TextInputEditText? = null
     private var descriptionDehelmintizationDetail: TextInputEditText? = null
     private var progressBarDehelmintizationDetail: ProgressBar? = null
+
+    private var day = 0
+    private var month = 0
+    private var year = 0
+    private var savedDay = 0
+    private var savedMonth = 0
+    private var savedYear = 0
+    private var min = 0
+    private var hour = 0
+    private var savedMin = 0
+    private var savedHour = 0
 
     private var dehelmintizationThis: Dehelmintization? = null
     private lateinit var petName: String
@@ -61,11 +77,21 @@ class DetailDehelmintizationFragment : Fragment() {
         nameDehelmintizationDetail = mBinding.nameDehelmintizationDetail
         manufacturerDehelmintizationDetail = mBinding.manufacturerDehelmintizationDetail
         doseDehelmintizationDetail = mBinding.doseDehelmintizationDetail
-        dateDehelmintizationDetail = mBinding.dateDehelmintizationDetail
-        timeDehelmintizationDetail = mBinding.timeDehelmintizationDetail
         veterinarianDehelmintizationDetail = mBinding.veterinarianDehelmintizationDetail
         descriptionDehelmintizationDetail = mBinding.descriptionDehelmintizationDetail
         progressBarDehelmintizationDetail = mBinding.progressBarDehelmintizationDetail
+
+        dateDehelmintizationDetail = mBinding.dateDehelmintizationDetail
+        dateDehelmintizationDetail!!.setOnClickListener {
+            getDateCalendar()
+            DatePickerDialog(requireContext(), this, year, month, day)
+        }
+
+        timeDehelmintizationDetail = mBinding.timeDehelmintizationDetail
+        timeDehelmintizationDetail!!.setOnClickListener {
+            getTimeCalendar()
+            TimePickerDialog(requireContext(), this, hour, min, true)
+        }
 
         if (dehelmintizationThis != null) {
             nameDehelmintizationDetail!!.setText(dehelmintizationThis!!.name)
@@ -131,5 +157,35 @@ class DetailDehelmintizationFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    private fun getDateCalendar() {
+        val calendar = Calendar.getInstance()
+        day = calendar.get(Calendar.DAY_OF_MONTH)
+        month = calendar.get(Calendar.MONTH)
+        year = calendar.get(Calendar.YEAR)
+    }
+
+    @SuppressLint("SetTextI18n")
+    override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+        savedDay = dayOfMonth
+        savedMonth = month + 1
+        savedYear = year
+
+        dateDehelmintizationDetail!!.setText("$savedDay.$savedMonth.$savedYear")
+    }
+
+    private fun getTimeCalendar() {
+        val calendar = Calendar.getInstance()
+        min = calendar.get(Calendar.MINUTE)
+        hour = calendar.get(Calendar.HOUR_OF_DAY)
+    }
+
+    @SuppressLint("SetTextI18n")
+    override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
+        savedHour = hourOfDay
+        savedMin = minute
+
+        timeDehelmintizationDetail!!.setText("$savedHour:$savedMin")
     }
 }
