@@ -67,6 +67,13 @@
         android:name="com.hhh.paws.ui.petProfile.menu.reproduction.ReproductionFragment"
         android:label="@string/menu_reproduction"
         tools:layout="@layout/fragment_reproduction">
+        <action
+            android:id="@+id/action_nav_reproduction_to_detailReproductionFragment"
+            app:destination="@id/detailReproductionFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/nav_identification"
@@ -108,6 +115,17 @@
         <argument
             android:name="procedure"
             app:argType="com.hhh.paws.database.model.SurgicalProcedure"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailReproductionFragment"
+        android:name="com.hhh.paws.ui.petProfile.menu.reproduction.DetailReproductionFragment"
+        android:label="fragment_detail_reproduction"
+        tools:layout="@layout/fragment_detail_reproduction" >
+        <argument
+            android:name="reproduction"
+            app:argType="com.hhh.paws.database.model.Reproduction"
             app:nullable="true"
             android:defaultValue="@null" />
     </fragment>
