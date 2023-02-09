@@ -84,6 +84,13 @@ class DetailReproductionFragment : Fragment() {
             DatePickerDialog(requireContext(), dateOfBirthListener, year, month, day).show()
         }
 
+        if (reproductionThis != null) {
+            dateOfBirthDetail?.setText(reproductionThis!!.dateOfBirth)
+            dateOfHeatDetail?.setText(reproductionThis!!.dateOfHeat)
+            dateOfMatingDetail?.setText(reproductionThis!!.dateOfMating)
+            numberOfTheLitterDetail?.setText(reproductionThis!!.numberOfTheLitter)
+        }
+
         viewModelReproduction.addReproduction.observe(viewLifecycleOwner) {
             when (it) {
                 is UiState.Loading -> {
@@ -102,7 +109,6 @@ class DetailReproductionFragment : Fragment() {
                 }
             }
         }
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -133,9 +139,10 @@ class DetailReproductionFragment : Fragment() {
     }
 
     private fun getDateCalendar() {
-        year = Calendar.YEAR
-        month = Calendar.MONTH
-        day = Calendar.DAY_OF_MONTH
+        val calendar = Calendar.getInstance()
+        year = calendar.get(Calendar.YEAR)
+        month = calendar.get(Calendar.MONTH)
+        day = calendar.get(Calendar.DAY_OF_MONTH)
     }
 
     @SuppressLint("SetTextI18n")

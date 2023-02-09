@@ -63,5 +63,7 @@
     <string name="type">Тип</string>
     <string name="anesthesia">Анастезия</string>
     <string name="date_of_surgical_procedure">Дата операции</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
