@@ -36,7 +36,6 @@ public class ProceduresAdapter extends RecyclerView.Adapter<ProceduresAdapter.Pr
 
     }
 
-    private List<SurgicalProcedure> oldList = new ArrayList<>();
     private final AsyncListDiffer<SurgicalProcedure> differ = new AsyncListDiffer<SurgicalProcedure>(
             this, callback
     );
@@ -67,14 +66,8 @@ public class ProceduresAdapter extends RecyclerView.Adapter<ProceduresAdapter.Pr
     };
 
     public void setDiffer(List<SurgicalProcedure> procedureList) {
-        this.oldList.clear();
-        this.oldList = procedureList;
-        this.differ.submitList(oldList);
-    }
-
-    public void removeItemFromDiffer(SurgicalProcedure procedure) {
-        this.oldList.remove(procedure);
-        differ.submitList(oldList);
+        this.differ.submitList(null);
+        this.differ.submitList(procedureList);
     }
 
     @NonNull

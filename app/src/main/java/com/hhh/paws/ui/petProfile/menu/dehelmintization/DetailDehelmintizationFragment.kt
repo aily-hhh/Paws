@@ -84,13 +84,13 @@ class DetailDehelmintizationFragment : Fragment(), DatePickerDialog.OnDateSetLis
         dateDehelmintizationDetail = mBinding.dateDehelmintizationDetail
         dateDehelmintizationDetail!!.setOnClickListener {
             getDateCalendar()
-            DatePickerDialog(requireContext(), this, year, month, day)
+            DatePickerDialog(it.context, this, year, month, day)
         }
 
         timeDehelmintizationDetail = mBinding.timeDehelmintizationDetail
         timeDehelmintizationDetail!!.setOnClickListener {
             getTimeCalendar()
-            TimePickerDialog(requireContext(), this, hour, min, true)
+            TimePickerDialog(requireActivity(), this, hour, min, true)
         }
 
         if (dehelmintizationThis != null) {

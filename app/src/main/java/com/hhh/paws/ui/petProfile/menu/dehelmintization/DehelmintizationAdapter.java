@@ -16,6 +16,7 @@ import com.hhh.paws.R;
 import com.hhh.paws.database.model.Dehelmintization;
 import com.hhh.paws.ui.petProfile.menu.ItemClickListener;
 
+import java.util.List;
 import java.util.Objects;
 
 public class DehelmintizationAdapter extends RecyclerView.Adapter<DehelmintizationAdapter.DehelmintizationViewHolder>{
@@ -35,7 +36,7 @@ public class DehelmintizationAdapter extends RecyclerView.Adapter<Dehelmintizati
 
     }
 
-    public final AsyncListDiffer<Dehelmintization> differ = new AsyncListDiffer<Dehelmintization>(this, callback);
+    private final AsyncListDiffer<Dehelmintization> differ = new AsyncListDiffer<Dehelmintization>(this, callback);
     private static final DiffUtil.ItemCallback<Dehelmintization> callback = new DiffUtil.ItemCallback<Dehelmintization>() {
         @Override
         public boolean areItemsTheSame(@NonNull Dehelmintization oldItem, @NonNull Dehelmintization newItem) {
@@ -61,6 +62,11 @@ public class DehelmintizationAdapter extends RecyclerView.Adapter<Dehelmintizati
             else return Objects.equals(oldItem.getVeterinarian(), newItem.getVeterinarian());
         }
     };
+
+    public void setDiffer(List<Dehelmintization> dehelmintizationList) {
+        this.differ.submitList(null);
+        this.differ.submitList(dehelmintizationList);
+    }
 
     @NonNull
     @Override

@@ -109,6 +109,10 @@ public class ProceduresFragment extends Fragment {
             }
         });
 
+        getNewList();
+    }
+
+    private void getNewList() {
         disposableGet = viewModelProcedure.getAllProcedures(petNameThis)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -148,7 +152,7 @@ public class ProceduresFragment extends Fragment {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             viewModelProcedure.deleteProcedure(petNameThis, currentProcedure);
-                            adapter.removeItemFromDiffer(currentProcedure);
+                            getNewList();
                         }
                     });
                     alertDialog.setNegativeButton("no", new DialogInterface.OnClickListener() {

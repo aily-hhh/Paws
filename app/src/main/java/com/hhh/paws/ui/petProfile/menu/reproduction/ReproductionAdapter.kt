@@ -5,8 +5,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.hhh.paws.R
+import com.hhh.paws.database.model.Dehelmintization
+import com.hhh.paws.database.model.Notes
+import com.hhh.paws.database.model.Reproduction
 
 class ReproductionAdapter: RecyclerView.Adapter<ReproductionAdapter.ReproductionViewHolder>() {
 

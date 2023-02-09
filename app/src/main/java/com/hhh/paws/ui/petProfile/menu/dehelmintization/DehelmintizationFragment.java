@@ -115,8 +115,8 @@ public class DehelmintizationFragment extends Fragment {
                     progressBarDehelmintization.setVisibility(View.VISIBLE);
                 } else if (listUiState.getClass() == UiState.Success.class) {
                     progressBarDehelmintization.setVisibility(View.INVISIBLE);
-                    adapter.differ.submitList(((UiState.Success<List<Dehelmintization>>) listUiState).getData());
-                    if (adapter.differ.getCurrentList().isEmpty()) {
+                    adapter.setDiffer(((UiState.Success<List<Dehelmintization>>) listUiState).getData());
+                    if (adapter.getItemCount() == 0) {
                         notElemDehelmintization.setVisibility(View.VISIBLE);
                         addArrow.setVisibility(View.VISIBLE);
                         addTextView.setVisibility(View.VISIBLE);
@@ -154,7 +154,7 @@ public class DehelmintizationFragment extends Fragment {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             viewModelDehelmintization.deleteDehelmintization(currentDehelmintization.getId(), petNameThis);
-                            adapter.differ.getCurrentList().remove(currentDehelmintization);
+                            viewModelDehelmintization.getAllDehelmintization(petNameThis);
                         }
                     });
                     alertDialog.setNegativeButton("no", new DialogInterface.OnClickListener() {
