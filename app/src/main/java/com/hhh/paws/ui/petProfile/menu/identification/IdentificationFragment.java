@@ -144,6 +144,8 @@ public class IdentificationFragment extends Fragment implements DatePickerDialog
 
             viewModelIdentification.setIdentification(petNameThis, newIdentification);
 
+            Toast.makeText(requireContext(), "Saved", Toast.LENGTH_SHORT).show();
+
             return true;
         } else {
             return super.onOptionsItemSelected(item);

@@ -129,15 +129,10 @@ public class DetailProceduresFragment extends Fragment implements DatePickerDial
             newProcedure.setType(spinnerTypeSurgicalProcedure.getText().toString());
             newProcedure.setName(nameSurgicalProcedure.getText().toString());
 
-            boolean flag = viewModelProcedures.setProcedure(petNameThis, newProcedure);
-            if (flag) {
-                progressBarProcedureDetail.setVisibility(View.INVISIBLE);
-                Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_vet_passport)
-                        .popBackStack();
-            } else {
-                progressBarProcedureDetail.setVisibility(View.INVISIBLE);
-                Toast.makeText(requireContext(), "error", Toast.LENGTH_SHORT).show();
-            }
+            progressBarProcedureDetail.setVisibility(View.INVISIBLE);
+            viewModelProcedures.setProcedure(petNameThis, newProcedure);
+            Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_vet_passport)
+                    .popBackStack();
 
             return true;
         } else {

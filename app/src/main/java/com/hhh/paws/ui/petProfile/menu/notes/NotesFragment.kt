@@ -184,7 +184,7 @@ class NotesFragment: Fragment() {
         popup.setOnMenuItemClickListener { item: MenuItem? ->
             when (item!!.itemId) {
                 R.id.pinMenuNote -> {
-                    noteForMenu.pinned = true
+                    noteForMenu.pinned = !noteForMenu.pinned
                     viewModelNotes.updateNote(
                         noteForMenu,
                         petNameThis!!
@@ -193,24 +193,13 @@ class NotesFragment: Fragment() {
                 R.id.deleteMenuNote -> {
                     val alertDialog = AlertDialog.Builder(requireContext())
                     alertDialog.setIcon(R.mipmap.logo_paws)
-                    alertDialog.setTitle("")
-                    alertDialog.setPositiveButton(R.string.delete_yes,
+                    alertDialog.setTitle("delete?")
+                    alertDialog.setPositiveButton("yes",
                         DialogInterface.OnClickListener { dialogInterface, i ->
-                            val alertDialog = AlertDialog.Builder(requireContext())
-                            alertDialog.setIcon(R.mipmap.logo_paws)
-                            alertDialog.setTitle("")
-                            alertDialog.setPositiveButton("yes",
-                                DialogInterface.OnClickListener { dialogInterface, i ->
-                                    viewModelNotes.deleteNote(
-                                        noteForMenu.id,
-                                        petNameThis!!
-                                    )
-                                })
-                            alertDialog.setNeutralButton("no",
-                                DialogInterface.OnClickListener { dialogInterface, i ->
-                                    dialogInterface.dismiss()
-                                })
-                            alertDialog.show()
+                            viewModelNotes.deleteNote(
+                                noteForMenu.id,
+                                petNameThis!!
+                            )
                         })
                     alertDialog.setNeutralButton("no",
                         DialogInterface.OnClickListener { dialogInterface, i ->

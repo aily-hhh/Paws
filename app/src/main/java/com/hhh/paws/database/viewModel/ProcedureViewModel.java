@@ -26,8 +26,8 @@ public class ProcedureViewModel extends ViewModel {
         return repository.getAllProcedures(petName);
     }
 
-    public boolean setProcedure(String petName, SurgicalProcedure procedure) {
-        return repository.setProcedure(petName, procedure);
+    public void setProcedure(String petName, SurgicalProcedure procedure) {
+        repository.setProcedure(petName, procedure);
     }
 
     public void deleteProcedure(String petName, SurgicalProcedure procedure) {

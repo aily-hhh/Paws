@@ -142,12 +142,12 @@ public class ReproductionFragment extends Fragment {
                     @Override
                     public void onChanged(UiState<String> listUiState) {
                         if (listUiState == UiState.Loading.INSTANCE) {
-//                            progressBarReproduction.setVisibility(View.VISIBLE);
+                            progressBarReproduction.setVisibility(View.VISIBLE);
                         } else if (listUiState.getClass() == UiState.Success.class) {
-//                            progressBarReproduction.setVisibility(View.INVISIBLE);
+                            progressBarReproduction.setVisibility(View.INVISIBLE);
                             viewModelReproduction.getAllReproduction(petName);
                         } else if (listUiState.getClass() == UiState.Failure.class) {
-//                            progressBarReproduction.setVisibility(View.INVISIBLE);
+                            progressBarReproduction.setVisibility(View.INVISIBLE);
                             Toast.makeText(requireContext(), "error", Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(requireContext(), "", Toast.LENGTH_SHORT).show();
@@ -176,7 +176,7 @@ public class ReproductionFragment extends Fragment {
                     alertDialog.setPositiveButton("yes", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            viewModelReproduction.deleteReproduction(petName, currentReproduction);
+                            viewModelReproduction.deleteReproduction(petName, currentReproduction.getId());
                         }
                     });
                     alertDialog.setNegativeButton("no", new DialogInterface.OnClickListener() {

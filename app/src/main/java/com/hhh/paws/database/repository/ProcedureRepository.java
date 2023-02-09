@@ -58,9 +58,8 @@ public class ProcedureRepository implements ProcedureDao {
     }
 
     @Override
-    public boolean setProcedure(String petName, SurgicalProcedure procedure) {
+    public void setProcedure(String petName, SurgicalProcedure procedure) {
         String uID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        final boolean[] flag = new boolean[1];
 
         database.collection(FireStoreTables.USER).document(uID)
                 .collection(FireStoreTables.PET).document(petName)
@@ -69,15 +68,14 @@ public class ProcedureRepository implements ProcedureDao {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        flag[0] = true;
+
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        flag[0] = false;
+
                     }
                 });
-        return flag[0];
     }
 
     @Override
