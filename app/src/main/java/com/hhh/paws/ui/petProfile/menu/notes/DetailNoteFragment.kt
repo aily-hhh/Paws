@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.*
 import android.widget.EditText
+import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
@@ -21,14 +22,15 @@ import java.util.*
 @AndroidEntryPoint
 class DetailNoteFragment : Fragment() {
 
-    private lateinit var titleNotesDetail: EditText
-    private lateinit var descriptionNotesDetail: EditText
+    private var titleNotesDetail: EditText? = null
+    private var descriptionNotesDetail: EditText? = null
+    private var progressBarNotesDetail: ProgressBar? = null
 
     private var _binding: FragmentDetailNoteBinding? = null
     private val mBinding get() = _binding!!
 
     private var noteThis: Notes? = null
-    private lateinit var petName: String
+    private var petName: String? = null
 
     private val viewModelNotes by viewModels<NotesViewModel>()
     private val bundleArgs: DetailNoteFragmentArgs by navArgs()
@@ -55,12 +57,33 @@ class DetailNoteFragment : Fragment() {
 
         petName = "Котик"
         noteThis = bundleArgs.note
+
         titleNotesDetail = mBinding.titleNotesDetail
         descriptionNotesDetail = mBinding.descriptionNotesDetail
+        progressBarNotesDetail = mBinding.progressBarNotesDetail
 
         if (noteThis != null) {
-            titleNotesDetail.setText(noteThis!!.title.toString())
-            descriptionNotesDetail.setText(noteThis!!.description.toString())
+            titleNotesDetail?.setText(noteThis?.title.toString())
+            descriptionNotesDetail?.setText(noteThis?.description.toString())
+        }
+
+        viewModelNotes.update.observe(viewLifecycleOwner) {
+            when (it) {
+                is UiState.Loading -> {
+                    progressBarNotesDetail?.visibility = View.VISIBLE
+                }
+                is UiState.Success -> {
+                    progressBarNotesDetail?.visibility = View.INVISIBLE
+                    Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_vet_passport)
+                        .popBackStack()
+                }
+                is UiState.Failure -> {
+                    progressBarNotesDetail?.visibility = View.INVISIBLE
+                }
+                else -> {
+                    progressBarNotesDetail?.visibility = View.INVISIBLE
+                }
+            }
         }
     }
 
@@ -78,28 +101,11 @@ class DetailNoteFragment : Fragment() {
                     newNote.id = UUID.randomUUID().toString()
                 }
                 newNote.pinned = false
-                newNote.title = titleNotesDetail.text.toString().trim()
-                newNote.description = descriptionNotesDetail.text.toString().trim()
+                newNote.title = titleNotesDetail?.text.toString().trim()
+                newNote.description = descriptionNotesDetail?.text.toString().trim()
                 newNote.date = dateFormat.format(calendar.time)
 
-                viewModelNotes.update.observe(viewLifecycleOwner) {
-                    when (it) {
-                        is UiState.Loading -> {
-
-                        }
-                        is UiState.Success -> {
-                            Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_vet_passport)
-                                .popBackStack()
-                        }
-                        is UiState.Failure -> {
-
-                        }
-                        else -> {
-
-                        }
-                    }
-                }
-                viewModelNotes.updateNote(newNote, petName)
+                viewModelNotes.updateNote(newNote, petName!!)
 
                 true
             }

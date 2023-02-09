@@ -55,8 +55,6 @@ public class ProceduresFragment extends Fragment {
     private ImageView addArrow;
     private ProgressBar progressBarProcedures;
 
-    private LiveData<List<SurgicalProcedure>> listLiveData = new MutableLiveData<>();
-
     private Disposable disposableGet;
     private ProcedureViewModel viewModelProcedure;
     private ProceduresAdapter adapter;

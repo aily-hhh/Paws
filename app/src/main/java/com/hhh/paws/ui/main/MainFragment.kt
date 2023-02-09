@@ -30,11 +30,11 @@ class MainFragment : Fragment() {
     private var _binding: FragmentMainBinding? = null
     private val mBinding get() = _binding!!
 
-    private lateinit var myPetsButton: Button
-    private lateinit var signOutButton: Button
-    private lateinit var settingsButton: ImageButton
-    private lateinit var progressBar: ProgressBar
-    private lateinit var adapterDialog: ArrayAdapter<String>
+    private var myPetsButton: Button? = null
+    private var signOutButton: Button? = null
+    private var settingsButton: ImageButton? = null
+    private var progressBar: ProgressBar? = null
+    private var adapterDialog: ArrayAdapter<String>? = null
 
     private val viewModelPet by viewModels<PetViewModel>()
 
@@ -52,12 +52,12 @@ class MainFragment : Fragment() {
         progressBar = mBinding.progressBar
 
         myPetsButton = mBinding.myPetsButton
-        myPetsButton.setOnClickListener{
+        myPetsButton?.setOnClickListener{
             initDialogFragment()
         }
 
         signOutButton = mBinding.signOutButton
-        signOutButton.setOnClickListener{
+        signOutButton?.setOnClickListener{
             AuthUI.getInstance()
                 .signOut(requireContext())
                 .addOnCompleteListener {
@@ -68,7 +68,7 @@ class MainFragment : Fragment() {
         }
 
         settingsButton = mBinding.settingsButton
-        settingsButton.setOnClickListener{
+        settingsButton?.setOnClickListener{
             Navigation.findNavController(requireActivity(), R.id.navHostFragment)
                 .navigate(R.id.action_mainFragment_to_settingsFragment)
         }
@@ -76,11 +76,11 @@ class MainFragment : Fragment() {
         viewModelPet.namesPet.observe(viewLifecycleOwner) {
             when(it) {
                 is UiState.Loading -> {
-                    progressBar.visibility = View.VISIBLE
+                    progressBar?.visibility = View.VISIBLE
                     Log.d("UI State", "Loading")
                 }
                 is UiState.Success -> {
-                    progressBar.visibility = View.INVISIBLE
+                    progressBar?.visibility = View.INVISIBLE
                     namesPetList = it.data.toMutableList()
                     adapterDialog = ArrayAdapter(
                         requireContext(),
@@ -90,7 +90,7 @@ class MainFragment : Fragment() {
                     Log.d("UI State", "$it")
                 }
                 is UiState.Failure -> {
-                    progressBar.visibility = View.INVISIBLE
+                    progressBar?.visibility = View.INVISIBLE
                     Log.e("UI State", it.error.toString())
                 }
             }
@@ -103,7 +103,7 @@ class MainFragment : Fragment() {
     }
 
     private fun initDialogFragment() {
-        alertDialogForMainFragment(adapterDialog, namesPetList)
+        alertDialogForMainFragment(adapterDialog!!, namesPetList)
     }
 
     override fun onDestroy() {

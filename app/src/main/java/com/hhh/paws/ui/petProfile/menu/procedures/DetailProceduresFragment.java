@@ -7,9 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavArgs;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
@@ -27,20 +25,19 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.hhh.paws.R;
 import com.hhh.paws.database.model.SurgicalProcedure;
 import com.hhh.paws.database.viewModel.ProcedureViewModel;
-import com.hhh.paws.databinding.FragmentProceduresDetailBinding;
+import com.hhh.paws.databinding.FragmentDetailProceduresBinding;
 
 import java.util.Calendar;
 import java.util.UUID;
 
 import dagger.hilt.android.AndroidEntryPoint;
-import io.reactivex.rxjava3.disposables.Disposable;
 
 
 @AndroidEntryPoint
 public class DetailProceduresFragment extends Fragment implements DatePickerDialog.OnDateSetListener {
 
-    private FragmentProceduresDetailBinding _binding = null;
-    private FragmentProceduresDetailBinding getBinding() {
+    private FragmentDetailProceduresBinding _binding = null;
+    private FragmentDetailProceduresBinding getBinding() {
         return _binding;
     }
 
@@ -50,6 +47,7 @@ public class DetailProceduresFragment extends Fragment implements DatePickerDial
     private TextInputEditText dateSurgicalProcedure;
     private TextInputEditText veterinarianSurgicalProcedure;
     private TextInputEditText descriptionSurgicalProcedure;
+    private ProgressBar progressBarProcedureDetail;
 
     private int day = 0;
     private int month = 0;
@@ -71,7 +69,7 @@ public class DetailProceduresFragment extends Fragment implements DatePickerDial
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        _binding = FragmentProceduresDetailBinding.inflate(inflater, container, false);
+        _binding = FragmentDetailProceduresBinding.inflate(inflater, container, false);
         viewModelProcedures = new ViewModelProvider(
                 DetailProceduresFragment.this).get(ProcedureViewModel.class
 
@@ -86,6 +84,7 @@ public class DetailProceduresFragment extends Fragment implements DatePickerDial
         petNameThis = "Котик";
         procedure = getArguments().getParcelable("procedure");
 
+        progressBarProcedureDetail = getBinding().progressBarProcedureDetail;
         spinnerTypeSurgicalProcedure = getBinding().spinnerTypeSurgicalProcedure;
         nameSurgicalProcedure = getBinding().nameSurgicalProcedure;
         anesthesiaSurgicalProcedure = getBinding().anesthesiaSurgicalProcedure;
@@ -116,6 +115,7 @@ public class DetailProceduresFragment extends Fragment implements DatePickerDial
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.action_save) {
+            progressBarProcedureDetail.setVisibility(View.VISIBLE);
             SurgicalProcedure newProcedure = new SurgicalProcedure();
             if (procedure != null) {
                 newProcedure.setId(procedure.getId());
@@ -131,9 +131,11 @@ public class DetailProceduresFragment extends Fragment implements DatePickerDial
 
             boolean flag = viewModelProcedures.setProcedure(petNameThis, newProcedure);
             if (flag) {
+                progressBarProcedureDetail.setVisibility(View.INVISIBLE);
                 Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_vet_passport)
                         .popBackStack();
             } else {
+                progressBarProcedureDetail.setVisibility(View.INVISIBLE);
                 Toast.makeText(requireContext(), "error", Toast.LENGTH_SHORT).show();
             }
 

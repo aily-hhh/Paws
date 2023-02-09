@@ -40,16 +40,16 @@ class NotesFragment: Fragment() {
     private var _binding: FragmentNotesBinding? = null
     private val mBinding get() = _binding!!
 
-    private lateinit var recyclerNotes: RecyclerView
-    private lateinit var addNotesButton: FloatingActionButton
-    private lateinit var notElemNotes: TextView
-    private lateinit var progressBarNotes: ProgressBar
-    private lateinit var addArrow: ImageView
-    private lateinit var addTextView: TextView
+    private var recyclerNotes: RecyclerView? = null
+    private var addNotesButton: FloatingActionButton? = null
+    private var notElemNotes: TextView? = null
+    private var progressBarNotes: ProgressBar? = null
+    private var addArrow: ImageView? = null
+    private var addTextView: TextView? = null
 
     private val viewModelNotes by viewModels<NotesViewModel>()
-    private lateinit var petNameThis: String
-    private lateinit var notesAdapter: NotesAdapter
+    private var petNameThis: String? = null
+    private var notesAdapter: NotesAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -72,7 +72,7 @@ class NotesFragment: Fragment() {
 
         recyclerNotes = mBinding.recyclerNotes
         initAdapter()
-        notesAdapter.setClickListener(object : ItemClickListener {
+        notesAdapter?.setClickListener(object : ItemClickListener {
             override fun onItemClickListener(it: Any) {
                 val bundle = bundleOf("note" to it)
                 findNavController(requireActivity(), R.id.nav_host_fragment_content_vet_passport)
@@ -87,45 +87,84 @@ class NotesFragment: Fragment() {
         viewModelNotes.update.observe(viewLifecycleOwner) {
             when(it) {
                 is UiState.Loading -> {
-
+                    progressBarNotes?.visibility = View.VISIBLE
                 }
                 is UiState.Success -> {
-                    viewModelNotes.getAllNotes(petNameThis)
+                    progressBarNotes?.visibility = View.INVISIBLE
+                    viewModelNotes.getAllNotes(petNameThis!!)
                 }
                 is UiState.Failure -> {
-
+                    progressBarNotes?.visibility = View.INVISIBLE
                 }
             }
         }
 
         addNotesButton = mBinding.addNotesButton
-        addNotesButton.setOnClickListener {
+        addNotesButton?.setOnClickListener {
             findNavController(requireActivity(), R.id.nav_host_fragment_content_vet_passport)
                 .navigate(R.id.action_nav_notes_to_detailNoteFragment)
         }
 
-        viewModelNotes.getAllNotes(petNameThis)
+        viewModelNotes.getAllNotes(petNameThis!!)
         viewModelNotes.allNotes.observe(viewLifecycleOwner) {
             when(it) {
                 is UiState.Loading -> {
-                    progressBarNotes.visibility = View.VISIBLE
+                    progressBarNotes?.visibility = View.VISIBLE
                 }
                 is UiState.Success -> {
-                    progressBarNotes.visibility = View.INVISIBLE
-                    notesAdapter.setDiffer(it.data)
-                    if (notesAdapter.itemCount == 0) {
-                        notElemNotes.visibility = View.VISIBLE
-                        addArrow.visibility = View.VISIBLE
-                        addTextView.visibility = View.VISIBLE
+                    progressBarNotes?.visibility = View.INVISIBLE
+                    notesAdapter?.setDiffer(it.data)
+                    if (notesAdapter?.itemCount == 0) {
+                        notElemNotes?.visibility = View.VISIBLE
+                        addArrow?.visibility = View.VISIBLE
+                        addTextView?.visibility = View.VISIBLE
                     } else {
-                        notElemNotes.visibility = View.INVISIBLE
-                        addArrow.visibility = View.INVISIBLE
-                        addTextView.visibility = View.INVISIBLE
+                        notElemNotes?.visibility = View.INVISIBLE
+                        addArrow?.visibility = View.INVISIBLE
+                        addTextView?.visibility = View.INVISIBLE
                     }
                 }
                 is UiState.Failure -> {
-                    progressBarNotes.visibility = View.INVISIBLE
+                    progressBarNotes?.visibility = View.INVISIBLE
                     Log.d("UI State", it.error.toString())
+                }
+            }
+        }
+
+        viewModelNotes.update.observe(viewLifecycleOwner) {
+            when(it) {
+                is UiState.Loading -> {
+                    progressBarNotes?.visibility = View.VISIBLE
+                }
+                is UiState.Success -> {
+                    progressBarNotes?.visibility = View.INVISIBLE
+                    viewModelNotes.getAllNotes(petNameThis!!)
+                }
+                is UiState.Failure -> {
+                    progressBarNotes?.visibility = View.INVISIBLE
+                    Log.d("UI State", it.error.toString())
+                }
+                else -> {
+                    progressBarNotes?.visibility = View.INVISIBLE
+                }
+            }
+        }
+
+        viewModelNotes.delete.observe(viewLifecycleOwner) {
+            when(it) {
+                is UiState.Loading -> {
+                    progressBarNotes?.visibility = View.VISIBLE
+                }
+                is UiState.Success -> {
+                    progressBarNotes?.visibility = View.INVISIBLE
+                    viewModelNotes.getAllNotes(petNameThis!!)
+                }
+                is UiState.Failure -> {
+                    progressBarNotes?.visibility = View.INVISIBLE
+                    Log.d("UI State", it.error.toString())
+                }
+                else -> {
+                    progressBarNotes?.visibility = View.INVISIBLE
                 }
             }
         }
@@ -133,7 +172,7 @@ class NotesFragment: Fragment() {
 
     private fun initAdapter() {
         notesAdapter = NotesAdapter()
-        recyclerNotes.apply {
+        recyclerNotes?.apply {
             adapter = notesAdapter
             layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
         }
@@ -148,7 +187,7 @@ class NotesFragment: Fragment() {
                     noteForMenu.pinned = true
                     viewModelNotes.updateNote(
                         noteForMenu,
-                        petNameThis
+                        petNameThis!!
                     )
                 }
                 R.id.deleteMenuNote -> {
@@ -157,11 +196,21 @@ class NotesFragment: Fragment() {
                     alertDialog.setTitle("")
                     alertDialog.setPositiveButton(R.string.delete_yes,
                         DialogInterface.OnClickListener { dialogInterface, i ->
-                            viewModelNotes.deleteNote(
-                                noteForMenu.id,
-                                petNameThis
-                            )
-                            viewModelNotes.getAllNotes(petNameThis)
+                            val alertDialog = AlertDialog.Builder(requireContext())
+                            alertDialog.setIcon(R.mipmap.logo_paws)
+                            alertDialog.setTitle("")
+                            alertDialog.setPositiveButton("yes",
+                                DialogInterface.OnClickListener { dialogInterface, i ->
+                                    viewModelNotes.deleteNote(
+                                        noteForMenu.id,
+                                        petNameThis!!
+                                    )
+                                })
+                            alertDialog.setNeutralButton("no",
+                                DialogInterface.OnClickListener { dialogInterface, i ->
+                                    dialogInterface.dismiss()
+                                })
+                            alertDialog.show()
                         })
                     alertDialog.setNeutralButton("no",
                         DialogInterface.OnClickListener { dialogInterface, i ->

@@ -29,13 +29,13 @@ class VetPassportActivity : AppCompatActivity() {
     private var _binding: ActivityVetPassportBinding? = null
     private val mBinding get() = _binding!!
 
-    private lateinit var appBarConfiguration: AppBarConfiguration
-    private lateinit var iconPetProfile: ImageView
+    private var appBarConfiguration: AppBarConfiguration? = null
+    private var iconPetProfile: ImageView? = null
 
     private val bundleArgs: VetPassportActivityArgs by navArgs()
     private val viewModelPet by viewModels<PetViewModel>()
 
-    private lateinit var petNameThis: String
+    private var petNameThis: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,7 +50,7 @@ class VetPassportActivity : AppCompatActivity() {
         setContentView(mBinding.root)
 
         petNameThis = bundleArgs.pet
-        if (petNameThis.isEmpty()) {
+        if (petNameThis!!.isEmpty()) {
             petNameThis = intent.getStringExtra("pet").toString()
         }
 
@@ -74,14 +74,14 @@ class VetPassportActivity : AppCompatActivity() {
             ),
             drawerLayout
         )
-        setupActionBarWithNavController(navController, appBarConfiguration)
+        setupActionBarWithNavController(navController, appBarConfiguration!!)
         navView.setupWithNavController(navController)
 
         val header: View = navView.getHeaderView(0)
         val namePetProfile = header.findViewById<TextView>(R.id.namePetProfile)
         val agePetProfile = header.findViewById<TextView>(R.id.agePetProfile)
         iconPetProfile = header.findViewById<ImageView>(R.id.iconPetProfile)
-        iconPetProfile.setOnClickListener {
+        iconPetProfile?.setOnClickListener {
             val intent = Intent(this, PetProfileActivity::class.java)
             intent.putExtra("pet", petNameThis)
             startActivity(intent)
@@ -91,7 +91,7 @@ class VetPassportActivity : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_vet_passport)
-        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+        return navController.navigateUp(appBarConfiguration!!) || super.onSupportNavigateUp()
     }
 
     override fun onDestroy() {

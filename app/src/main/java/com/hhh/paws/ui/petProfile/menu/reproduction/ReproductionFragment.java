@@ -56,7 +56,7 @@ public class ReproductionFragment extends Fragment {
     private ProgressBar progressBarReproduction;
 
     private ReproductionViewModel viewModelReproduction;
-    ReproductionAdapter adapter;
+    private ReproductionAdapter adapter;
     private String petName;
 
     @Override

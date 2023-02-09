@@ -28,19 +28,13 @@ class NewPetFragment : Fragment() {
     private var _binding: FragmentNewPetBinding? = null
     private val mBinding get() = _binding!!
 
-    private lateinit var petNameNew: TextInputEditText
-    private lateinit var petSpeciesNew: TextInputEditText
-    private lateinit var spinnerSexNew: Spinner
-    private lateinit var buttonCreate: Button
-    private lateinit var buttonCancel: Button
+    private var petNameNew: TextInputEditText? = null
+    private var petSpeciesNew: TextInputEditText? = null
+    private var spinnerSexNew: Spinner? = null
+    private var buttonCreate: Button? = null
+    private var buttonCancel: Button? = null
 
-    private lateinit var pet: Pet
-    private var day = 0
-    private var month = 0
-    private var year = 0
-    private var savedDay = 0
-    private var savedMonth = 0
-    private var savedYear = 0
+    private var pet: Pet? = null
 
     private val viewModelPet by viewModels<PetViewModel>()
 
@@ -62,7 +56,7 @@ class NewPetFragment : Fragment() {
                 }
                 is UiState.Success -> {
                     toast(it.data)
-                    val bundle = bundleOf("pet" to pet.name)
+                    val bundle = bundleOf("pet" to pet?.name)
                     Navigation.findNavController(requireActivity(), R.id.navHostFragment)
                         .navigate(R.id.action_newPetFragment_to_petProfileActivity, bundle)
                 }
@@ -82,20 +76,20 @@ class NewPetFragment : Fragment() {
             android.R.layout.simple_spinner_item
         )
         adapterSex.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinnerSexNew.adapter = adapterSex
+        spinnerSexNew?.adapter = adapterSex
 
         buttonCreate = mBinding.buttonCreate
-        buttonCreate.setOnClickListener{
+        buttonCreate?.setOnClickListener{
             pet = Pet(
-                petNameNew.text.toString().trim(),
-                petSpeciesNew.text.toString().trim(),
+                petNameNew?.text.toString().trim(),
+                petSpeciesNew?.text.toString().trim(),
                 null,
-                spinnerSexNew.selectedItem.toString().trim(),
+                spinnerSexNew?.selectedItem.toString().trim(),
                 null,
                 null,
                 null
             )
-            viewModelPet.newPet(pet)
+            viewModelPet.newPet(pet!!)
         }
         viewModelPet.addNewPet.observe(viewLifecycleOwner) {
             when (it) {
@@ -112,7 +106,7 @@ class NewPetFragment : Fragment() {
         }
 
         buttonCancel = mBinding.buttonCancel
-        buttonCancel.setOnClickListener{
+        buttonCancel?.setOnClickListener{
             Navigation.findNavController(requireActivity(), R.id.navHostFragment)
                 .navigate(R.id.action_newPetFragment_to_mainFragment)
         }

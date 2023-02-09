@@ -131,6 +131,23 @@ public class DehelmintizationFragment extends Fragment {
                 }
             }
         });
+
+        viewModelDehelmintization.getDelete().observe(getViewLifecycleOwner(),
+                new Observer<UiState<String>>() {
+                    @Override
+                    public void onChanged(UiState<String> listUiState) {
+                        if (listUiState == UiState.Loading.INSTANCE) {
+                            progressBarDehelmintization.setVisibility(View.VISIBLE);
+                        } else if (listUiState.getClass() == UiState.Success.class) {
+                            viewModelDehelmintization.getAllDehelmintization(petNameThis);
+                        } else if (listUiState.getClass() == UiState.Failure.class) {
+                            progressBarDehelmintization.setVisibility(View.INVISIBLE);
+                            Toast.makeText(requireContext(), "error", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(requireContext(), "", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 
     private void initAdapter() {
@@ -154,7 +171,6 @@ public class DehelmintizationFragment extends Fragment {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             viewModelDehelmintization.deleteDehelmintization(currentDehelmintization.getId(), petNameThis);
-                            viewModelDehelmintization.getAllDehelmintization(petNameThis);
                         }
                     });
                     alertDialog.setNegativeButton("no", new DialogInterface.OnClickListener() {

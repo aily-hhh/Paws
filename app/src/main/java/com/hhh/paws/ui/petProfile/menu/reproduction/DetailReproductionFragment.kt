@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.*
+import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
@@ -28,6 +29,7 @@ class DetailReproductionFragment : Fragment() {
     private var dateOfMatingDetail: TextInputEditText? = null
     private var dateOfBirthDetail: TextInputEditText? = null
     private var numberOfTheLitterDetail: TextInputEditText? = null
+    private var progressBarReproductionDetail: ProgressBar? = null
 
     private var year: Int = 0;
     private var month: Int = 0;
@@ -62,6 +64,7 @@ class DetailReproductionFragment : Fragment() {
         reproductionThis = bundleArgs.reproduction
 
         numberOfTheLitterDetail = mBinding.numberOfTheLitterDetail
+        progressBarReproductionDetail = mBinding.progressBarReproductionDetail
 
         dateOfHeatDetail = mBinding.dateOfHeatDetail
         dateOfHeatDetail!!.setOnClickListener {
@@ -79,6 +82,25 @@ class DetailReproductionFragment : Fragment() {
         dateOfBirthDetail!!.setOnClickListener {
             getDateCalendar()
             DatePickerDialog(requireContext(), dateOfBirthListener, year, month, day).show()
+        }
+
+        viewModelReproduction.addReproduction.observe(viewLifecycleOwner) {
+            when (it) {
+                is UiState.Loading -> {
+                    progressBarReproductionDetail?.visibility = View.VISIBLE
+                }
+                is UiState.Success -> {
+                    progressBarReproductionDetail?.visibility = View.INVISIBLE
+                    Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_vet_passport)
+                        .popBackStack()
+                }
+                is UiState.Failure -> {
+                    progressBarReproductionDetail?.visibility = View.INVISIBLE
+                }
+                else -> {
+                    progressBarReproductionDetail?.visibility = View.INVISIBLE
+                }
+            }
         }
 
     }
@@ -102,23 +124,6 @@ class DetailReproductionFragment : Fragment() {
                 newReproduction.dateOfBirth = dateOfBirthDetail?.text.toString()
                 newReproduction.numberOfTheLitter = numberOfTheLitterDetail?.text.toString()
 
-                viewModelReproduction.addReproduction.observe(viewLifecycleOwner) {
-                    when (it) {
-                        is UiState.Loading -> {
-
-                        }
-                        is UiState.Success -> {
-                            Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_vet_passport)
-                                .popBackStack()
-                        }
-                        is UiState.Failure -> {
-
-                        }
-                        else -> {
-
-                        }
-                    }
-                }
                 viewModelReproduction.setReproduction(petName!!, newReproduction)
 
                 true

@@ -111,7 +111,7 @@
         android:id="@+id/detailProceduresFragment"
         android:name="com.hhh.paws.ui.petProfile.menu.procedures.DetailProceduresFragment"
         android:label="fragment_procedures_detail"
-        tools:layout="@layout/fragment_procedures_detail" >
+        tools:layout="@layout/fragment_detail_procedures" >
         <argument
             android:name="procedure"
             app:argType="com.hhh.paws.database.model.SurgicalProcedure"

@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
@@ -49,6 +50,7 @@ public class IdentificationFragment extends Fragment implements DatePickerDialog
     private TextInputEditText microchipLocation;
     private TextInputEditText tattooNumber;
     private TextInputEditText dateOfTattooing;
+    private ProgressBar progressBarIdentification;
 
     private int day = 0;
     private int month = 0;
@@ -57,8 +59,8 @@ public class IdentificationFragment extends Fragment implements DatePickerDialog
     private int savedMonth = 0;
     private int savedYear = 0;
     private int flag = 0;
-    private static int DATE_TATTOO = 1;
-    private static int DATE_CHIP = 2;
+    private static final int DATE_TATTOO = 1;
+    private static final int DATE_CHIP = 2;
 
     private Disposable disposableGet;
     private IdentificationViewModel viewModelIdentification;
@@ -87,6 +89,9 @@ public class IdentificationFragment extends Fragment implements DatePickerDialog
 
         petNameThis = "Котик";
 
+        progressBarIdentification = getBinding().progressBarIdentification;
+        progressBarIdentification.setVisibility(View.VISIBLE);
+
         microchipNumber = getBinding().microchipNumber;
         microchipLocation = getBinding().microchipLocation;
         tattooNumber = getBinding().tattooNumber;
@@ -109,12 +114,14 @@ public class IdentificationFragment extends Fragment implements DatePickerDialog
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe( it -> {
+                    progressBarIdentification.setVisibility(View.INVISIBLE);
                     microchipNumber.setText(it.getMicrochipNumber());
                     dateOfMicrochipping.setText(it.getDateOfMicrochipping());
                     microchipLocation.setText(it.getMicrochipLocation());
                     tattooNumber.setText(it.getTattooNumber());
                     dateOfTattooing.setText(it.getDateOfTattooing());
                     }, it -> {
+                        progressBarIdentification.setVisibility(View.INVISIBLE);
                         Toast.makeText(requireContext(), "error", Toast.LENGTH_SHORT).show();
                     }
                 );
