@@ -84,13 +84,13 @@ class DetailDehelmintizationFragment : Fragment(), DatePickerDialog.OnDateSetLis
         dateDehelmintizationDetail = mBinding.dateDehelmintizationDetail
         dateDehelmintizationDetail!!.setOnClickListener {
             getDateCalendar()
-            DatePickerDialog(it.context, this, year, month, day)
+            DatePickerDialog(requireContext(), this, year, month, day).show()
         }
 
         timeDehelmintizationDetail = mBinding.timeDehelmintizationDetail
         timeDehelmintizationDetail!!.setOnClickListener {
             getTimeCalendar()
-            TimePickerDialog(requireActivity(), this, hour, min, true)
+            TimePickerDialog(requireActivity(), this, hour, min, true).show()
         }
 
         if (dehelmintizationThis != null) {
@@ -154,16 +154,10 @@ class DetailDehelmintizationFragment : Fragment(), DatePickerDialog.OnDateSetLis
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
-
     private fun getDateCalendar() {
-        val calendar = Calendar.getInstance()
-        day = calendar.get(Calendar.DAY_OF_MONTH)
-        month = calendar.get(Calendar.MONTH)
-        year = calendar.get(Calendar.YEAR)
+        day = Calendar.DAY_OF_MONTH
+        month = Calendar.MONTH
+        year = Calendar.YEAR
     }
 
     @SuppressLint("SetTextI18n")
@@ -187,5 +181,10 @@ class DetailDehelmintizationFragment : Fragment(), DatePickerDialog.OnDateSetLis
         savedMin = minute
 
         timeDehelmintizationDetail!!.setText("$savedHour:$savedMin")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

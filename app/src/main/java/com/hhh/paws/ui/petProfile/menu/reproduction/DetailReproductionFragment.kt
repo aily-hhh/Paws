@@ -1,14 +1,15 @@
 package com.hhh.paws.ui.petProfile.menu.reproduction
 
+import android.annotation.SuppressLint
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.NavArgs
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.textfield.TextInputEditText
 import com.hhh.paws.R
-import com.hhh.paws.database.model.Notes
 import com.hhh.paws.database.model.Reproduction
 import com.hhh.paws.database.viewModel.ReproductionViewModel
 import com.hhh.paws.databinding.FragmentDetailReproductionBinding
@@ -27,6 +28,13 @@ class DetailReproductionFragment : Fragment() {
     private var dateOfMatingDetail: TextInputEditText? = null
     private var dateOfBirthDetail: TextInputEditText? = null
     private var numberOfTheLitterDetail: TextInputEditText? = null
+
+    private var year: Int = 0;
+    private var month: Int = 0;
+    private var day: Int = 0;
+    private var savedYear: Int = 0;
+    private var savedMonth: Int = 0;
+    private var savedDay: Int = 0;
 
     private var petName: String? = null
     private var reproductionThis: Reproduction? = null
@@ -53,10 +61,25 @@ class DetailReproductionFragment : Fragment() {
         petName = "Котик"
         reproductionThis = bundleArgs.reproduction
 
-        dateOfHeatDetail = mBinding.dateOfHeatDetail
-        dateOfMatingDetail = mBinding.dateOfMatingDetail
-        dateOfBirthDetail = mBinding.dateOfBirthDetail
         numberOfTheLitterDetail = mBinding.numberOfTheLitterDetail
+
+        dateOfHeatDetail = mBinding.dateOfHeatDetail
+        dateOfHeatDetail!!.setOnClickListener {
+            getDateCalendar()
+            DatePickerDialog(requireContext(), dateOfHeatListener, year, month, day).show()
+        }
+
+        dateOfMatingDetail = mBinding.dateOfMatingDetail
+        dateOfMatingDetail!!.setOnClickListener {
+            getDateCalendar()
+            DatePickerDialog(requireContext(), dateOfMatingListener, year, month, day).show()
+        }
+
+        dateOfBirthDetail = mBinding.dateOfBirthDetail
+        dateOfBirthDetail!!.setOnClickListener {
+            getDateCalendar()
+            DatePickerDialog(requireContext(), dateOfBirthListener, year, month, day).show()
+        }
 
     }
 
@@ -85,7 +108,8 @@ class DetailReproductionFragment : Fragment() {
 
                         }
                         is UiState.Success -> {
-
+                            Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_vet_passport)
+                                .popBackStack()
                         }
                         is UiState.Failure -> {
 
@@ -101,6 +125,37 @@ class DetailReproductionFragment : Fragment() {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun getDateCalendar() {
+        year = Calendar.YEAR
+        month = Calendar.MONTH
+        day = Calendar.DAY_OF_MONTH
+    }
+
+    @SuppressLint("SetTextI18n")
+    private var dateOfHeatListener = DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+        savedDay = dayOfMonth
+        savedMonth = month + 1
+        savedYear = year
+
+        dateOfHeatDetail!!.setText("$savedDay.$savedMonth.$savedYear")
+    }
+    @SuppressLint("SetTextI18n")
+    private var dateOfMatingListener = DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+        savedDay = dayOfMonth
+        savedMonth = month + 1
+        savedYear = year
+
+        dateOfMatingDetail!!.setText("$savedDay.$savedMonth.$savedYear")
+    }
+    @SuppressLint("SetTextI18n")
+    private var dateOfBirthListener = DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+        savedDay = dayOfMonth
+        savedMonth = month + 1
+        savedYear = year
+
+        dateOfBirthDetail!!.setText("$savedDay.$savedMonth.$savedYear")
     }
 
     override fun onDestroyView() {

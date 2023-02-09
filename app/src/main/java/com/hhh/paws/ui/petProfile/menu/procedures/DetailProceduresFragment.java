@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavArgs;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -19,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 import com.google.android.material.textfield.TextInputEditText;
@@ -93,7 +95,7 @@ public class DetailProceduresFragment extends Fragment implements DatePickerDial
         dateSurgicalProcedure = getBinding().dateSurgicalProcedure;
         dateSurgicalProcedure.setOnClickListener(v -> {
             getDateSet();
-            new DatePickerDialog(requireContext(), this, year, month, day);
+            new DatePickerDialog(requireContext(), this, year, month, day).show();
         });
 
         if (procedure != null) {
@@ -127,7 +129,13 @@ public class DetailProceduresFragment extends Fragment implements DatePickerDial
             newProcedure.setType(spinnerTypeSurgicalProcedure.getText().toString());
             newProcedure.setName(nameSurgicalProcedure.getText().toString());
 
-            viewModelProcedures.setProcedure(petNameThis, newProcedure);
+            boolean flag = viewModelProcedures.setProcedure(petNameThis, newProcedure);
+            if (flag) {
+                Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_vet_passport)
+                        .popBackStack();
+            } else {
+                Toast.makeText(requireContext(), "error", Toast.LENGTH_SHORT).show();
+            }
 
             return true;
         } else {

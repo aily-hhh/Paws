@@ -21,7 +21,7 @@
             android:background="@color/lightGreen">
 
             <TextView
-                android:id="@+id/dateOfBirthList"
+                android:id="@+id/dateOfBirthItem"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"

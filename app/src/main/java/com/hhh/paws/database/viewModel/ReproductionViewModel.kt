@@ -15,12 +15,12 @@ import javax.inject.Inject
 @HiltViewModel
 class ReproductionViewModel @Inject constructor(private val repository: ReproductionRepository): ViewModel() {
 
-    private val _getAllReproduction: MutableLiveData<UiState<List<Reproduction>>> = MutableLiveData()
-    val getAllReproduction: LiveData<UiState<List<Reproduction>>> = _getAllReproduction
-    fun getAll(petName: String) {
-        _getAllReproduction.value = UiState.Loading
+    private val _allReproduction: MutableLiveData<UiState<List<Reproduction>>> = MutableLiveData()
+    val allReproduction: LiveData<UiState<List<Reproduction>>> = _allReproduction
+    fun getAllReproduction(petName: String) {
+        _allReproduction.value = UiState.Loading
         repository.getAllReproduction(petName) {
-            _getAllReproduction.value = it
+            _allReproduction.value = it
         }
     }
 

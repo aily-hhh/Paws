@@ -95,14 +95,14 @@ public class IdentificationFragment extends Fragment implements DatePickerDialog
         dateOfTattooing.setOnClickListener(v -> {
             flag = DATE_TATTOO;
             getDateSet();
-            new DatePickerDialog(requireContext(), this, year, month, day);
+            new DatePickerDialog(requireContext(), this, year, month, day).show();
         });
 
         dateOfMicrochipping = getBinding().dateOfMicrochipping;
         dateOfMicrochipping.setOnClickListener(v -> {
             flag = DATE_CHIP;
             getDateSet();
-            new DatePickerDialog(requireContext(), this, year, month, day);
+            new DatePickerDialog(requireContext(), this, year, month, day).show();
         });
 
         disposableGet = viewModelIdentification.getIdentification(petNameThis)

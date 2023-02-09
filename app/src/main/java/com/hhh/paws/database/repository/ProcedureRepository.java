@@ -1,6 +1,9 @@
 package com.hhh.paws.database.repository;
 
+import androidx.annotation.NonNull;
+
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -55,12 +58,26 @@ public class ProcedureRepository implements ProcedureDao {
     }
 
     @Override
-    public void setProcedure(String petName, SurgicalProcedure procedure) {
+    public boolean setProcedure(String petName, SurgicalProcedure procedure) {
         String uID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        final boolean[] flag = new boolean[1];
+
         database.collection(FireStoreTables.USER).document(uID)
                 .collection(FireStoreTables.PET).document(petName)
                 .collection(FireStoreTables.PROCEDURES).document(procedure.getId())
-                .set(procedure);
+                .set(procedure)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        flag[0] = true;
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        flag[0] = false;
+                    }
+                });
+        return flag[0];
     }
 
     @Override

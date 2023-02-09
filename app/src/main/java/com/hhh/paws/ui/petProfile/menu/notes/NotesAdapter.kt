@@ -40,7 +40,12 @@ class NotesAdapter: RecyclerView.Adapter<NotesAdapter.NotesViewHolder>() {
         }
     }
 
-    val differ = AsyncListDiffer(this, callback)
+    private val differ = AsyncListDiffer(this, callback)
+
+    fun setDiffer(notesList: List<Notes>) {
+        this.differ.submitList(null)
+        this.differ.submitList(notesList)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotesViewHolder {
         return NotesViewHolder(

@@ -6,6 +6,7 @@ import android.view.*
 import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.hhh.paws.R
 import com.hhh.paws.database.model.Notes
@@ -81,14 +82,14 @@ class DetailNoteFragment : Fragment() {
                 newNote.description = descriptionNotesDetail.text.toString().trim()
                 newNote.date = dateFormat.format(calendar.time)
 
-
                 viewModelNotes.update.observe(viewLifecycleOwner) {
                     when (it) {
                         is UiState.Loading -> {
 
                         }
                         is UiState.Success -> {
-
+                            Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_vet_passport)
+                                .popBackStack()
                         }
                         is UiState.Failure -> {
 

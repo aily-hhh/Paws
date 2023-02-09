@@ -8,6 +8,6 @@ import io.reactivex.rxjava3.core.Observable;
 
 public interface ProcedureDao {
     Observable<List<SurgicalProcedure>> getAllProcedures(String petName);
-    void setProcedure(String petName, SurgicalProcedure procedure);
+    boolean setProcedure(String petName, SurgicalProcedure procedure);
     void deleteProcedure(String petName, SurgicalProcedure procedure);
 }

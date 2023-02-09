@@ -1,5 +1,7 @@
 package com.hhh.paws.ui.petProfile.menu.notes
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.Log
@@ -88,7 +90,7 @@ class NotesFragment: Fragment() {
 
                 }
                 is UiState.Success -> {
-                    toast("Long click")
+                    viewModelNotes.getAllNotes(petNameThis)
                 }
                 is UiState.Failure -> {
 
@@ -110,8 +112,8 @@ class NotesFragment: Fragment() {
                 }
                 is UiState.Success -> {
                     progressBarNotes.visibility = View.INVISIBLE
-                    notesAdapter.differ.submitList(it.data)
-                    if (notesAdapter.differ.currentList.isEmpty()) {
+                    notesAdapter.setDiffer(it.data)
+                    if (notesAdapter.itemCount == 0) {
                         notElemNotes.visibility = View.VISIBLE
                         addArrow.visibility = View.VISIBLE
                         addTextView.visibility = View.VISIBLE
@@ -150,10 +152,22 @@ class NotesFragment: Fragment() {
                     )
                 }
                 R.id.deleteMenuNote -> {
-                    viewModelNotes.deleteNote(
-                        noteForMenu.id,
-                        petNameThis
-                    )
+                    val alertDialog = AlertDialog.Builder(requireContext())
+                    alertDialog.setIcon(R.mipmap.logo_paws)
+                    alertDialog.setTitle("")
+                    alertDialog.setPositiveButton(R.string.delete_yes,
+                        DialogInterface.OnClickListener { dialogInterface, i ->
+                            viewModelNotes.deleteNote(
+                                noteForMenu.id,
+                                petNameThis
+                            )
+                            viewModelNotes.getAllNotes(petNameThis)
+                        })
+                    alertDialog.setNeutralButton("no",
+                        DialogInterface.OnClickListener { dialogInterface, i ->
+                            dialogInterface.dismiss()
+                        })
+                    alertDialog.show()
                 }
             }
             false

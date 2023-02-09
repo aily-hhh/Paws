@@ -25,26 +25,6 @@ class NotesViewModel @Inject constructor( private val repository: NotesRepositor
         }
     }
 
-    private val _note = MutableLiveData<UiState<Notes>>()
-    val note: LiveData<UiState<Notes>> get() = _note
-    fun getNote(noteID: String, petName: String) {
-        _note.value = UiState.Loading
-        repository.getNote(noteID, petName) {
-            _note.value = it
-        }
-    }
-
-    private val _add = MutableLiveData<UiState<String>>()
-    val add: LiveData<UiState<String>> get() = _add
-    fun addNote(note: Notes, petName: String) {
-        _add.value = UiState.Loading
-        viewModelScope.launch {
-            repository.addNote(note, petName) {
-                _add.value = it
-            }
-        }
-    }
-
     private val _update = MutableLiveData<UiState<String>>()
     val update: LiveData<UiState<String>> get() = _update
     fun updateNote(note: Notes, petName: String) {
