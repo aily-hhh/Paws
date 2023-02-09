@@ -67,7 +67,7 @@ class DetailTreatmentFragment : Fragment(), DatePickerDialog.OnDateSetListener {
 
         progressBarTreatmentDetail = mBinding.progressBarTreatmentDetail
         nameTreatmentDetail = mBinding.nameTreatmentDetail
-        manufacturerTreatmentDetail = mBinding.dateTreatmentDetail
+        manufacturerTreatmentDetail = mBinding.manufacturerTreatmentDetail
         veterinarianTreatmentDetail = mBinding.veterinarianTreatmentDetail
 
         dateTreatmentDetail = mBinding.dateTreatmentDetail

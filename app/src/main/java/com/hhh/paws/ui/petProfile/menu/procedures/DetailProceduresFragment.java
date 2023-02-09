@@ -147,9 +147,10 @@ public class DetailProceduresFragment extends Fragment implements DatePickerDial
     }
 
     private void getDateSet() {
-        day = Calendar.DAY_OF_WEEK_IN_MONTH;
-        month = Calendar.MONTH;
-        year = Calendar.YEAR;
+        Calendar calendar = Calendar.getInstance();
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH);
+        day = calendar.get(Calendar.DAY_OF_MONTH);
     }
 
     @SuppressLint("SetTextI18n")

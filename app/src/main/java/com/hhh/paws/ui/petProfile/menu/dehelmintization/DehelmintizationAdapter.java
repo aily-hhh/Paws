@@ -33,6 +33,7 @@ public class DehelmintizationAdapter extends RecyclerView.Adapter<Dehelmintizati
         TextView manufacturerDehelmintizationItem = itemView.findViewById(R.id.manufacturerDehelmintizationItem);
         TextView doseDehelmintizationItem = itemView.findViewById(R.id.doseDehelmintizationItem);
         TextView veterinarianDehelmintizationItem = itemView.findViewById(R.id.veterinarianDehelmintizationItem);
+        TextView dateDehelmintizationItem = itemView.findViewById(R.id.dateDehelmintizationItem);
 
     }
 
@@ -92,6 +93,7 @@ public class DehelmintizationAdapter extends RecyclerView.Adapter<Dehelmintizati
         holder.timeDehelmintizationItem.setText(newDehelmintization.getDate() + ", " + newDehelmintization.getTime());
         holder.manufacturerDehelmintizationItem.setText(newDehelmintization.getManufacturer());
         holder.veterinarianDehelmintizationItem.setText(newDehelmintization.getVeterinarian());
+        holder.dateDehelmintizationItem.setText(newDehelmintization.getDate());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

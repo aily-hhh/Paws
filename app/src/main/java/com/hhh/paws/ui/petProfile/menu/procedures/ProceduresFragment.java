@@ -150,6 +150,7 @@ public class ProceduresFragment extends Fragment {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             viewModelProcedure.deleteProcedure(petNameThis, currentProcedure);
+                            progressBarProcedures.setVisibility(View.VISIBLE);
                             getNewList();
                         }
                     });

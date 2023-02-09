@@ -71,12 +71,12 @@ public class TreatmentAdapter extends RecyclerView.Adapter<TreatmentAdapter.Trea
 
     @Override
     public void onBindViewHolder(@NonNull TreatmentViewHolder holder, int position) {
-        Treatment newTreatment = new Treatment();
+        Treatment currentTreatment = differ.getCurrentList().get(position);
 
-        holder.dateTreatmentItem.setText(newTreatment.getDate());
-        holder.nameTreatmentItem.setText(newTreatment.getName());
-        holder.manufacturerTreatmentItem.setText(newTreatment.getManufacturer());
-        holder.veterinarianTreatmentItem.setText(newTreatment.getVeterinarian());
+        holder.dateTreatmentItem.setText(currentTreatment.getDate());
+        holder.nameTreatmentItem.setText(currentTreatment.getName());
+        holder.manufacturerTreatmentItem.setText(currentTreatment.getManufacturer());
+        holder.veterinarianTreatmentItem.setText(currentTreatment.getVeterinarian());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

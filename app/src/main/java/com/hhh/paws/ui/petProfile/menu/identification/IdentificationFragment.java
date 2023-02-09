@@ -99,14 +99,14 @@ public class IdentificationFragment extends Fragment implements DatePickerDialog
         dateOfTattooing = getBinding().dateOfTattooing;
         dateOfTattooing.setOnClickListener(v -> {
             flag = DATE_TATTOO;
-            getDateSet();
+            getDateCalendar();
             new DatePickerDialog(requireContext(), this, year, month, day).show();
         });
 
         dateOfMicrochipping = getBinding().dateOfMicrochipping;
         dateOfMicrochipping.setOnClickListener(v -> {
             flag = DATE_CHIP;
-            getDateSet();
+            getDateCalendar();
             new DatePickerDialog(requireContext(), this, year, month, day).show();
         });
 
@@ -164,10 +164,11 @@ public class IdentificationFragment extends Fragment implements DatePickerDialog
         _binding = null;
     }
 
-    private void getDateSet() {
-        day = Calendar.DAY_OF_MONTH;
-        month = Calendar.MONTH;
-        year = Calendar.YEAR;
+    private void getDateCalendar() {
+        Calendar calendar = Calendar.getInstance();
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH);
+        day = calendar.get(Calendar.DAY_OF_MONTH);
     }
 
     @SuppressLint("SetTextI18n")

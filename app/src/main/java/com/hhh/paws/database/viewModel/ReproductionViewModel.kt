@@ -38,10 +38,10 @@ class ReproductionViewModel @Inject constructor(private val repository: Reproduc
     private val _removeReproduction: MutableLiveData<UiState<String>> = MutableLiveData()
     val removeReproduction: LiveData<UiState<String>> = _removeReproduction
     fun deleteReproduction(petName: String, reproductionID: String) {
-        _addReproduction.value = UiState.Loading
+        _removeReproduction.value = UiState.Loading
         viewModelScope.launch {
             repository.deleteReproduction(petName, reproductionID) {
-                _addReproduction.value = it
+                _removeReproduction.value = it
             }
         }
     }

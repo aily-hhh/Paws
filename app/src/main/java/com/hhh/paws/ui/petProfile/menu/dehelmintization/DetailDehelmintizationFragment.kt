@@ -155,9 +155,10 @@ class DetailDehelmintizationFragment : Fragment(), DatePickerDialog.OnDateSetLis
     }
 
     private fun getDateCalendar() {
-        day = Calendar.DAY_OF_MONTH
-        month = Calendar.MONTH
-        year = Calendar.YEAR
+        val calendar = Calendar.getInstance()
+        year = calendar[Calendar.YEAR]
+        month = calendar[Calendar.MONTH]
+        day = calendar[Calendar.DAY_OF_MONTH]
     }
 
     @SuppressLint("SetTextI18n")
