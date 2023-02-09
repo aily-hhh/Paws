@@ -1,14 +1,8 @@
 package com.hhh.paws.di
 
 import com.google.firebase.firestore.FirebaseFirestore
-import com.hhh.paws.database.dao.IdentificationDao
-import com.hhh.paws.database.dao.NotesDao
-import com.hhh.paws.database.dao.PetDao
-import com.hhh.paws.database.dao.TreatmentDao
-import com.hhh.paws.database.repository.IdentificationRepository
-import com.hhh.paws.database.repository.NotesRepository
-import com.hhh.paws.database.repository.PetRepository
-import com.hhh.paws.database.repository.TreatmentRepository
+import com.hhh.paws.database.dao.*
+import com.hhh.paws.database.repository.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -41,5 +35,11 @@ object RepositoryModule {
     @Singleton
     fun provideTreatmentRepository(database: FirebaseFirestore): TreatmentDao {
         return TreatmentRepository(database)
+    }
+
+    @Provides
+    @Singleton
+    fun provideVaccinesRepository(database: FirebaseFirestore): VaccinesDao {
+        return VaccinesRepository(database)
     }
 }

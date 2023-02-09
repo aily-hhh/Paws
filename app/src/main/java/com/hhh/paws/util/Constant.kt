@@ -9,4 +9,5 @@ object FireStoreTables {
     const val PROCEDURES = "procedures"
     const val REPRODUCTION = "reproduction"
     const val TREATMENT = "treatment"
+    const val VACCINES = "vaccines"
 }
