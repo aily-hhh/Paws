@@ -13,6 +13,7 @@ import com.hhh.paws.R
 import com.hhh.paws.database.model.Notes
 import com.hhh.paws.database.viewModel.NotesViewModel
 import com.hhh.paws.databinding.FragmentDetailNoteBinding
+import com.hhh.paws.util.PetName
 import com.hhh.paws.util.UiState
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
@@ -55,7 +56,7 @@ class DetailNoteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        petName = "Котик"
+        petName = PetName.name
         noteThis = bundleArgs.note
 
         titleNotesDetail = mBinding.titleNotesDetail

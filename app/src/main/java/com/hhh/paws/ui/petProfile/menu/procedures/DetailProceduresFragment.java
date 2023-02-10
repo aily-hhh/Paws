@@ -26,6 +26,7 @@ import com.hhh.paws.R;
 import com.hhh.paws.database.model.SurgicalProcedure;
 import com.hhh.paws.database.viewModel.ProcedureViewModel;
 import com.hhh.paws.databinding.FragmentDetailProceduresBinding;
+import com.hhh.paws.util.PetName;
 
 import java.util.Calendar;
 import java.util.UUID;
@@ -81,7 +82,7 @@ public class DetailProceduresFragment extends Fragment implements DatePickerDial
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        petNameThis = "Котик";
+        petNameThis = PetName.INSTANCE.getName();
         procedure = getArguments().getParcelable("procedure");
 
         progressBarProcedureDetail = getBinding().progressBarProcedureDetail;

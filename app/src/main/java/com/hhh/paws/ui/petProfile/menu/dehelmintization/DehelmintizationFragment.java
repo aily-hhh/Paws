@@ -34,6 +34,7 @@ import com.hhh.paws.database.model.Dehelmintization;
 import com.hhh.paws.database.viewModel.DehelmintizationViewModel;
 import com.hhh.paws.databinding.FragmentDehelmintizationBinding;
 import com.hhh.paws.ui.petProfile.menu.ItemClickListener;
+import com.hhh.paws.util.PetName;
 import com.hhh.paws.util.UiState;
 
 import java.util.List;
@@ -73,7 +74,7 @@ public class DehelmintizationFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        petNameThis = "Котик";
+        petNameThis = PetName.INSTANCE.getName();
 
         recyclerDehelmintization = getBinding().recyclerDehelmintization;
         initAdapter();

@@ -14,6 +14,7 @@ import com.hhh.paws.R
 import com.hhh.paws.database.model.Reproduction
 import com.hhh.paws.database.viewModel.ReproductionViewModel
 import com.hhh.paws.databinding.FragmentDetailReproductionBinding
+import com.hhh.paws.util.PetName
 import com.hhh.paws.util.UiState
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
@@ -60,7 +61,7 @@ class DetailReproductionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        petName = "Котик"
+        petName = PetName.name
         reproductionThis = bundleArgs.reproduction
 
         numberOfTheLitterDetail = mBinding.numberOfTheLitterDetail

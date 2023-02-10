@@ -23,6 +23,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.hhh.paws.R
 import com.hhh.paws.database.viewModel.PetViewModel
 import com.hhh.paws.databinding.ActivityVetPassportBinding
+import com.hhh.paws.util.PetName
 import com.hhh.paws.util.UiState
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -60,10 +61,8 @@ class VetPassportActivity : AppCompatActivity() {
         _binding = ActivityVetPassportBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
 
-        petNameThis = bundleArgs.pet
-        if (petNameThis!!.isEmpty()) {
-            petNameThis = intent.getStringExtra("pet").toString()
-        }
+        petNameThis = intent.getStringExtra("pet").toString()
+        PetName.name = petNameThis
 
         setSupportActionBar(mBinding.appBarVetPassport.toolbarVetPassport)
 
@@ -140,7 +139,7 @@ class VetPassportActivity : AppCompatActivity() {
 
     private fun calculateAge(birthday: String): Observable<String> {
         return Observable.fromSingle { source ->
-            val date = birthday.split("\\.").toTypedArray()
+            val date = birthday.split(".").toTypedArray()
             val birthdayDay = date[0].toInt()
             val birthdayMonth = date[1].toInt()
             val birthdayYear = date[2].toInt()
@@ -178,5 +177,6 @@ class VetPassportActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+        PetName.name = null
     }
 }

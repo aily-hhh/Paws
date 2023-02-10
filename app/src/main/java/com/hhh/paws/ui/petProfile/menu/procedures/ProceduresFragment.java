@@ -32,6 +32,7 @@ import com.hhh.paws.database.model.SurgicalProcedure;
 import com.hhh.paws.database.viewModel.ProcedureViewModel;
 import com.hhh.paws.databinding.FragmentProceduresBinding;
 import com.hhh.paws.ui.petProfile.menu.ItemClickListener;
+import com.hhh.paws.util.PetName;
 
 import java.util.List;
 
@@ -72,7 +73,7 @@ public class ProceduresFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        petNameThis = "Котик";
+        petNameThis = PetName.INSTANCE.getName();
 
         notElemProcedures = getBinding().notElemProcedures;
         addTextView = getBinding().addTextView;

@@ -35,6 +35,7 @@ import com.hhh.paws.database.model.Treatment;
 import com.hhh.paws.database.viewModel.TreatmentViewModel;
 import com.hhh.paws.databinding.FragmentTreatmentBinding;
 import com.hhh.paws.ui.petProfile.menu.ItemClickListener;
+import com.hhh.paws.util.PetName;
 import com.hhh.paws.util.UiState;
 
 import java.util.List;
@@ -72,7 +73,7 @@ public class TreatmentFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        petName = "Котик";
+        petName = PetName.INSTANCE.getName();
 
         recyclerTreatment = getBinding().recyclerTreatment;
         initAdapter();

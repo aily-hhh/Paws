@@ -17,6 +17,7 @@ import com.hhh.paws.R
 import com.hhh.paws.database.model.Dehelmintization
 import com.hhh.paws.database.viewModel.DehelmintizationViewModel
 import com.hhh.paws.databinding.FragmentDetailDehelmintizationBinding
+import com.hhh.paws.util.PetName
 import com.hhh.paws.util.UiState
 import com.hhh.paws.util.toast
 import dagger.hilt.android.AndroidEntryPoint
@@ -50,7 +51,7 @@ class DetailDehelmintizationFragment : Fragment(), DatePickerDialog.OnDateSetLis
     private var savedHour = 0
 
     private var dehelmintizationThis: Dehelmintization? = null
-    private lateinit var petName: String
+    private var petName: String? = null
 
     private val viewModelDehelmintization by viewModels<DehelmintizationViewModel>()
     private val bundleArgs by navArgs<DetailDehelmintizationFragmentArgs>()
@@ -71,7 +72,7 @@ class DetailDehelmintizationFragment : Fragment(), DatePickerDialog.OnDateSetLis
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        petName = "Котик"
+        petName = PetName.name
         dehelmintizationThis = bundleArgs.dehelmintization
 
         nameDehelmintizationDetail = mBinding.nameDehelmintizationDetail
@@ -146,7 +147,7 @@ class DetailDehelmintizationFragment : Fragment(), DatePickerDialog.OnDateSetLis
                         }
                     }
                 }
-                viewModelDehelmintization.setDehelmintization(newDehelmintization, petName)
+                viewModelDehelmintization.setDehelmintization(newDehelmintization, petName!!)
 
                 true
             }

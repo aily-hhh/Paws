@@ -29,6 +29,7 @@ import com.hhh.paws.database.model.Notes
 import com.hhh.paws.database.viewModel.NotesViewModel
 import com.hhh.paws.databinding.FragmentNotesBinding
 import com.hhh.paws.ui.petProfile.menu.ItemClickListener
+import com.hhh.paws.util.PetName
 import com.hhh.paws.util.UiState
 import com.hhh.paws.util.toast
 import dagger.hilt.android.AndroidEntryPoint
@@ -63,7 +64,7 @@ class NotesFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        petNameThis = "Котик"
+        petNameThis = PetName.name
 
         notElemNotes = mBinding.notElemNotes
         progressBarNotes = mBinding.progressBarNotes

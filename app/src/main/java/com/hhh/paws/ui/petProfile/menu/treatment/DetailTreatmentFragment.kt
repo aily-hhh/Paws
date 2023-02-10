@@ -18,6 +18,7 @@ import com.hhh.paws.database.model.Reproduction
 import com.hhh.paws.database.model.Treatment
 import com.hhh.paws.database.viewModel.TreatmentViewModel
 import com.hhh.paws.databinding.FragmentDetailTreatmentBinding
+import com.hhh.paws.util.PetName
 import com.hhh.paws.util.UiState
 import java.util.*
 
@@ -62,7 +63,7 @@ class DetailTreatmentFragment : Fragment(), DatePickerDialog.OnDateSetListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        petName = "Котик"
+        petName = PetName.name
         treatmentThis = bundleArgs.treatment
 
         progressBarTreatmentDetail = mBinding.progressBarTreatmentDetail

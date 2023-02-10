@@ -33,6 +33,7 @@ import com.hhh.paws.database.model.Vaccine;
 import com.hhh.paws.database.viewModel.VaccinesViewModel;
 import com.hhh.paws.databinding.FragmentVaccinesBinding;
 import com.hhh.paws.ui.petProfile.menu.ItemClickListener;
+import com.hhh.paws.util.PetName;
 import com.hhh.paws.util.UiState;
 
 import java.util.List;
@@ -70,7 +71,7 @@ public class VaccinesFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        petName = "Котик";
+        petName = PetName.INSTANCE.getName();
 
         recyclerVaccines = getBinding().recyclerVaccines;
         initAdapter();

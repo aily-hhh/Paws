@@ -15,6 +15,7 @@ import com.hhh.paws.database.model.Treatment
 import com.hhh.paws.database.model.Vaccine
 import com.hhh.paws.database.viewModel.VaccinesViewModel
 import com.hhh.paws.databinding.FragmentDetailVaccineBinding
+import com.hhh.paws.util.PetName
 import com.hhh.paws.util.UiState
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
@@ -63,7 +64,7 @@ class DetailVaccineFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        petName = "Котик";
+        petName = PetName.name;
         vaccineThis = bundleArgs.vaccine
 
         typeVaccine = mBinding.typeVaccine

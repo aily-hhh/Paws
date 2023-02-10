@@ -11,3 +11,7 @@ object FireStoreTables {
     const val TREATMENT = "treatment"
     const val VACCINES = "vaccines"
 }
+
+object PetName {
+    var name: String? = null
+}

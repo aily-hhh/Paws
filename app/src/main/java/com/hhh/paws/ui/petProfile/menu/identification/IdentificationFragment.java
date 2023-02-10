@@ -27,6 +27,7 @@ import com.hhh.paws.R;
 import com.hhh.paws.database.model.Identification;
 import com.hhh.paws.database.viewModel.IdentificationViewModel;
 import com.hhh.paws.databinding.FragmentIdentificationBinding;
+import com.hhh.paws.util.PetName;
 import com.hhh.paws.util.UiState;
 
 import java.util.Calendar;
@@ -87,7 +88,7 @@ public class IdentificationFragment extends Fragment implements DatePickerDialog
                 IdentificationFragment.this).get(IdentificationViewModel.class
         );
 
-        petNameThis = "Котик";
+        petNameThis = PetName.INSTANCE.getName();
 
         progressBarIdentification = getBinding().progressBarIdentification;
         progressBarIdentification.setVisibility(View.VISIBLE);

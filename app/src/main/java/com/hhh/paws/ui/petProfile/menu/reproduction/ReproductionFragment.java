@@ -34,6 +34,7 @@ import com.hhh.paws.database.model.Reproduction;
 import com.hhh.paws.database.viewModel.ReproductionViewModel;
 import com.hhh.paws.databinding.FragmentReproductionBinding;
 import com.hhh.paws.ui.petProfile.menu.ItemClickListener;
+import com.hhh.paws.util.PetName;
 import com.hhh.paws.util.UiState;
 
 import java.util.List;
@@ -76,7 +77,7 @@ public class ReproductionFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        petName = "Котик";
+        petName = PetName.INSTANCE.getName();
 
         recyclerReproduction = getBinding().recyclerReproduction;
         initAdapter();
