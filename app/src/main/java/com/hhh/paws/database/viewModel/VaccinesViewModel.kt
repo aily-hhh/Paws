@@ -19,10 +19,8 @@ class VaccinesViewModel @Inject constructor(private val repository: VaccinesRepo
     val allVaccines: LiveData<UiState<List<Vaccine>>> get() = _allVaccines
     fun getAllVaccines(petName: String) {
         _allVaccines.value = UiState.Loading
-        viewModelScope.launch {
-            repository.getAllVaccines(petName) {
-                _allVaccines.value = it
-            }
+        repository.getAllVaccines(petName) {
+            _allVaccines.value = it
         }
     }
 
