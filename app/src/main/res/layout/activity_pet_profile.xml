@@ -58,6 +58,6 @@
         android:layout_marginEnd="@dimen/fab_margin"
         app:layout_anchor="@id/appBarPet"
         app:layout_anchorGravity="bottom|end"
-        app:srcCompat="@drawable/ic_add_image" />
+        app:srcCompat="@drawable/ic_photo" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

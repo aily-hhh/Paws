@@ -25,7 +25,6 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:ellipsize="marquee"
-                android:fontFamily="monospace"
                 android:marqueeRepeatLimit="marquee_forever"
                 android:background="@color/lightGreen"
                 android:padding="8dp"
@@ -42,12 +41,13 @@
             <ImageView
                 android:id="@+id/pinnedNotes"
                 android:visibility="invisible"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:rotation="30"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="2dp"
-                android:src="@drawable/ic_push_pin"
+                android:src="@drawable/ic_pinned_note"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
