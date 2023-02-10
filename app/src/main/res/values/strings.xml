@@ -15,6 +15,8 @@
     <string name="deleted">Удалено</string>
     <string name="updated">Обновлено</string>
     <string name="created">Создано</string>
+    <string name="saved">Сохранено</string>
+    <string name="added">Добавлено</string>
     <string name="choose_pet">Выберите питомца:</string>
     <string name="cancel">Отмена</string>
     <string name="add_pet">Добавить питомца</string>
@@ -26,10 +28,13 @@
     <string name="hair">Шерсть</string>
     <string name="error">Ошибка</string>
     <string name="not_elem">тут пока нет элементов</string>
+    <string name="delete_note">Вы действительно хотите удалить запись?</string>
     <string name="delete_profile">Вы действительно хотите удалить профиль?</string>
     <string name="delete_profile_msg">Отменить действие будет невозможно!</string>
     <string name="delete_yes">Удалить</string>
     <string name="add">добавить</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
 
     <string name="nav_header_desc">Navigation header</string>
     <string name="nav_header_title">Pets name</string>
@@ -61,9 +66,12 @@
     <string name="date_of_tattooing">Date of tattooing</string>
     <string name="tattoo_number">Tattoo number</string>
     <string name="type">Тип</string>
-    <string name="anesthesia">Анастезия</string>
+    <string name="anesthesia">Анестезия</string>
     <string name="date_of_surgical_procedure">Дата операции</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="date_of_birth">Date of birth</string>
+    <string name="date_of_heat">Date of heat</string>
+    <string name="date_of_mating">Date of mating</string>
+    <string name="number_of_the_litter">Number of the litter</string>
+    <string name="valid_until">Valid until</string>
 
 </resources>

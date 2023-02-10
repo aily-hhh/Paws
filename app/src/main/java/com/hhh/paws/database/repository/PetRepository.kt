@@ -54,7 +54,7 @@ class PetRepository @Inject constructor(private val database: FirebaseFirestore)
             }
             .addOnFailureListener { exception ->
                 Log.d(TAG, "Error getting documents: ", exception)
-                result.invoke(UiState.Failure(R.string.error.toString()))
+                result.invoke(UiState.Failure("${R.string.error}"))
             }
     }
 
@@ -100,10 +100,10 @@ class PetRepository @Inject constructor(private val database: FirebaseFirestore)
         database.collection(FireStoreTables.USER).document(uID)
             .collection(FireStoreTables.PET).document(pet.name).set(pet)
             .addOnSuccessListener {
-                result.invoke(UiState.Success(R.string.updated.toString()))
+                result.invoke(UiState.Success("${R.string.updated}"))
             }
             .addOnFailureListener {
-                result.invoke(UiState.Failure(R.string.error.toString()))
+                result.invoke(UiState.Failure("${R.string.error}"))
             }
     }
 
@@ -113,10 +113,10 @@ class PetRepository @Inject constructor(private val database: FirebaseFirestore)
         database.collection(FireStoreTables.USER).document(uID)
             .collection(FireStoreTables.PET).document(pet.name).set(pet)
             .addOnSuccessListener {
-                result.invoke(UiState.Success(R.string.created.toString()))
+                result.invoke(UiState.Success("${R.string.created}"))
             }
             .addOnFailureListener {
-                UiState.Failure(R.string.error.toString())
+                UiState.Failure("${R.string.error}")
             }
     }
 
@@ -125,10 +125,10 @@ class PetRepository @Inject constructor(private val database: FirebaseFirestore)
         database.collection(FireStoreTables.USER).document(uID)
             .collection(FireStoreTables.PET).document(petName).delete()
             .addOnSuccessListener {
-                result.invoke(UiState.Success(R.string.deleted.toString()))
+                result.invoke(UiState.Success("${R.string.deleted}"))
             }
             .addOnFailureListener {
-                result.invoke(UiState.Failure(R.string.error.toString()))
+                result.invoke(UiState.Failure("${R.string.error}"))
             }
     }
 }

@@ -30,7 +30,7 @@
                 android:padding="8dp"
                 android:scrollHorizontally="true"
                 android:singleLine="true"
-                android:text="Date of birth"
+                android:text="@string/date_of_birth"
                 android:textSize="18sp"
                 android:textStyle="bold" />
         </RelativeLayout>
@@ -50,7 +50,7 @@
                 android:paddingTop="4dp"
                 android:scrollHorizontally="true"
                 android:singleLine="true"
-                android:text="dateOfHeatList"
+                android:text="@string/date_of_heat"
                 android:textColor="@color/darkGreen"
                 android:textSize="10sp"
                 android:textStyle="normal"
@@ -64,7 +64,7 @@
                 android:paddingLeft="6dp"
                 android:paddingRight="6dp"
                 android:paddingBottom="4dp"
-                android:text="Date of heat"
+                android:text="@string/date_of_heat"
                 android:textSize="14sp"
                 android:textStyle="normal" />
 
@@ -79,7 +79,7 @@
                 android:paddingTop="4dp"
                 android:scrollHorizontally="true"
                 android:singleLine="true"
-                android:text="dateOfMatingList"
+                android:text="@string/date_of_mating"
                 android:textColor="@color/darkGreen"
                 android:textSize="10sp"
                 android:textStyle="normal"
@@ -98,7 +98,7 @@
                 android:paddingBottom="4dp"
                 android:scrollHorizontally="true"
                 android:singleLine="true"
-                android:text="Date of mating"
+                android:text="@string/date_of_mating"
                 android:textSize="14sp"
                 android:textStyle="normal" />
 
@@ -117,7 +117,7 @@
                 android:paddingEnd="8dp"
                 android:paddingTop="4dp"
                 android:paddingBottom="4dp"
-                android:text="numberOfTheLitterList"
+                android:text="@string/number_of_the_litter"
                 android:textColor="@color/darkGreen"
                 android:textSize="14sp"
                 android:textStyle="normal" />
@@ -136,7 +136,7 @@
                 android:paddingBottom="4dp"
                 android:scrollHorizontally="true"
                 android:singleLine="true"
-                android:text="Number of the litter"
+                android:text="@string/number_of_the_litter"
                 android:textSize="14sp"
                 android:textStyle="normal" />
 

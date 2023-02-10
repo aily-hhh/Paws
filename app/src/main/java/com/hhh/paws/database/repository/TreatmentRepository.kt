@@ -36,7 +36,7 @@ class TreatmentRepository @Inject constructor(private val database: FirebaseFire
 
             }.addOnFailureListener { exception ->
                 Log.d(ContentValues.TAG, "Error getting documents: ", exception)
-                result.invoke(UiState.Failure(R.string.error.toString()))
+                result.invoke(UiState.Failure("${R.string.error}"))
             }
     }
 
@@ -50,9 +50,9 @@ class TreatmentRepository @Inject constructor(private val database: FirebaseFire
         database.collection(FireStoreTables.USER).document(uID).collection(FireStoreTables.PET)
             .document(petName).collection(FireStoreTables.TREATMENT).document(treatment.id.toString()).set(treatment)
             .addOnSuccessListener {
-                result.invoke(UiState.Success("added"))
+                result.invoke(UiState.Success("${R.string.added}"))
             }.addOnFailureListener {
-                result.invoke(UiState.Failure(R.string.error.toString()))
+                result.invoke(UiState.Failure("${R.string.error}"))
             }
     }
 
@@ -66,9 +66,9 @@ class TreatmentRepository @Inject constructor(private val database: FirebaseFire
         database.collection(FireStoreTables.USER).document(uID).collection(FireStoreTables.PET)
             .document(petName).collection(FireStoreTables.TREATMENT).document(treatmentID).delete()
             .addOnSuccessListener {
-                result.invoke(UiState.Success("deleted"))
+                result.invoke(UiState.Success("${R.string.deleted}"))
             }.addOnFailureListener {
-                result.invoke(UiState.Failure(R.string.error.toString()))
+                result.invoke(UiState.Failure("${R.string.error}"))
             }
     }
 }

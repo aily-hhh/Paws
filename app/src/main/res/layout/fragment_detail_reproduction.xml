@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="7dp"
-            android:hint="dateHeat">
+            android:hint="@string/date_of_heat">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/dateOfHeatDetail"
@@ -45,7 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="7dp"
-            android:hint="dateMating">
+            android:hint="@string/date_of_mating">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/dateOfMatingDetail"
@@ -59,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="7dp"
-            android:hint="dateBirth">
+            android:hint="@string/date_of_birth">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/dateOfBirthDetail"
@@ -73,7 +73,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="7dp"
-            android:hint="numberOfTheLitter">
+            android:hint="@string/number_of_the_litter">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/numberOfTheLitterDetail"

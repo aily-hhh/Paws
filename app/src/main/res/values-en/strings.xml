@@ -15,6 +15,8 @@
     <string name="deleted">Deleted</string>
     <string name="updated">Updated</string>
     <string name="created">Created</string>
+    <string name="saved">Saved</string>
+    <string name="added">Added</string>
     <string name="choose_pet">Choose a pet:</string>
     <string name="cancel">Cancel</string>
     <string name="add_pet">Add a pet</string>
@@ -26,10 +28,13 @@
     <string name="hair">Hair</string>
     <string name="error">Error</string>
     <string name="not_elem">there are no elements here yet</string>
+    <string name="delete_note">Do you really want to delete the note?</string>
     <string name="delete_profile">Do you really want to delete the profile?</string>
     <string name="delete_profile_msg">It will be impossible to cancel the action!</string>
     <string name="delete_yes">Delete</string>
     <string name="add">add</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 
     <string name="nav_header_desc">Navigation header</string>
     <string name="nav_header_title">Pets name</string>
@@ -63,5 +68,10 @@
     <string name="type">Type</string>
     <string name="anesthesia">Anesthesia</string>
     <string name="date_of_surgical_procedure">Date of surgical procedure</string>
+    <string name="date_of_birth">Date of birth</string>
+    <string name="date_of_heat">Date of heat</string>
+    <string name="date_of_mating">Date of mating</string>
+    <string name="number_of_the_litter">Number of the litter</string>
+    <string name="valid_until">Valid until</string>
 
 </resources>

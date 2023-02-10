@@ -2,6 +2,7 @@ package com.hhh.paws.database.repository
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.hhh.paws.R
 import com.hhh.paws.database.dao.VaccinesDao
 import com.hhh.paws.database.model.Vaccine
 import com.hhh.paws.util.FireStoreTables
@@ -31,7 +32,7 @@ class VaccinesRepository @Inject constructor(private val database: FirebaseFires
                 }
                 result.invoke(UiState.Success(list))
             }.addOnFailureListener {
-                result.invoke(UiState.Failure("error"))
+                result.invoke(UiState.Failure("${R.string.error}"))
             }
     }
 
@@ -45,9 +46,9 @@ class VaccinesRepository @Inject constructor(private val database: FirebaseFires
         database.collection(FireStoreTables.USER).document(uID).collection(FireStoreTables.PET)
             .document(petName).collection(FireStoreTables.VACCINES).document(vaccine.id.toString()).set(vaccine)
             .addOnSuccessListener {
-                result.invoke(UiState.Success("added"))
+                result.invoke(UiState.Success("${R.string.added}"))
             }.addOnFailureListener {
-                result.invoke(UiState.Failure("error"))
+                result.invoke(UiState.Failure("${R.string.error}"))
             }
     }
 
@@ -61,9 +62,9 @@ class VaccinesRepository @Inject constructor(private val database: FirebaseFires
         database.collection(FireStoreTables.USER).document(uID).collection(FireStoreTables.PET)
             .document(petName).collection(FireStoreTables.VACCINES).document(vaccineID).delete()
             .addOnSuccessListener {
-                result.invoke(UiState.Success("deleted"))
+                result.invoke(UiState.Success("${R.string.deleted}"))
             }.addOnFailureListener {
-                result.invoke(UiState.Failure("error"))
+                result.invoke(UiState.Failure("${R.string.error}"))
             }
     }
 }

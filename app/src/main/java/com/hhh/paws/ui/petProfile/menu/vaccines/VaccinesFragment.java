@@ -123,7 +123,7 @@ public class VaccinesFragment extends Fragment {
                     }
                 } else if (listUiState.getClass() == UiState.Failure.class) {
                     progressBarVaccines.setVisibility(View.INVISIBLE);
-                    Toast.makeText(requireContext(), "error", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireContext(), R.string.error, Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(requireContext(), "", Toast.LENGTH_SHORT).show();
                 }
@@ -140,7 +140,7 @@ public class VaccinesFragment extends Fragment {
                     viewModelVaccines.getAllVaccines(petName);
                 } else if (stringUiState.getClass() == UiState.Failure.class) {
                     progressBarVaccines.setVisibility(View.INVISIBLE);
-                    Toast.makeText(requireContext(), "error", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireContext(), R.string.error, Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(requireContext(), "", Toast.LENGTH_SHORT).show();
                 }
@@ -166,14 +166,14 @@ public class VaccinesFragment extends Fragment {
                 if (item.getItemId() == R.id.deleteMenu) {
                     AlertDialog.Builder alertDialog = new AlertDialog.Builder(requireContext());
                     alertDialog.setIcon(R.mipmap.logo_paws);
-                    alertDialog.setTitle("deleteQuestion");
-                    alertDialog.setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                    alertDialog.setTitle(R.string.delete_note);
+                    alertDialog.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             viewModelVaccines.deleteVaccine(petName, currentVaccine.getId());
                         }
                     });
-                    alertDialog.setNegativeButton("no", new DialogInterface.OnClickListener() {
+                    alertDialog.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             dialogInterface.dismiss();

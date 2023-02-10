@@ -81,10 +81,10 @@ public class DehelmintizationAdapter extends RecyclerView.Adapter<Dehelmintizati
     public void onBindViewHolder(@NonNull DehelmintizationViewHolder holder, int position) {
         Dehelmintization newDehelmintization = differ.getCurrentList().get(position);
 
-        if (newDehelmintization.getDate() == "") {
+        if (Objects.equals(newDehelmintization.getDate(), "")) {
             newDehelmintization.setDate("-");
         }
-        if (newDehelmintization.getTime() == "") {
+        if (Objects.equals(newDehelmintization.getTime(), "")) {
             newDehelmintization.setTime("-");
         }
 

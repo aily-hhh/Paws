@@ -194,15 +194,15 @@ class NotesFragment: Fragment() {
                 R.id.deleteMenuNote -> {
                     val alertDialog = AlertDialog.Builder(requireContext())
                     alertDialog.setIcon(R.mipmap.logo_paws)
-                    alertDialog.setTitle("delete?")
-                    alertDialog.setPositiveButton("yes",
+                    alertDialog.setTitle(R.string.delete_note)
+                    alertDialog.setPositiveButton(R.string.yes,
                         DialogInterface.OnClickListener { dialogInterface, i ->
                             viewModelNotes.deleteNote(
                                 noteForMenu.id,
                                 petNameThis!!
                             )
                         })
-                    alertDialog.setNeutralButton("no",
+                    alertDialog.setNeutralButton(R.string.no,
                         DialogInterface.OnClickListener { dialogInterface, i ->
                             dialogInterface.dismiss()
                         })

@@ -87,7 +87,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="7dp"
-                android:hint="validUntil">
+                android:hint="@string/valid_until">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/validUntilVaccine"

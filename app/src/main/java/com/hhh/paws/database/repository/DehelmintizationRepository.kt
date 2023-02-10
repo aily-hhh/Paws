@@ -39,7 +39,7 @@ class DehelmintizationRepository @Inject constructor(private val database: Fireb
                 result.invoke(UiState.Success(dehelmintizationList))
             }.addOnFailureListener { exception ->
                 Log.d(TAG, "Error getting documents: ", exception)
-                result.invoke(UiState.Failure(R.string.error.toString()))
+                result.invoke(UiState.Failure("${R.string.error}"))
             }
     }
 
@@ -54,9 +54,9 @@ class DehelmintizationRepository @Inject constructor(private val database: Fireb
             .document(petName).collection(FireStoreTables.DEHELMINTIZATION)
             .document(dehelmintization.id.toString()).set(dehelmintization)
             .addOnSuccessListener {
-                result.invoke(UiState.Success("added"))
+                result.invoke(UiState.Success("${R.string.added}"))
             }.addOnFailureListener {
-                result.invoke(UiState.Failure("error"))
+                result.invoke(UiState.Failure("${R.string.error}"))
             }
     }
 
@@ -71,9 +71,9 @@ class DehelmintizationRepository @Inject constructor(private val database: Fireb
             .document(petName).collection(FireStoreTables.DEHELMINTIZATION)
             .document(dehelmintizationID).delete()
             .addOnSuccessListener {
-                result.invoke(UiState.Success("deleted"))
+                result.invoke(UiState.Success("${R.string.deleted}"))
             }.addOnFailureListener {
-                result.invoke(UiState.Failure("error"))
+                result.invoke(UiState.Failure("${R.string.error}"))
             }
     }
 }

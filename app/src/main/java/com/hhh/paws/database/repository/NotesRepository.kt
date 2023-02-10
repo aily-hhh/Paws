@@ -42,7 +42,7 @@ class NotesRepository @Inject constructor(private val database: FirebaseFirestor
                 result.invoke(UiState.Success(notes))
             }.addOnFailureListener { exception ->
                 Log.d(TAG, "Error getting documents: ", exception)
-                result.invoke(UiState.Failure(R.string.error.toString()))
+                result.invoke(UiState.Failure("${R.string.error}"))
             }
     }
 
@@ -58,7 +58,7 @@ class NotesRepository @Inject constructor(private val database: FirebaseFirestor
                 result.invoke(UiState.Success(note))
             }.addOnFailureListener { exception ->
                 Log.d(ContentValues.TAG, "Error getting documents: ", exception)
-                result.invoke(UiState.Failure(R.string.error.toString()))
+                result.invoke(UiState.Failure("${R.string.error}"))
             }
     }
 
@@ -69,10 +69,10 @@ class NotesRepository @Inject constructor(private val database: FirebaseFirestor
             .collection(FireStoreTables.PET).document(petName)
             .collection(FireStoreTables.NOTES).document(UUID.randomUUID().toString()).set(note)
             .addOnSuccessListener {
-                result.invoke(UiState.Success("Note added"))
+                result.invoke(UiState.Success("${R.string.added}"))
             }
             .addOnFailureListener {
-                result.invoke(UiState.Failure(R.string.error.toString()))
+                result.invoke(UiState.Failure("${R.string.error}"))
             }
     }
 
@@ -82,7 +82,7 @@ class NotesRepository @Inject constructor(private val database: FirebaseFirestor
             .collection(FireStoreTables.PET).document(petName)
             .collection(FireStoreTables.NOTES).document(note.id).set(note)
             .addOnSuccessListener {
-                result.invoke(UiState.Success("Note updated"))
+                result.invoke(UiState.Success("${R.string.updated}"))
             }
             .addOnFailureListener {
                 result.invoke(UiState.Failure(R.string.error.toString()))
@@ -95,10 +95,10 @@ class NotesRepository @Inject constructor(private val database: FirebaseFirestor
             .collection(FireStoreTables.PET).document(petName)
             .collection(FireStoreTables.NOTES).document(noteID).delete()
             .addOnSuccessListener {
-                result.invoke(UiState.Success("Note deleted"))
+                result.invoke(UiState.Success("${R.string.deleted}"))
             }
             .addOnFailureListener {
-                result.invoke(UiState.Failure(R.string.error.toString()))
+                result.invoke(UiState.Failure("${R.string.error}"))
             }
     }
 }
