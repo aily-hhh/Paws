@@ -10,6 +10,7 @@ object FireStoreTables {
     const val REPRODUCTION = "reproduction"
     const val TREATMENT = "treatment"
     const val VACCINES = "vaccines"
+    const val GALLERY = "gallery"
 }
 
 object PetName {

@@ -42,4 +42,10 @@ object RepositoryModule {
     fun provideVaccinesRepository(database: FirebaseFirestore): VaccinesDao {
         return VaccinesRepository(database)
     }
+
+    @Provides
+    @Singleton
+    fun provideGalleryRepository(database: FirebaseFirestore): GalleryDao {
+        return GalleryRepository(database)
+    }
 }

@@ -73,5 +73,6 @@
     <string name="date_of_mating">Date of mating</string>
     <string name="number_of_the_litter">Number of the litter</string>
     <string name="valid_until">Valid until</string>
+    <string name="galleryImage">Image</string>
 
 </resources>
