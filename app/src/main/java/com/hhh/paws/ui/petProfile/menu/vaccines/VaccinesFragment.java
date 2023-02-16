@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.CustomPopUpMenu;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -159,8 +160,8 @@ public class VaccinesFragment extends Fragment {
     }
 
     private void showPopUp(Vaccine currentVaccine, CardView cardView) {
-        PopupMenu popupMenu = new PopupMenu(this.getContext(), cardView);
-        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+        CustomPopUpMenu popupMenu = new CustomPopUpMenu(this.getContext(), cardView);
+        popupMenu.setOnMenuItemClickListener(new CustomPopUpMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 if (item.getItemId() == R.id.deleteMenu) {

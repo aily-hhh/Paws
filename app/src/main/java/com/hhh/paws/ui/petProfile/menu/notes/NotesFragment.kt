@@ -13,6 +13,7 @@ import android.widget.ImageView
 import android.widget.PopupMenu
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.appcompat.widget.CustomPopUpMenu
 import androidx.cardview.widget.CardView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
@@ -180,7 +181,7 @@ class NotesFragment: Fragment() {
     }
 
     private fun showPopUp(noteForMenu: Notes, cardView: CardView) {
-        val popup = PopupMenu(requireContext(), cardView)
+        val popup = CustomPopUpMenu(requireContext(), cardView)
         popup.inflate(R.menu.long_click_menu_note)
         popup.setOnMenuItemClickListener { item: MenuItem? ->
             when (item!!.itemId) {
