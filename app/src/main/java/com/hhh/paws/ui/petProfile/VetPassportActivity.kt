@@ -61,7 +61,7 @@ class VetPassportActivity : AppCompatActivity() {
         _binding = ActivityVetPassportBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
 
-        petNameThis = intent.getStringExtra("pet").toString()
+        petNameThis = bundleArgs.pet
         PetName.name = petNameThis
 
         setSupportActionBar(mBinding.appBarVetPassport.toolbarVetPassport)

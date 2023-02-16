@@ -3,8 +3,8 @@
 
     <item
         android:id="@+id/pinMenuNote"
-        android:title="pin"
-        android:icon="@drawable/ic_push_pin" />
+        android:title="@string/pin"
+        android:icon="@drawable/ic_pinned_note" />
 
     <item
         android:id="@+id/deleteMenuNote"

@@ -28,6 +28,7 @@ fun Fragment.alertDialogForMainFragment(
     alertDialog.setTitle(R.string.choose_pet)
     alertDialog.setAdapter(adapterDialog) { dialogInterface, i ->
         val bundle = bundleOf("pet" to namesPetList[i])
+        PetName.name = namesPetList[i]
         Navigation.findNavController(requireActivity(), R.id.navHostFragment)
             .navigate(R.id.action_mainFragment_to_vetPassportActivity, bundle)
     }

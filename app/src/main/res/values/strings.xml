@@ -74,5 +74,6 @@
     <string name="number_of_the_litter">Number of the litter</string>
     <string name="valid_until">Valid until</string>
     <string name="galleryImage">Image</string>
+    <string name="pin">Pin</string>
 
 </resources>
