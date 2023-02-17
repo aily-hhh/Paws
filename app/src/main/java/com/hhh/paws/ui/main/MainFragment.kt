@@ -53,7 +53,7 @@ class MainFragment : Fragment() {
 
         myPetsButton = mBinding.myPetsButton
         myPetsButton?.setOnClickListener{
-            initDialogFragment()
+            viewModelPet.getNamesPet()
         }
 
         signOutButton = mBinding.signOutButton
@@ -87,19 +87,18 @@ class MainFragment : Fragment() {
                         android.R.layout.select_dialog_item,
                         namesPetList
                     )
+                    initDialogFragment()
                     Log.d("UI State", "$it")
                 }
                 is UiState.Failure -> {
                     progressBar?.visibility = View.INVISIBLE
                     Log.e("UI State", it.error.toString())
                 }
+                else -> {
+
+                }
             }
         }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        viewModelPet.getNamesPet()
     }
 
     private fun initDialogFragment() {
