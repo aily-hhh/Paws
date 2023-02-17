@@ -1,31 +1,20 @@
 package com.hhh.paws.ui.auth;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
-import android.view.SurfaceControl;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.hhh.paws.MainActivity;
 import com.hhh.paws.R;
 import com.hhh.paws.databinding.FragmentAuthBinding;
-import com.hhh.paws.ui.main.MainFragment;
-
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
 
 import dagger.hilt.android.AndroidEntryPoint;
 

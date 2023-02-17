@@ -5,6 +5,7 @@ import android.view.Window
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import com.hhh.paws.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
@@ -21,22 +22,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        _binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(mBinding.root)
 
         val w: Window = window
         w.setFlags(
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
         )
-
-        _binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(R.layout.fragment_start)
-
-        CoroutineScope(Dispatchers.Main).launch {
-            delay(1500)
-            setContentView(mBinding.root)
-            Navigation.findNavController(this@MainActivity, R.id.navHostFragment)
-                .navigate(R.id.action_mainFragment_to_authFragment)
-        }
     }
 
     override fun onDestroy() {
