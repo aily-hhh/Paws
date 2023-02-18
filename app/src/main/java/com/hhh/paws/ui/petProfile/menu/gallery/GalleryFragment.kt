@@ -75,6 +75,16 @@ class GalleryFragment : Fragment() {
                 }
                 is UiState.Success -> {
                     progressBarGallery?.visibility = View.INVISIBLE
+                    adapter?.setDiffer(it.data)
+                    if (adapter?.itemCount == 0) {
+                        notElemGallery?.visibility = View.VISIBLE
+                        addArrow?.visibility = View.VISIBLE
+                        addTextView?.visibility = View.VISIBLE
+                    } else {
+                        notElemGallery?.visibility = View.INVISIBLE
+                        addArrow?.visibility = View.INVISIBLE
+                        addTextView?.visibility = View.INVISIBLE
+                    }
                 }
                 is UiState.Failure -> {
                     progressBarGallery?.visibility = View.INVISIBLE
