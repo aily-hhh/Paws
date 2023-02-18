@@ -15,7 +15,7 @@ android {
     defaultConfig {
         applicationId "com.hhh.paws"
         minSdk 26
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -43,14 +43,14 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.6.0'
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
     implementation 'androidx.preference:preference:1.2.0'
     implementation 'com.google.firebase:firebase-storage-ktx:20.1.0'
-    implementation 'androidx.benchmark:benchmark-common:1.0.0'
+    implementation 'androidx.benchmark:benchmark-common:1.1.1'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
@@ -68,12 +68,12 @@ dependencies {
     kapt "androidx.room:room-compiler:$roomVersion"
 
     // Coroutines
-    def coroutinesVersion = "1.5.2"
+    def coroutinesVersion = '1.6.4'
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
 
     // Hilt
-    def hiltVersion = "2.42"
+    def hiltVersion = '2.45'
     implementation "com.google.dagger:hilt-android:$hiltVersion"
     kapt "com.google.dagger:hilt-compiler:$hiltVersion"
 
@@ -85,21 +85,28 @@ dependencies {
     implementation "androidx.navigation:navigation-ui:$navVersion"
 
     // Glide
-    def glideVersion = "4.13.0"
+    def glideVersion = '4.14.2'
     implementation "com.github.bumptech.glide:glide:$glideVersion"
     kapt "com.github.bumptech.glide:compiler:$glideVersion"
 
     // Firebase
-    implementation platform('com.google.firebase:firebase-bom:31.1.1')
+    implementation platform('com.google.firebase:firebase-bom:31.2.2')
     implementation 'com.google.firebase:firebase-analytics'
-    implementation 'com.google.firebase:firebase-firestore:24.4.2'
-    implementation 'com.google.firebase:firebase-firestore-ktx:24.4.2'
+    implementation 'com.google.firebase:firebase-firestore:24.4.3'
+    implementation 'com.google.firebase:firebase-firestore-ktx:24.4.3'
     implementation 'com.google.firebase:firebase-analytics-ktx'
-    implementation platform('com.google.firebase:firebase-auth:21.0.5')
+    implementation platform('com.google.firebase:firebase-auth:21.1.0')
     implementation 'com.google.firebase:firebase-auth'
     implementation 'com.firebaseui:firebase-ui-auth:8.0.2'
 
     // RxJava
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.2'
-    implementation 'io.reactivex.rxjava3:rxjava:3.1.5'
+    implementation 'io.reactivex.rxjava3:rxjava:3.1.6'
+
+    // ViewPager2
+    implementation 'androidx.viewpager2:viewpager2:1.0.0'
+
+    // PhotoView
+    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
 }
+
