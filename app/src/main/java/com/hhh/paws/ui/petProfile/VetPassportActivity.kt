@@ -116,7 +116,7 @@ class VetPassportActivity : AppCompatActivity() {
                             Log.d("UI State", "Failure image: ${it.localizedMessage}")
                         }
 
-                    if (it.data.birthday != null) {
+                    if (it.data.birthday != null && it.data.birthday != "" && it.data.birthday != "null") {
                         calculateAge(it.data.birthday)
                             .subscribeOn(Schedulers.computation())
                             .observeOn(AndroidSchedulers.mainThread())

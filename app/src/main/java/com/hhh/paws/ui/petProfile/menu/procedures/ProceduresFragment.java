@@ -2,15 +2,14 @@ package com.hhh.paws.ui.petProfile.menu.procedures;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.CustomPopUpMenu;
+import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -94,6 +93,7 @@ public class ProceduresFragment extends Fragment {
                         .navigate(R.id.action_nav_procedures_to_detailProceduresFragment, bundle);
             }
 
+            @RequiresApi(api = Build.VERSION_CODES.Q)
             @Override
             public void onItemLongClickListener(Object object, CardView cardView) {
                 showPopUp((SurgicalProcedure) object, cardView);
@@ -139,9 +139,10 @@ public class ProceduresFragment extends Fragment {
         recyclerProcedures.setLayoutManager(new StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL));
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.Q)
     private void showPopUp(SurgicalProcedure currentProcedure, CardView cardView) {
-        CustomPopUpMenu popupMenu = new CustomPopUpMenu(this.getContext(), cardView);
-        popupMenu.setOnMenuItemClickListener(new CustomPopUpMenu.OnMenuItemClickListener() {
+        PopupMenu popupMenu = new PopupMenu(this.getContext(), cardView);
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 if (item.getItemId() == R.id.deleteMenu) {
@@ -169,6 +170,7 @@ public class ProceduresFragment extends Fragment {
             }
         });
         popupMenu.inflate(R.menu.long_click_menu);
+        popupMenu.setForceShowIcon(true);
         popupMenu.show();
     }
 

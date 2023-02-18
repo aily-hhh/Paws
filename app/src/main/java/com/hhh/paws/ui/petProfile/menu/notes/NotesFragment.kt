@@ -2,8 +2,8 @@ package com.hhh.paws.ui.petProfile.menu.notes
 
 import android.app.AlertDialog
 import android.content.DialogInterface
+import android.os.Build
 import android.os.Bundle
-import android.os.Parcelable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -13,26 +13,23 @@ import android.widget.ImageView
 import android.widget.PopupMenu
 import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.appcompat.widget.CustomPopUpMenu
+import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.Navigation
 import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.hhh.paws.R
-import com.hhh.paws.database.model.Dehelmintization
 import com.hhh.paws.database.model.Notes
 import com.hhh.paws.database.viewModel.NotesViewModel
 import com.hhh.paws.databinding.FragmentNotesBinding
 import com.hhh.paws.ui.petProfile.menu.ItemClickListener
 import com.hhh.paws.util.PetName
 import com.hhh.paws.util.UiState
-import com.hhh.paws.util.toast
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -81,6 +78,7 @@ class NotesFragment: Fragment() {
                     .navigate(R.id.action_nav_notes_to_detailNoteFragment, bundle)
             }
 
+            @RequiresApi(Build.VERSION_CODES.Q)
             override fun onItemLongClickListener(it: Any, cardView: CardView) {
                 showPopUp(it as Notes, cardView)
             }
@@ -180,8 +178,9 @@ class NotesFragment: Fragment() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.Q)
     private fun showPopUp(noteForMenu: Notes, cardView: CardView) {
-        val popup = CustomPopUpMenu(requireContext(), cardView)
+        val popup = PopupMenu(requireContext(), cardView)
         popup.inflate(R.menu.long_click_menu_note)
         popup.setOnMenuItemClickListener { item: MenuItem? ->
             when (item!!.itemId) {
@@ -212,6 +211,7 @@ class NotesFragment: Fragment() {
             }
             false
         }
+        popup.setForceShowIcon(true)
         popup.show()
     }
 

@@ -148,11 +148,10 @@ class PetProfileActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListen
             alertDialog.setNeutralButton(R.string.delete_yes
             ) { dialogInterface, i ->
                 viewModelPet.deletePet(petNameThis!!)
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
             }
             alertDialog.show()
-
-            val intent = Intent(this, MainFragment::class.java)
-            startActivity(intent)
         }
         viewModelPet.delete.observe(this) {
             when (it) {

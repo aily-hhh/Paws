@@ -1,6 +1,10 @@
 package com.hhh.paws.ui.petProfile.menu.gallery
 
+import android.app.AlertDialog
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.os.ext.SdkExtensions
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -8,8 +12,14 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.widget.PopupMenu
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -17,9 +27,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.hhh.paws.R
 import com.hhh.paws.database.viewModel.GalleryViewModel
 import com.hhh.paws.databinding.FragmentGalleryBinding
+import com.hhh.paws.ui.petProfile.menu.ItemClickListener
 import com.hhh.paws.util.PetName
 import com.hhh.paws.util.UiState
-import com.hhh.paws.util.toast
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -56,7 +66,17 @@ class GalleryFragment : Fragment() {
 
         recyclerGallery = mBinding.recyclerGallery
         initAdapter()
-        // adapter clickListener
+        adapter?.setClickListener(object: GalleryClickListener {
+            override fun onClickListener(position: Int) {
+                Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_vet_passport)
+                    .navigate(R.id.action_nav_gallery_to_viewPager2GalleryFragment)
+            }
+
+            override fun onLongClickListener(uri: String, view: View) {
+                showPopUp(uri, view)
+            }
+
+        })
 
         notElemGallery = mBinding.notElemGallery
         addTextView = mBinding.addTextView
@@ -65,7 +85,7 @@ class GalleryFragment : Fragment() {
 
         addGalleryButton = mBinding.addGalleryButton
         addGalleryButton?.setOnClickListener {
-            // открытие галереи, выбор фото и загрузка в бд
+            choosePhoto()
         }
 
         viewModelGallery.allImages.observe(viewLifecycleOwner) {
@@ -124,6 +144,65 @@ class GalleryFragment : Fragment() {
             adapter = adapter
             layoutManager = StaggeredGridLayoutManager(4, LinearLayoutManager.VERTICAL)
         }
+    }
+
+    private fun showPopUp(currentImage: String, view: View) {
+        val popupMenu = PopupMenu(requireContext(), view)
+        popupMenu.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item ->
+            if (item.itemId == R.id.deleteMenu) {
+                val alertDialog = AlertDialog.Builder(requireContext())
+                alertDialog.setIcon(R.mipmap.logo_paws)
+                alertDialog.setTitle(R.string.delete_note)
+                alertDialog.setPositiveButton(
+                    R.string.yes
+                ) { dialogInterface, i ->
+                    // delete
+                }
+                alertDialog.setNegativeButton(
+                    R.string.no
+                ) { dialogInterface, i -> dialogInterface.dismiss() }
+                alertDialog.show()
+            }
+            false
+        })
+        popupMenu.inflate(R.menu.long_click_menu)
+        popupMenu.setForceShowIcon(true)
+        popupMenu.show()
+    }
+
+    private fun isPhotoPickerAvailable(): Boolean {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            true
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                SdkExtensions.getExtensionVersion(Build.VERSION_CODES.R) >= 2
+            } else {
+                TODO("VERSION.SDK_INT < TIRAMISU")
+            }
+        } else {
+            false
+        }
+    }
+
+    private fun choosePhoto() {
+        if (isPhotoPickerAvailable()) {
+            pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+        } else {
+            mGetContent.launch("image/*")
+        }
+    }
+
+    private val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+        uri?.let { uploadImage(it) }
+    }
+
+    private var mGetContent: ActivityResultLauncher<String> = registerForActivityResult(
+        ActivityResultContracts.GetContent()) { uri ->
+        uri?.let { uploadImage(it) }
+    }
+
+    private fun uploadImage(uri: Uri) {
+        // add image in firebase and refresh recyclerView
     }
 
     override fun onDestroy() {

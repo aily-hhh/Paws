@@ -4,11 +4,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.firebase.storage.FirebaseStorage
 import com.hhh.paws.R
+import com.hhh.paws.ui.petProfile.menu.ItemClickListener
+import kotlinx.coroutines.coroutineScope
 
 class GalleryAdapter: RecyclerView.Adapter<GalleryAdapter.GalleryViewHolder>() {
 
@@ -44,13 +48,36 @@ class GalleryAdapter: RecyclerView.Adapter<GalleryAdapter.GalleryViewHolder>() {
         val uriStr: String = differ.currentList[position]
 
         holder.itemView.apply {
-            Glide.with(this.context)
-                .load(uriStr)
-                .into(holder.galleryImage)
+            FirebaseStorage.getInstance().reference
+                .child("images/$uriStr").downloadUrl
+                .addOnSuccessListener { uri ->
+                    Glide.with(holder.galleryImage.context)
+                        .load(uri)
+                        .into(holder.galleryImage)
+                }
+
+            setOnClickListener {
+                clickListener!!.onClickListener(position)
+            }
+            setOnLongClickListener {
+                clickListener!!.onLongClickListener(uriStr, holder.itemView)
+                false
+            }
         }
     }
 
     override fun getItemCount(): Int {
         return differ.currentList.size
     }
+
+    private var clickListener: GalleryClickListener? = null
+    fun setClickListener(clickListener: GalleryClickListener) {
+        this.clickListener = clickListener
+    }
+
+}
+
+interface GalleryClickListener {
+    fun onClickListener(position: Int)
+    fun onLongClickListener(uri: String, view: View)
 }

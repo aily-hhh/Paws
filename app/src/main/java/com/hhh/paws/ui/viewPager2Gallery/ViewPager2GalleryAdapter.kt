@@ -19,7 +19,7 @@ class ViewPager2GalleryAdapter: RecyclerView.Adapter<ViewPager2GalleryAdapter.Vi
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val galleryDetailImageView = itemView.findViewById<PhotoView>(R.id.galleryDetailImageView)
+        val galleryDetailImageView: PhotoView = itemView.findViewById<PhotoView>(R.id.galleryDetailImageView)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -30,16 +30,16 @@ class ViewPager2GalleryAdapter: RecyclerView.Adapter<ViewPager2GalleryAdapter.Vi
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val image: String = list[position]
         val attacher = PhotoViewAttacher(holder.galleryDetailImageView)
-        attacher.setMaximumScale(4.0f)
+        attacher.maximumScale = 4.0f
 
-//        FirebaseStorage.getInstance().reference
-//            .child("images/$image").downloadUrl
-//            .addOnSuccessListener { uri ->
-//                Glide.with()
-//                    .load(uri)
-//                    .into(holder.galleryDetailImageView)
-//                attacher.update()
-//            }
+        FirebaseStorage.getInstance().reference
+            .child("images/$image").downloadUrl
+            .addOnSuccessListener { uri ->
+                Glide.with(holder.galleryDetailImageView.context)
+                    .load(uri)
+                    .into(holder.galleryDetailImageView)
+                attacher.update()
+            }
     }
 
     override fun getItemCount(): Int {

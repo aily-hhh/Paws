@@ -8,7 +8,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.widget.CustomPopUpMenu;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -88,6 +87,7 @@ public class DehelmintizationFragment extends Fragment {
                         .navigate(R.id.action_nav_dehelmintization_to_detailDehelmintizationFragment, bundle);
             }
 
+            @RequiresApi(api = Build.VERSION_CODES.Q)
             @Override
             public void onItemLongClickListener(Object object, CardView cardView) {
                 showPopUp((Dehelmintization) object, cardView);
@@ -160,9 +160,10 @@ public class DehelmintizationFragment extends Fragment {
         );
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.Q)
     private void showPopUp(Dehelmintization currentDehelmintization, CardView cardView) {
-        CustomPopUpMenu popupMenu = new CustomPopUpMenu(this.getContext(), cardView);
-        popupMenu.setOnMenuItemClickListener(new CustomPopUpMenu.OnMenuItemClickListener() {
+        PopupMenu popupMenu = new PopupMenu(this.getContext(), cardView);
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 if (item.getItemId() == R.id.deleteMenu) {
@@ -188,6 +189,7 @@ public class DehelmintizationFragment extends Fragment {
             }
         });
         popupMenu.inflate(R.menu.long_click_menu);
+        popupMenu.setForceShowIcon(true);
         popupMenu.show();
     }
 
