@@ -46,6 +46,17 @@ class StartFragment : Fragment() {
         return sharedPref.getBoolean("Finished", false)
     }
 
+    override fun onResume() {
+        super.onResume()
+        if (viewPager2StartFinish()) {
+            Navigation.findNavController(requireActivity(), R.id.navHostFragment)
+                .navigate(R.id.action_startFragment_to_authFragment)
+        } else {
+            Navigation.findNavController(requireActivity(), R.id.navHostFragment)
+                .navigate(R.id.action_startFragment_to_viewPager2StartFragment)
+        }
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
