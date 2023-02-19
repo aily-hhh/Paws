@@ -1,5 +1,6 @@
 package com.hhh.paws.ui.start
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -28,11 +29,21 @@ class StartFragment : Fragment() {
 
         CoroutineScope(Dispatchers.Main).launch {
             delay(1500)
-            Navigation.findNavController(requireActivity(), R.id.navHostFragment)
-                .navigate(R.id.action_startFragment_to_authFragment)
+            if (viewPager2StartFinish()) {
+                Navigation.findNavController(requireActivity(), R.id.navHostFragment)
+                    .navigate(R.id.action_startFragment_to_authFragment)
+            } else {
+                Navigation.findNavController(requireActivity(), R.id.navHostFragment)
+                    .navigate(R.id.action_startFragment_to_viewPager2StartFragment)
+            }
         }
 
         return mBinding.root
+    }
+
+    private fun viewPager2StartFinish(): Boolean {
+        val sharedPref = requireActivity().getSharedPreferences("viewPager2Start", Context.MODE_PRIVATE)
+        return sharedPref.getBoolean("Finished", false)
     }
 
     override fun onDestroy() {
