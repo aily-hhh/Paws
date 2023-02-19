@@ -78,6 +78,7 @@ class NotesFragment: Fragment() {
                     .navigate(R.id.action_nav_notes_to_detailNoteFragment, bundle)
             }
 
+            @RequiresApi(Build.VERSION_CODES.Q)
             override fun onItemLongClickListener(it: Any, cardView: CardView) {
                 showPopUp(it as Notes, cardView)
             }
@@ -177,6 +178,7 @@ class NotesFragment: Fragment() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.Q)
     private fun showPopUp(noteForMenu: Notes, cardView: CardView) {
         val popup = PopupMenu(requireContext(), cardView)
         popup.inflate(R.menu.long_click_menu_note)
@@ -209,6 +211,7 @@ class NotesFragment: Fragment() {
             }
             false
         }
+        popup.setForceShowIcon(true)
         popup.show()
     }
 
