@@ -23,11 +23,13 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:hint="@string/name_pet"
-            android:paddingBottom="56dp"
-            app:helperText="!! Warning !!">
+            android:paddingBottom="24dp"
+            app:helperText="@string/warning">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/petNameNew"
+                android:drawableStart="@drawable/ic_warning"
+                android:drawableEnd="@drawable/ic_warning"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>

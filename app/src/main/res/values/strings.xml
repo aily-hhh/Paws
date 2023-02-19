@@ -35,6 +35,7 @@
     <string name="add">добавить</string>
     <string name="yes">Да</string>
     <string name="no">Нет</string>
+    <string name="warning">Изменить имя питомца будет нельзя. Пожалуйста, будьте внимательны и проверяйте правильность ввода теста.</string>
 
     <string name="nav_header_desc">Navigation header</string>
     <string name="nav_header_title">Pets name</string>
