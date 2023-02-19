@@ -4,9 +4,12 @@ import android.content.ContentValues
 import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import com.hhh.paws.R
 import com.hhh.paws.database.dao.GalleryDao
 import com.hhh.paws.database.model.Gallery
+import com.hhh.paws.database.model.GalleryImage
 import com.hhh.paws.util.FireStoreTables
 import com.hhh.paws.util.UiState
 import javax.inject.Inject
@@ -44,10 +47,25 @@ class GalleryRepository @Inject constructor(private val database: FirebaseFirest
 
     override suspend fun setImage(
         petName: String,
-        image: Gallery,
+        image: GalleryImage,
         result: (UiState<String>) -> Unit
     ) {
-        TODO("Not yet implemented")
+        val uID: String = FirebaseAuth.getInstance().currentUser!!.uid
+        val storageReference = FirebaseStorage.getInstance().reference
+
+        val ref: StorageReference = storageReference.child("images/${image.id}")
+        ref.putFile(image.id).addOnSuccessListener {
+            database.collection(FireStoreTables.USER).document(uID)
+                .collection(FireStoreTables.PET).document(petName)
+                .collection(FireStoreTables.GALLERY).document(image.id.toString())
+                .set(image).addOnSuccessListener {
+                    result.invoke(UiState.Success("${R.string.deleted}"))
+                }.addOnFailureListener {
+                    result.invoke((UiState.Failure("${R.string.error}")))
+                }
+        }.addOnFailureListener {
+            result.invoke((UiState.Failure("${R.string.error}")))
+        }
     }
 
     override suspend fun deleteImage(
@@ -55,6 +73,21 @@ class GalleryRepository @Inject constructor(private val database: FirebaseFirest
         imageID: String,
         result: (UiState<String>) -> Unit
     ) {
-        TODO("Not yet implemented")
+        val uID: String = FirebaseAuth.getInstance().currentUser!!.uid
+        val storageReference = FirebaseStorage.getInstance().reference
+
+        database.collection(FireStoreTables.USER).document(uID)
+            .collection(FireStoreTables.PET).document(petName)
+            .collection(FireStoreTables.GALLERY).document(imageID).delete()
+            .addOnSuccessListener {
+                val deleteItem: StorageReference = storageReference.child("images/$imageID")
+                deleteItem.delete().addOnSuccessListener {
+                    result.invoke(UiState.Success("${R.string.deleted}"))
+                }.addOnFailureListener {
+                    result.invoke(UiState.Failure("${R.string.error}"))
+                }
+            }.addOnFailureListener {
+                result.invoke(UiState.Failure("${R.string.error}"))
+            }
     }
 }

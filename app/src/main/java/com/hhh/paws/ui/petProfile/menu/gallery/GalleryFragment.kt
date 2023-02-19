@@ -1,5 +1,6 @@
 package com.hhh.paws.ui.petProfile.menu.gallery
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.net.Uri
 import android.os.Build
@@ -26,12 +27,15 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.hhh.paws.R
 import com.hhh.paws.database.model.Gallery
+import com.hhh.paws.database.model.GalleryImage
 import com.hhh.paws.database.viewModel.GalleryViewModel
 import com.hhh.paws.databinding.FragmentGalleryBinding
 import com.hhh.paws.ui.petProfile.menu.ItemClickListener
 import com.hhh.paws.util.PetName
 import com.hhh.paws.util.UiState
 import dagger.hilt.android.AndroidEntryPoint
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 @AndroidEntryPoint
@@ -50,6 +54,10 @@ class GalleryFragment : Fragment() {
     private var petName: String? = null
     private var adapter: GalleryAdapter? = null
     private var galleryModel: Gallery = Gallery()
+
+    private var calendar = Calendar.getInstance()
+    @SuppressLint("SimpleDateFormat")
+    private var dateFormat = SimpleDateFormat("dd.MM.yyyy ',' HH:mm")
 
     private val viewModelGallery by viewModels<GalleryViewModel>()
 
@@ -139,6 +147,44 @@ class GalleryFragment : Fragment() {
             }
         }
 
+        viewModelGallery.deleteImage.observe(viewLifecycleOwner) {
+            when (it) {
+                is UiState.Loading -> {
+                    progressBarGallery?.visibility = View.VISIBLE
+                }
+                is UiState.Success -> {
+                    progressBarGallery?.visibility = View.INVISIBLE
+                    viewModelGallery.getAllImages(petName!!)
+                }
+                is UiState.Failure -> {
+                    progressBarGallery?.visibility = View.INVISIBLE
+                    Log.d("UI State", it.error.toString())
+                }
+                else -> {
+                    progressBarGallery?.visibility = View.INVISIBLE
+                }
+            }
+        }
+
+        viewModelGallery.addImage.observe(viewLifecycleOwner) {
+            when (it) {
+                is UiState.Loading -> {
+                    progressBarGallery?.visibility = View.VISIBLE
+                }
+                is UiState.Success -> {
+                    progressBarGallery?.visibility = View.INVISIBLE
+                    viewModelGallery.getAllImages(petName!!)
+                }
+                is UiState.Failure -> {
+                    progressBarGallery?.visibility = View.INVISIBLE
+                    Log.d("UI State", it.error.toString())
+                }
+                else -> {
+                    progressBarGallery?.visibility = View.INVISIBLE
+                }
+            }
+        }
+
         viewModelGallery.getAllImages(petName!!)
     }
 
@@ -161,7 +207,7 @@ class GalleryFragment : Fragment() {
                 alertDialog.setPositiveButton(
                     R.string.yes
                 ) { dialogInterface, i ->
-                    // delete
+                    viewModelGallery.removeImage(petName!!, currentImage)
                 }
                 alertDialog.setNegativeButton(
                     R.string.no
@@ -207,7 +253,10 @@ class GalleryFragment : Fragment() {
     }
 
     private fun uploadImage(uri: Uri) {
-        // add image in firebase and refresh recyclerView
+        val image = GalleryImage()
+        image.id = uri
+        image.date = dateFormat.format(calendar.time)
+        viewModelGallery.setImage(petName!!, image)
     }
 
     override fun onDestroy() {
