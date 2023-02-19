@@ -109,7 +109,7 @@
     <fragment
         android:id="@+id/detailNoteFragment"
         android:name="com.hhh.paws.ui.petProfile.menu.notes.DetailNoteFragment"
-        android:label="fragment_detail_note"
+        android:label="@string/menu_notes"
         tools:layout="@layout/fragment_detail_note" >
         <argument
             android:name="note"
@@ -176,6 +176,10 @@
         android:id="@+id/viewPager2GalleryFragment"
         android:name="com.hhh.paws.ui.viewPager2Gallery.ViewPager2GalleryFragment"
         android:label=""
-        tools:layout="@layout/fragment_view_pager2_gallery" />
+        tools:layout="@layout/fragment_view_pager2_gallery" >
+        <argument
+            android:name="gallery"
+            app:argType="com.hhh.paws.database.model.Gallery" />
+    </fragment>
 
 </navigation>

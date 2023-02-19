@@ -16,7 +16,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.PopupMenu
-import androidx.cardview.widget.CardView
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
@@ -25,6 +25,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.hhh.paws.R
+import com.hhh.paws.database.model.Gallery
 import com.hhh.paws.database.viewModel.GalleryViewModel
 import com.hhh.paws.databinding.FragmentGalleryBinding
 import com.hhh.paws.ui.petProfile.menu.ItemClickListener
@@ -48,6 +49,7 @@ class GalleryFragment : Fragment() {
 
     private var petName: String? = null
     private var adapter: GalleryAdapter? = null
+    private var galleryModel: Gallery = Gallery()
 
     private val viewModelGallery by viewModels<GalleryViewModel>()
 
@@ -68,8 +70,10 @@ class GalleryFragment : Fragment() {
         initAdapter()
         adapter?.setClickListener(object: GalleryClickListener {
             override fun onClickListener(position: Int) {
+                galleryModel.position = position
+                val bundle = bundleOf("gallery" to galleryModel)
                 Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_vet_passport)
-                    .navigate(R.id.action_nav_gallery_to_viewPager2GalleryFragment)
+                    .navigate(R.id.action_nav_gallery_to_viewPager2GalleryFragment, bundle)
             }
 
             override fun onLongClickListener(uri: String, view: View) {
@@ -96,6 +100,7 @@ class GalleryFragment : Fragment() {
                 is UiState.Success -> {
                     progressBarGallery?.visibility = View.INVISIBLE
                     adapter?.setDiffer(it.data)
+                    galleryModel.galleryList.addAll(it.data)
                     if (adapter?.itemCount == 0) {
                         notElemGallery?.visibility = View.VISIBLE
                         addArrow?.visibility = View.VISIBLE

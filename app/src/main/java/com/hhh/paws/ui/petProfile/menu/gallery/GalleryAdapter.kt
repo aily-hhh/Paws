@@ -38,6 +38,10 @@ class GalleryAdapter: RecyclerView.Adapter<GalleryAdapter.GalleryViewHolder>() {
         differ.submitList(list)
     }
 
+    fun getDiffer(): MutableList<String> {
+        return differ.currentList
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GalleryViewHolder {
         return GalleryViewHolder(
             LayoutInflater.from(parent.context).inflate(R.layout.gallery_item, parent, false)

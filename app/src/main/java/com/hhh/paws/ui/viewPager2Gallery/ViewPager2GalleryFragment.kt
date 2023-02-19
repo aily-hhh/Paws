@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.widget.ViewPager2
 import com.hhh.paws.databinding.FragmentViewPager2GalleryBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -17,6 +18,7 @@ class ViewPager2GalleryFragment : Fragment() {
     private val mBinding get() = _binding!!
 
     private var viewPager2Gallery: ViewPager2? = null
+    private val bundleArgs by navArgs<ViewPager2GalleryFragmentArgs>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,12 +36,14 @@ class ViewPager2GalleryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val galleryModel = bundleArgs.gallery
+
         viewPager2Gallery = mBinding.viewPager2Gallery
         val viewPager2GalleryAdapter = ViewPager2GalleryAdapter()
-        viewPager2GalleryAdapter.setListViewPager(mutableListOf("1", "2", "3"))
+        viewPager2GalleryAdapter.setListViewPager(galleryModel.galleryList)
         viewPager2Gallery?.adapter = viewPager2GalleryAdapter
         viewPager2Gallery?.setPageTransformer(ZoomOutPageTransformer())
-        viewPager2Gallery?.setCurrentItem(2, false)
+        viewPager2Gallery?.setCurrentItem(galleryModel.position, false)
     }
 
     override fun onDestroy() {
