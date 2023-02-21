@@ -65,7 +65,6 @@ public class DehelmintizationAdapter extends RecyclerView.Adapter<Dehelmintizati
     };
 
     public void setDiffer(List<Dehelmintization> dehelmintizationList) {
-        this.differ.submitList(null);
         this.differ.submitList(dehelmintizationList);
     }
 

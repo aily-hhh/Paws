@@ -54,10 +54,10 @@ class GalleryRepository @Inject constructor(private val database: FirebaseFirest
         val storageReference = FirebaseStorage.getInstance().reference
 
         val ref: StorageReference = storageReference.child("images/${image.id}")
-        ref.putFile(image.id).addOnSuccessListener {
+        ref.putFile(image.uri).addOnSuccessListener {
             database.collection(FireStoreTables.USER).document(uID)
                 .collection(FireStoreTables.PET).document(petName)
-                .collection(FireStoreTables.GALLERY).document(image.id.toString())
+                .collection(FireStoreTables.GALLERY).document(image.id)
                 .set(image).addOnSuccessListener {
                     result.invoke(UiState.Success("${R.string.deleted}"))
                 }.addOnFailureListener {

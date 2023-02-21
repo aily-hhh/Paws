@@ -47,7 +47,6 @@ class ReproductionAdapter: RecyclerView.Adapter<ReproductionAdapter.Reproduction
     private val differ = AsyncListDiffer(this, callback)
 
     fun setDiffer(reproductionList: List<Reproduction>) {
-        this.differ.submitList(null)
         this.differ.submitList(reproductionList)
     }
 

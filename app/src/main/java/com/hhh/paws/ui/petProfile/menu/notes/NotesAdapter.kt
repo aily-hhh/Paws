@@ -43,7 +43,6 @@ class NotesAdapter: RecyclerView.Adapter<NotesAdapter.NotesViewHolder>() {
     private val differ = AsyncListDiffer(this, callback)
 
     fun setDiffer(notesList: List<Notes>) {
-        this.differ.submitList(null)
         this.differ.submitList(notesList)
     }
 

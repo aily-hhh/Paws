@@ -66,7 +66,6 @@ public class ProceduresAdapter extends RecyclerView.Adapter<ProceduresAdapter.Pr
     };
 
     public void setDiffer(List<SurgicalProcedure> procedureList) {
-        this.differ.submitList(null);
         this.differ.submitList(procedureList);
     }
 

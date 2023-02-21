@@ -34,7 +34,6 @@ class GalleryAdapter: RecyclerView.Adapter<GalleryAdapter.GalleryViewHolder>() {
     private val differ = AsyncListDiffer(this, callback)
 
     fun setDiffer(list: List<String>) {
-        differ.submitList(null)
         differ.submitList(list)
     }
 

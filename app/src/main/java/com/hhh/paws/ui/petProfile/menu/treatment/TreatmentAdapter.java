@@ -58,7 +58,6 @@ public class TreatmentAdapter extends RecyclerView.Adapter<TreatmentAdapter.Trea
     };
 
     public void setDiffer(List<Treatment> treatmentList) {
-        this.differ.submitList(null);
         this.differ.submitList(treatmentList);
     }
 

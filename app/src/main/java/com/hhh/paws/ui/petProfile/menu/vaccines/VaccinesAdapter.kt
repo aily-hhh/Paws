@@ -50,7 +50,6 @@ class VaccinesAdapter: RecyclerView.Adapter<VaccinesAdapter.VaccinesViewHolder>(
     private val differ = AsyncListDiffer<Vaccine>(this, callback)
 
     fun setDiffer(vaccineList: List<Vaccine>) {
-        this.differ.submitList(null)
         this.differ.submitList(vaccineList)
     }
 

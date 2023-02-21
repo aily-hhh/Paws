@@ -25,6 +25,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.auth.FirebaseAuth
 import com.hhh.paws.R
 import com.hhh.paws.database.model.Gallery
 import com.hhh.paws.database.model.GalleryImage
@@ -78,6 +79,7 @@ class GalleryFragment : Fragment() {
         initAdapter()
         adapter?.setClickListener(object: GalleryClickListener {
             override fun onClickListener(position: Int) {
+                galleryModel.galleryList.addAll(adapter?.getDiffer()!!)
                 galleryModel.position = position
                 val bundle = bundleOf("gallery" to galleryModel)
                 Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_vet_passport)
@@ -108,7 +110,6 @@ class GalleryFragment : Fragment() {
                 is UiState.Success -> {
                     progressBarGallery?.visibility = View.INVISIBLE
                     adapter?.setDiffer(it.data)
-                    galleryModel.galleryList.addAll(it.data)
                     if (adapter?.itemCount == 0) {
                         notElemGallery?.visibility = View.VISIBLE
                         addArrow?.visibility = View.VISIBLE
@@ -118,24 +119,6 @@ class GalleryFragment : Fragment() {
                         addArrow?.visibility = View.INVISIBLE
                         addTextView?.visibility = View.INVISIBLE
                     }
-                }
-                is UiState.Failure -> {
-                    progressBarGallery?.visibility = View.INVISIBLE
-                    Log.d("UI State", it.error.toString())
-                }
-                else -> {
-                    progressBarGallery?.visibility = View.INVISIBLE
-                }
-            }
-        }
-
-        viewModelGallery.oneImage.observe(viewLifecycleOwner) {
-            when (it) {
-                is UiState.Loading -> {
-                    progressBarGallery?.visibility = View.VISIBLE
-                }
-                is UiState.Success -> {
-                    progressBarGallery?.visibility = View.INVISIBLE
                 }
                 is UiState.Failure -> {
                     progressBarGallery?.visibility = View.INVISIBLE
@@ -254,7 +237,8 @@ class GalleryFragment : Fragment() {
 
     private fun uploadImage(uri: Uri) {
         val image = GalleryImage()
-        image.id = uri
+        image.uri = uri
+        image.id = UUID.randomUUID().toString()
         image.date = dateFormat.format(calendar.time)
         viewModelGallery.setImage(petName!!, image)
     }
