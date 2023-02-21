@@ -15,6 +15,12 @@ object RepositoryModule {
 
     @Provides
     @Singleton
+    fun provideUserRepository(database: FirebaseFirestore): UserDao {
+        return UserRepository(database)
+    }
+
+    @Provides
+    @Singleton
     fun providePetRepository(database: FirebaseFirestore): PetDao {
         return PetRepository(database)
     }

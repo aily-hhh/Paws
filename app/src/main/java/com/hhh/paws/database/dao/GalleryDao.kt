@@ -1,6 +1,6 @@
 package com.hhh.paws.database.dao
 
-import com.hhh.paws.database.model.Gallery
+import com.hhh.paws.database.model.GalleryImage
 import com.hhh.paws.util.UiState
 
 interface GalleryDao {
