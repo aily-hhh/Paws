@@ -122,6 +122,23 @@ class PetRepository @Inject constructor(private val database: FirebaseFirestore)
 
     override fun deletePet(petName: String, result: (UiState<String>) -> Unit) {
         val uID = FirebaseAuth.getInstance().currentUser!!.uid
+        val storageReference = FirebaseStorage.getInstance().reference
+
+        database.collection(FireStoreTables.USER).document(uID)
+            .collection(FireStoreTables.PET).document(petName)
+            .collection(FireStoreTables.GALLERY).get()
+            .addOnSuccessListener {
+                for (document in it) {
+                    Log.d(TAG, document.id)
+                    val deleteItem: StorageReference = storageReference.child("images/${document.id}")
+                    deleteItem.delete().addOnFailureListener {
+                        result.invoke(UiState.Failure("${R.string.error}"))
+                    }
+                }
+            }.addOnFailureListener {
+                result.invoke(UiState.Failure("${R.string.error}"))
+            }
+
         database.collection(FireStoreTables.USER).document(uID)
             .collection(FireStoreTables.PET).document(petName).delete()
             .addOnSuccessListener {

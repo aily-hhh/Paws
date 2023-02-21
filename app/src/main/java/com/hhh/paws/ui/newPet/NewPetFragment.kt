@@ -83,11 +83,11 @@ class NewPetFragment : Fragment() {
             pet = Pet(
                 petNameNew?.text.toString().trim(),
                 petSpeciesNew?.text.toString().trim(),
-                null,
+                "",
                 spinnerSexNew?.selectedItem.toString().trim(),
-                null,
-                null,
-                null
+                "",
+                "",
+                ""
             )
             viewModelPet.newPet(pet!!)
         }
