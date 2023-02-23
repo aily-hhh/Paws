@@ -30,7 +30,7 @@ class NewPetFragment : Fragment() {
 
     private var petNameNew: TextInputEditText? = null
     private var petSpeciesNew: TextInputEditText? = null
-    private var spinnerSexNew: Spinner? = null
+    private var spinnerSexNew: TextInputEditText? = null
     private var buttonCreate: Button? = null
     private var buttonCancel: Button? = null
 
@@ -68,15 +68,7 @@ class NewPetFragment : Fragment() {
 
         petNameNew = mBinding.petNameNew
         petSpeciesNew = mBinding.petSpeciesNew
-
         spinnerSexNew = mBinding.spinnerSexNew
-        val adapterSex = ArrayAdapter.createFromResource(
-            requireContext(),
-            R.array.sexArray,
-            android.R.layout.simple_spinner_item
-        )
-        adapterSex.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinnerSexNew?.adapter = adapterSex
 
         buttonCreate = mBinding.buttonCreate
         buttonCreate?.setOnClickListener{
@@ -84,7 +76,7 @@ class NewPetFragment : Fragment() {
                 petNameNew?.text.toString().trim(),
                 petSpeciesNew?.text.toString().trim(),
                 "",
-                spinnerSexNew?.selectedItem.toString().trim(),
+                spinnerSexNew?.text.toString().trim(),
                 "",
                 "",
                 ""

@@ -35,6 +35,7 @@
     <string name="add">add</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="warning">You will not be able to change the pet's name. Please be careful and check the correctness of the text input.</string>
 
     <string name="nav_header_desc">Navigation header</string>
     <string name="nav_header_title">Pets name</string>
@@ -74,6 +75,6 @@
     <string name="number_of_the_litter">Number of the litter</string>
     <string name="valid_until">Valid until</string>
     <string name="galleryImage">Image</string>
-    <string name="pin">Pin</string>
+    <string name="pin">Pin/Unpin</string>
 
 </resources>

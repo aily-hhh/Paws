@@ -47,23 +47,18 @@
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/TextInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:enabled="false"
-            android:fontFamily="monospace"
-            android:paddingStart="18dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/sex"
-            android:textColor="@color/cardview_dark_background"
-            android:textSize="12sp"
-            tools:ignore="RtlSymmetry" />
+            android:layout_marginBottom="8dp"
+            android:hint="@string/sex">
 
-        <Spinner
-            android:id="@+id/spinnerSexNew"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/spinnerSexNew"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/buttonCreate"

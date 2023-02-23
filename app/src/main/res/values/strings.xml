@@ -38,8 +38,8 @@
     <string name="warning">Изменить имя питомца будет нельзя. Пожалуйста, будьте внимательны и проверяйте правильность ввода теста.</string>
 
     <string name="nav_header_desc">Navigation header</string>
-    <string name="nav_header_title">Pets name</string>
-    <string name="nav_header_subtitle">Pets age</string>
+    <string name="nav_header_title">Имя питомца</string>
+    <string name="nav_header_subtitle">Возраст питомца</string>
 
     <string name="menu_notes">Заметки</string>
     <string name="menu_gallery">Галерея</string>
@@ -63,20 +63,18 @@
     <string name="time_dehelmintization">Время дегельминтизации</string>
     <string name="microchip_number">Номер микрочипа</string>
     <string name="date_of_microchipping">Дата чипирования</string>
-    <string name="microchip_location">Место чипирования</string>
-    <string name="date_of_tattooing">Date of tattooing</string>
-    <string name="tattoo_number">Tattoo number</string>
+    <string name="microchip_location">Расположение микрочипа</string>
+    <string name="date_of_tattooing">Дата клеймения</string>
+    <string name="tattoo_number">Клеймо</string>
     <string name="type">Тип</string>
     <string name="anesthesia">Анестезия</string>
     <string name="date_of_surgical_procedure">Дата операции</string>
-    <string name="date_of_birth">Date of birth</string>
-    <string name="date_of_heat">Date of heat</string>
-    <string name="date_of_mating">Date of mating</string>
-    <string name="number_of_the_litter">Number of the litter</string>
+    <string name="date_of_birth">Дата родов</string>
+    <string name="date_of_heat">Дата течки</string>
+    <string name="date_of_mating">Дата вязки</string>
+    <string name="number_of_the_litter">Кол-во в помете</string>
     <string name="valid_until">Valid until</string>
-    <string name="galleryImage">Image</string>
-    <string name="pin">Pin</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="galleryImage">Картинка</string>
+    <string name="pin">Закрепить/Открепить</string>
 
 </resources>

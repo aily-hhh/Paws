@@ -48,7 +48,7 @@ class PetProfileActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListen
     private var petBreed: TextInputEditText? = null
     private var petBirthday: TextInputEditText? = null
     private var petHair: TextInputEditText? = null
-    private var spinnerSex: MaterialAutoCompleteTextView? = null
+    private var spinnerSex: TextInputEditText? = null
     private var buttonUpdate: Button? = null
     private var buttonBack: Button? = null
     private var buttonToMainFragment: Button? = null
@@ -201,14 +201,6 @@ class PetProfileActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListen
                 }
             }
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        val sexList = resources.getStringArray(R.array.sexArray)
-        val adapterSex = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, sexList)
-        spinnerSex?.setAdapter(adapterSex)
-        spinnerSex?.threshold = 0
     }
 
     private fun getDateCalendar() {
