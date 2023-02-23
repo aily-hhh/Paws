@@ -18,7 +18,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/lightGreen">
+            android:background="@color/toolbar_item">
 
             <TextView
                 android:id="@+id/typeSurgicalProcedureItem"
@@ -83,7 +83,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="monospace"
                 android:padding="8dp"
-                android:textColor="@color/darkGreen"
+                android:textColor="@color/text_item"
                 android:text="@string/anesthesia"
                 android:textSize="14sp"
                 android:textStyle="normal" />
@@ -116,7 +116,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="monospace"
                 android:padding="8dp"
-                android:textColor="@color/darkGreen"
+                android:textColor="@color/text_item"
                 android:text="@string/veterinarian_item"
                 android:textSize="14sp"
                 android:textStyle="normal" />

@@ -2,12 +2,32 @@
     <!-- Base application theme. -->
     <style name="Theme.Paws" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimaryVariant">@color/primaryVariant</item>
+        <item name="colorPrimary">@color/darkGreen</item>
         <item name="colorOnPrimary">@color/black</item>
-        <item name="colorSecondary">@color/darkBeige</item>
+        <item name="colorSecondary">@color/lightGreen</item>
         <item name="colorSecondaryVariant">@color/secondaryPrimary</item>
-        <item name="colorOnSecondary">@color/darkBrown</item>
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="colorOnSecondary">@color/lightBeige</item>
+        <item name="android:statusBarColor">@color/darkGreen</item>
+        <item name="fontFamily">monospace</item>
         <item name="buttonStyle">@style/MyButton</item>
+        <item name="android:buttonStyle">@style/MyButton</item>
+        <item name="android:textColorPrimary">@color/lightGreen</item>
+        <item name="android:textColor">@color/lightBeige</item>
+        <item name="android:editTextColor">@color/darkBrown</item>
+        <item name="floatingActionButtonStyle">@style/MyFloatActionButton</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:alertDialogTheme">@style/MyAlertDialog</item>
+        <item name="android:datePickerDialogTheme">@style/MyDatePickerDialog</item>
         <item name="android:windowBackground">@drawable/background_night</item>
     </style>
+
+    <style name="Theme.Paws.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Paws.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.Paws.PopupOverlay" parent="ThemeOverlay.AppCompat.Dark" />
 </resources>

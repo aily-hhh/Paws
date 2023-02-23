@@ -18,7 +18,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/lightGreen">
+            android:background="@color/toolbar_item">
 
             <TextView
                 android:id="@+id/dateOfBirthItem"
@@ -51,7 +51,7 @@
                 android:scrollHorizontally="true"
                 android:singleLine="true"
                 android:text="@string/date_of_heat"
-                android:textColor="@color/darkGreen"
+                android:textColor="@color/text_item"
                 android:textSize="10sp"
                 android:textStyle="normal"
                 tools:ignore="SmallSp" />
@@ -80,7 +80,7 @@
                 android:scrollHorizontally="true"
                 android:singleLine="true"
                 android:text="@string/date_of_mating"
-                android:textColor="@color/darkGreen"
+                android:textColor="@color/text_item"
                 android:textSize="10sp"
                 android:textStyle="normal"
                 tools:ignore="SmallSp" />
@@ -118,7 +118,7 @@
                 android:paddingTop="4dp"
                 android:paddingBottom="4dp"
                 android:text="@string/number_of_the_litter"
-                android:textColor="@color/darkGreen"
+                android:textColor="@color/text_item"
                 android:textSize="14sp"
                 android:textStyle="normal" />
 
