@@ -1,18 +1,19 @@
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory app:title="@string/theme_header">
 
-        <SwitchPreferenceCompat
-            app:title="Темная тема"
-            app:key="themeApp"/>
+        <ListPreference
+            app:entries="@array/theme_entries"
+            app:entryValues="@array/theme_values"
+            app:key="themeApp"
+            app:title="По умолчанию"
+            app:useSimpleSummaryProvider="true" />
 
     </PreferenceCategory>
 
     <PreferenceCategory app:title="@string/language_header">
 
         <ListPreference
-            app:defaultValue="Русский"
             app:entries="@array/language_entries"
             app:entryValues="@array/language_values"
             app:key="language"

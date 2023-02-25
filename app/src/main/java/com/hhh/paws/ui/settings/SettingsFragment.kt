@@ -16,15 +16,5 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.root_preferences, rootKey)
-
-    }
-
-    override fun onPreferenceTreeClick(preference: Preference): Boolean {
-        return super.onPreferenceTreeClick(preference)
-        if (preference.key == "deleteUser") {
-            toast("done")
-            return true
-        }
-        return false
     }
 }
