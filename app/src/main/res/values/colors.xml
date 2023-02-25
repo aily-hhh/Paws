@@ -17,5 +17,6 @@
     <color name="toolbar_item">#D8F8AD</color>
     <color name="green">#769F3D</color>
     <color name="darkGreen">#558F04</color>
+    <color name="superDarkGreen">#3C6503</color>
     <color name="text_item">#558F04</color>
 </resources>

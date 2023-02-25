@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="toolbar_item">#558F04</color>
+    <color name="toolbar_item">#3C6503</color>
     <color name="text_item">#7FBC2B</color>
     <color name="toolbar_bug">#f1e0cf</color>
-    <color name="inside_settings">#F8F4F0</color>
-    <color name="stroke_settings">#cb9980</color>
+    <color name="inside_settings">#FFFDFC</color>
+    <color name="stroke_settings">#D8A163</color>
 </resources>

@@ -10,12 +10,6 @@
         <item>Русский</item>
     </string-array>
 
-    <string-array name="sexArray">
-        <item>Не выбрано</item>
-        <item>Мужской</item>
-        <item>Женский</item>
-    </string-array>
-
     <string-array name="typeVaccineArray">
         <item>От бешенства</item>
         <item>Другое</item>
