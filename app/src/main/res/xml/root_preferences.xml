@@ -6,25 +6,24 @@
             app:entries="@array/theme_entries"
             app:entryValues="@array/theme_values"
             app:key="themeApp"
-            app:title="По умолчанию"
+            app:title="@string/default_settings"
             app:useSimpleSummaryProvider="true" />
 
     </PreferenceCategory>
 
-    <PreferenceCategory app:title="@string/language_header">
+    <PreferenceCategory
+        app:title="@string/language_header">
 
         <ListPreference
             app:entries="@array/language_entries"
             app:entryValues="@array/language_values"
             app:key="language"
-            app:title="По умолчанию"
+            app:title="@string/default_settings"
             app:useSimpleSummaryProvider="true" />
 
     </PreferenceCategory>
 
     <Preference app:layout="@layout/delete_user_button"
         app:key="deleteUser"/>
-
-
 
 </PreferenceScreen>

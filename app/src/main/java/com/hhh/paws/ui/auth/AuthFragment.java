@@ -15,6 +15,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.hhh.paws.R;
 import com.hhh.paws.databinding.FragmentAuthBinding;
 import java.util.Collections;
+import java.util.Objects;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -42,7 +43,7 @@ public class AuthFragment extends Fragment {
         mAuthStateListener = firebaseAuth -> {
             FirebaseUser user = firebaseAuth.getCurrentUser();
             if (user != null) {
-                Navigation.findNavController(getActivity(), R.id.navHostFragment)
+                Navigation.findNavController(requireActivity(), R.id.navHostFragment)
                 .navigate(R.id.action_authFragment_to_mainFragment);
             } else {
                 startActivityForResult(

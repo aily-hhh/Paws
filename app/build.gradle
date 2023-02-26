@@ -108,5 +108,8 @@ dependencies {
 
     // PhotoView
     implementation 'com.github.chrisbanes:PhotoView:2.3.0'
+
+    //
+    implementation 'com.jakewharton:process-phoenix:2.0.0'
 }
 

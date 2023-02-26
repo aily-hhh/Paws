@@ -6,8 +6,10 @@ import android.view.Window
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.os.LocaleListCompat
 import androidx.preference.PreferenceManager
 import com.hhh.paws.databinding.ActivityMainBinding
+import com.hhh.paws.util.LocaleHelper
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -24,13 +26,15 @@ class MainActivity : AppCompatActivity() {
 
         when (prefs.getString("language", "Системный")) {
             "Системный", "System" -> {
-
+                AppCompatDelegate.setApplicationLocales(
+                    LocaleListCompat.getEmptyLocaleList()
+                )
             }
             "Русский" -> {
-
+                LocaleHelper.setLocale(this, "ru");
             }
             "English" -> {
-
+                LocaleHelper.setLocale(this, "en");
             }
         }
 

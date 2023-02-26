@@ -12,6 +12,8 @@
     <string name="settings">Настройки</string>
     <string name="theme_header">Тема</string>
     <string name="language_header">Язык</string>
+    <string name="language_warning">При смене языка приложение автоматически будет перезагружено</string>
+    <string name="default_settings">По умолчанию</string>
     <string name="deleted">Удалено</string>
     <string name="updated">Обновлено</string>
     <string name="created">Создано</string>
@@ -76,5 +78,7 @@
     <string name="valid_until">Valid until</string>
     <string name="galleryImage">Картинка</string>
     <string name="pin">Закрепить/Открепить</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
