@@ -23,7 +23,8 @@
 
     </PreferenceCategory>
 
-    <Preference app:layout="@layout/delete_user_button"
+    <com.hhh.paws.ui.settings.DeleteUserButtonFragment
+        app:layout="@layout/delete_user_button"
         app:key="deleteUser"/>
 
 </PreferenceScreen>
