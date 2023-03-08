@@ -1,10 +1,12 @@
 package com.hhh.paws.ui.viewPager2Start
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.viewpager2.widget.ViewPager2
 import com.hhh.paws.R
 import com.hhh.paws.databinding.FragmentFirstBinding
@@ -34,5 +36,19 @@ class FirstFragment : Fragment() {
             viewPager2?.currentItem = 1
         }
 
+        val skipTV = mBinding.skipTV
+        skipTV.setOnClickListener {
+            Navigation.findNavController(requireActivity(), R.id.navHostFragment)
+                .navigate(R.id.action_viewPager2StartFragment_to_authFragment)
+            viewPager2StartFinish()
+        }
+
+    }
+
+    private fun viewPager2StartFinish() {
+        val sharedPref = requireActivity().getSharedPreferences("viewPager2Start", Context.MODE_PRIVATE)
+        val editor = sharedPref.edit()
+        editor.putBoolean("Finished", true)
+        editor.apply()
     }
 }

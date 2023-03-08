@@ -6,15 +6,40 @@
     android:layout_height="match_parent"
     tools:context=".ui.viewPager2Start.FirstFragment">
 
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:src="@drawable/panda"
+        android:layout_margin="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/helloTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <TextView
+        android:id="@+id/helloTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="This is first fragment"
+        android:text="@string/hello"
+        android:gravity="center"
         android:textSize="24sp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hello2"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/helloTextView" />
 
     <TextView
         android:id="@+id/nextTV"
@@ -22,9 +47,20 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
-        android:text="NEXT"
+        android:text="@string/next"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/skipTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/skip"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="64dp"
+        android:textSize="16sp"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
 

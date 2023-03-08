@@ -80,5 +80,12 @@
     <string name="pin">Закрепить/Открепить</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="finish">FINISH</string>
+    <string name="skip">skip</string>
+    <string name="next">NEXT</string>
+    <string name="hello">Привет! Меня зовут Лотти.</string>
+    <string name="hello2">Мне очень приятно видеть тебя тут ♥</string>
+    <string name="google_signin">Важно: вход в приложение осуществляется только через гугл-аккаунт</string>
+    <string name="google_signin2">Это необходимо для того, чтобы ваши данные не потерялись. А также, чтобы у вас был доступ к ним с нескольких устройств сразу!</string>
 
 </resources>
