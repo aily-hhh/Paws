@@ -27,19 +27,20 @@
         <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
         <item name="android:colorBackgroundCacheHint">@null</item>
         <item name="android:textColorPrimary">@color/superLightBeige</item>
-        <item name="colorPrimary">@color/darkGreen</item>
+        <item name="colorPrimary">@color/green</item>
     </style>
 
     <style name="TextInput" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
-        <item name="boxStrokeColor">@color/darkGreen</item>
+        <item name="boxStrokeColor">@color/lightGreen</item>
         <item name="hintTextColor">@color/green</item>
-        <item name="endIconTint">@color/darkGreen</item>
-        <item name="startIconTint">@color/darkGreen</item>
+        <item name="endIconTint">@color/lightGreen</item>
+        <item name="startIconTint">@color/lightGreen</item>
+        <item name="android:textColor">@color/superLightBeige</item>
     </style>
 
     <style name="MyFloatActionButton" parent="Widget.Design.FloatingActionButton">
         <item name="colorOnSecondary">@color/lightBeige</item>
         <item name="android:backgroundTint">@color/superDarkGreen</item>
-        <item name="tint">@color/darkBrown</item>
+        <item name="tint">@color/superLightBeige</item>
     </style>
 </resources>

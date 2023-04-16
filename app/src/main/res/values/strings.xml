@@ -75,14 +75,14 @@
     <string name="date_of_heat">Дата течки</string>
     <string name="date_of_mating">Дата вязки</string>
     <string name="number_of_the_litter">Кол-во в помете</string>
-    <string name="valid_until">Valid until</string>
+    <string name="valid_until">Действует до</string>
     <string name="galleryImage">Картинка</string>
     <string name="pin">Закрепить/Открепить</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="finish">FINISH</string>
-    <string name="skip">skip</string>
-    <string name="next">NEXT</string>
+    <string name="finish">ЗАВЕРШИТЬ</string>
+    <string name="skip">пропустить</string>
+    <string name="next">ДАЛЬШЕ</string>
     <string name="hello">Привет! Меня зовут Лотти.</string>
     <string name="hello2">Мне очень приятно видеть тебя тут ♥</string>
     <string name="google_signin">Важно: вход в приложение осуществляется только через гугл-аккаунт</string>

@@ -46,8 +46,5 @@
         <item
             android:id="@+id/nav_settings"
             android:title="@string/settings"/>
-        <item
-            android:id="@+id/nav_signOut"
-            android:title="@string/sign_out_button"/>
     </group>
 </menu>

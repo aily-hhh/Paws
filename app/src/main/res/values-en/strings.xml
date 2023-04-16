@@ -81,9 +81,9 @@
     <string name="finish">FINISH</string>
     <string name="skip">skip</string>
     <string name="next">NEXT</string>
-    <string name="hello">Привет! Меня зовут Лотти.</string>
-    <string name="hello2">Мне очень приятно видеть тебя тут ♥</string>
-    <string name="google_signin">Важно: вход в приложение осуществляется только через гугл-аккаунт</string>
-    <string name="google_signin2">Это необходимо для того, чтобы ваши данные не потерялись. А также, чтобы у вас был доступ к ним с нескольких устройств сразу!</string>
+    <string name="hello">Hi! My name is Lottie.</string>
+    <string name="hello2">I am very pleased to see you here ♥</string>
+    <string name="google_signin">Important: login to the application is carried out only through a Google account</string>
+    <string name="google_signin2">This is necessary so that your data is not lost. And also so that you have access to them from multiple devices at once!</string>
 
 </resources>
