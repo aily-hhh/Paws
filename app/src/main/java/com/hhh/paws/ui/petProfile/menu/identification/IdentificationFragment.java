@@ -123,7 +123,7 @@ public class IdentificationFragment extends Fragment implements DatePickerDialog
                     dateOfTattooing.setText(it.getDateOfTattooing());
                     }, it -> {
                         progressBarIdentification.setVisibility(View.INVISIBLE);
-                        Toast.makeText(requireContext(), "error", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(requireContext(), getString(R.string.error), Toast.LENGTH_SHORT).show();
                     }
                 );
     }
@@ -145,7 +145,7 @@ public class IdentificationFragment extends Fragment implements DatePickerDialog
 
             viewModelIdentification.setIdentification(petNameThis, newIdentification);
 
-            Toast.makeText(requireContext(), R.string.saved, Toast.LENGTH_SHORT).show();
+            Toast.makeText(requireContext(), getString(R.string.saved), Toast.LENGTH_SHORT).show();
 
             return true;
         } else {

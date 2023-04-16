@@ -58,7 +58,7 @@ class PetRepository @Inject constructor(private val database: FirebaseFirestore)
             }
     }
 
-    override fun updatePet(pet: Pet, result: (UiState<String>) -> Unit) {
+    override fun updatePet(pet: Pet, result: (UiState<Int>) -> Unit) {
         val uID = FirebaseAuth.getInstance().currentUser!!.uid
 
         val photoStr = UUID.randomUUID().toString()
@@ -100,27 +100,27 @@ class PetRepository @Inject constructor(private val database: FirebaseFirestore)
         database.collection(FireStoreTables.USER).document(uID)
             .collection(FireStoreTables.PET).document(pet.name).set(pet)
             .addOnSuccessListener {
-                result.invoke(UiState.Success("${R.string.updated}"))
+                result.invoke(UiState.Success(R.string.updated))
             }
             .addOnFailureListener {
                 result.invoke(UiState.Failure("${R.string.error}"))
             }
     }
 
-    override fun newPet(pet: Pet, result: (UiState<String>) -> Unit) {
+    override fun newPet(pet: Pet, result: (UiState<Int>) -> Unit) {
         val uID = FirebaseAuth.getInstance().currentUser!!.uid
 
         database.collection(FireStoreTables.USER).document(uID)
             .collection(FireStoreTables.PET).document(pet.name).set(pet)
             .addOnSuccessListener {
-                result.invoke(UiState.Success("${R.string.created}"))
+                result.invoke(UiState.Success(R.string.created))
             }
             .addOnFailureListener {
                 UiState.Failure("${R.string.error}")
             }
     }
 
-    override fun deletePet(petName: String, result: (UiState<String>) -> Unit) {
+    override fun deletePet(petName: String, result: (UiState<Int>) -> Unit) {
         val uID = FirebaseAuth.getInstance().currentUser!!.uid
         val storageReference = FirebaseStorage.getInstance().reference
 
@@ -142,7 +142,7 @@ class PetRepository @Inject constructor(private val database: FirebaseFirestore)
         database.collection(FireStoreTables.USER).document(uID)
             .collection(FireStoreTables.PET).document(petName).delete()
             .addOnSuccessListener {
-                result.invoke(UiState.Success("${R.string.deleted}"))
+                result.invoke(UiState.Success(R.string.deleted))
             }
             .addOnFailureListener {
                 result.invoke(UiState.Failure("${R.string.error}"))

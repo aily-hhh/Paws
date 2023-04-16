@@ -126,7 +126,7 @@ public class TreatmentFragment extends Fragment {
                     }
                 } else if (listUiState.getClass() == UiState.Failure.class) {
                     progressBarTreatment.setVisibility(View.INVISIBLE);
-                    Toast.makeText(requireContext(), R.string.error, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireContext(), getString(R.string.error), Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(requireContext(), "", Toast.LENGTH_SHORT).show();
                 }
@@ -143,7 +143,7 @@ public class TreatmentFragment extends Fragment {
                     viewModelTreatment.getAllTreatment(petName);
                 } else if (stringUiState.getClass() == UiState.Failure.class) {
                     progressBarTreatment.setVisibility(View.INVISIBLE);
-                    Toast.makeText(requireContext(), R.string.error, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireContext(), getString(R.string.error), Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(requireContext(), "", Toast.LENGTH_SHORT).show();
                 }

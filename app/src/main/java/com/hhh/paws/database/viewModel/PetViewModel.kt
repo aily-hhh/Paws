@@ -31,8 +31,8 @@ class PetViewModel @Inject constructor(private val repository: PetRepository): V
         }
     }
 
-    private val _update = MutableLiveData<UiState<String>>()
-    val update: LiveData<UiState<String>> get() = _update
+    private val _update = MutableLiveData<UiState<Int>>()
+    val update: LiveData<UiState<Int>> get() = _update
     fun updatePet(pet: Pet) {
         _update.value = UiState.Loading
         repository.updatePet(pet) {
@@ -40,8 +40,8 @@ class PetViewModel @Inject constructor(private val repository: PetRepository): V
         }
     }
 
-    private val _addNewPet = MutableLiveData<UiState<String>>()
-    val addNewPet: LiveData<UiState<String>> get() = _addNewPet
+    private val _addNewPet = MutableLiveData<UiState<Int>>()
+    val addNewPet: LiveData<UiState<Int>> get() = _addNewPet
     fun newPet(pet: Pet) {
         _addNewPet.value = UiState.Loading
         repository.newPet(pet) {
@@ -49,8 +49,8 @@ class PetViewModel @Inject constructor(private val repository: PetRepository): V
         }
     }
 
-    private val _delete = MutableLiveData<UiState<String>>()
-    val delete: LiveData<UiState<String>> get() = _delete
+    private val _delete = MutableLiveData<UiState<Int>>()
+    val delete: LiveData<UiState<Int>> get() = _delete
     fun deletePet(petName: String) {
         _delete.value = UiState.Loading
         repository.deletePet(petName) {

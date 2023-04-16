@@ -22,7 +22,6 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.ProgressBar;
@@ -31,7 +30,6 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.hhh.paws.R;
-import com.hhh.paws.database.model.Dehelmintization;
 import com.hhh.paws.database.model.Reproduction;
 import com.hhh.paws.database.viewModel.ReproductionViewModel;
 import com.hhh.paws.databinding.FragmentReproductionBinding;
@@ -133,7 +131,7 @@ public class ReproductionFragment extends Fragment {
                     }
                 } else if (listUiState.getClass() == UiState.Failure.class) {
                     progressBarReproduction.setVisibility(View.INVISIBLE);
-                    Toast.makeText(requireContext(), R.string.error, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireContext(), getString(R.string.error), Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(requireContext(), "", Toast.LENGTH_SHORT).show();
                 }
@@ -152,7 +150,7 @@ public class ReproductionFragment extends Fragment {
                             viewModelReproduction.getAllReproduction(petName);
                         } else if (listUiState.getClass() == UiState.Failure.class) {
                             progressBarReproduction.setVisibility(View.INVISIBLE);
-                            Toast.makeText(requireContext(), R.string.error, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(requireContext(), getString(R.string.error), Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(requireContext(), "", Toast.LENGTH_SHORT).show();
                         }

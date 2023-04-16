@@ -11,7 +11,6 @@ import android.os.ext.SdkExtensions
 import android.util.Log
 import android.view.Window
 import android.view.WindowManager
-import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.DatePicker
 import android.widget.ImageView
@@ -23,7 +22,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.textfield.MaterialAutoCompleteTextView
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.storage.FirebaseStorage
 import com.hhh.paws.MainActivity
@@ -31,7 +29,6 @@ import com.hhh.paws.R
 import com.hhh.paws.database.model.Pet
 import com.hhh.paws.database.viewModel.PetViewModel
 import com.hhh.paws.databinding.ActivityPetProfileBinding
-import com.hhh.paws.ui.main.MainFragment
 import com.hhh.paws.util.UiState
 import com.hhh.paws.util.toast
 import dagger.hilt.android.AndroidEntryPoint
@@ -116,7 +113,7 @@ class PetProfileActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListen
                     Log.d("UI State", "Loading")
                 }
                 is UiState.Success -> {
-                    toast(this, it.data)
+                    toast(this, getString(it.data))
                 }
                 is UiState.Failure -> {
                     Log.e("UI State", it.error.toString())
@@ -159,7 +156,7 @@ class PetProfileActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListen
                     Log.d("UI State", "Loading")
                 }
                 is UiState.Success -> {
-                    toast(this, it.data)
+                    toast(this, getString(it.data))
                 }
                 is UiState.Failure -> {
                     Log.e("UI State", it.error.toString())

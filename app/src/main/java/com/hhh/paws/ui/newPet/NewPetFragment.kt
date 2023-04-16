@@ -55,7 +55,7 @@ class NewPetFragment : Fragment() {
                     Log.d("UI State", "Loading")
                 }
                 is UiState.Success -> {
-                    toast(it.data)
+                    toast(getString(it.data))
                     val bundle = bundleOf("pet" to pet?.name)
                     Navigation.findNavController(requireActivity(), R.id.navHostFragment)
                         .navigate(R.id.action_newPetFragment_to_petProfileActivity, bundle)
@@ -82,19 +82,6 @@ class NewPetFragment : Fragment() {
                 ""
             )
             viewModelPet.newPet(pet!!)
-        }
-        viewModelPet.addNewPet.observe(viewLifecycleOwner) {
-            when (it) {
-                is UiState.Loading -> {
-                    Log.d("UI State", "Loading")
-                }
-                is UiState.Success -> {
-                    toast(it.data)
-                }
-                is UiState.Failure -> {
-                    Log.e("UI State", it.error.toString())
-                }
-            }
         }
 
         buttonCancel = mBinding.buttonCancel

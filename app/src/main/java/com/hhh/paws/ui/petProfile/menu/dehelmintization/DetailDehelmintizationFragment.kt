@@ -142,7 +142,7 @@ class DetailDehelmintizationFragment : Fragment(), DatePickerDialog.OnDateSetLis
                         }
                         is UiState.Failure -> {
                             progressBarDehelmintizationDetail?.visibility = View.INVISIBLE
-                            toast("error")
+                            toast(getString(R.string.error))
                         }
                         else -> {
                             progressBarDehelmintizationDetail?.visibility = View.INVISIBLE

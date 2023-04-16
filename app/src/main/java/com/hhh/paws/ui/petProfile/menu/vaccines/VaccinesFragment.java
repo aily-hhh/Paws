@@ -30,7 +30,6 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.hhh.paws.R;
-import com.hhh.paws.database.model.Reproduction;
 import com.hhh.paws.database.model.Vaccine;
 import com.hhh.paws.database.viewModel.VaccinesViewModel;
 import com.hhh.paws.databinding.FragmentVaccinesBinding;
@@ -126,7 +125,7 @@ public class VaccinesFragment extends Fragment {
                     }
                 } else if (listUiState.getClass() == UiState.Failure.class) {
                     progressBarVaccines.setVisibility(View.INVISIBLE);
-                    Toast.makeText(requireContext(), R.string.error, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireContext(), getString(R.string.error), Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(requireContext(), "", Toast.LENGTH_SHORT).show();
                 }
@@ -143,7 +142,7 @@ public class VaccinesFragment extends Fragment {
                     viewModelVaccines.getAllVaccines(petName);
                 } else if (stringUiState.getClass() == UiState.Failure.class) {
                     progressBarVaccines.setVisibility(View.INVISIBLE);
-                    Toast.makeText(requireContext(), R.string.error, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireContext(), getString(R.string.error), Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(requireContext(), "", Toast.LENGTH_SHORT).show();
                 }

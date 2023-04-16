@@ -129,7 +129,7 @@ public class DehelmintizationFragment extends Fragment {
                     }
                 } else if (listUiState.getClass() == UiState.Failure.class) {
                     progressBarDehelmintization.setVisibility(View.INVISIBLE);
-                    Toast.makeText(requireContext(), "error", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireContext(), getString(R.string.error), Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -144,7 +144,7 @@ public class DehelmintizationFragment extends Fragment {
                             viewModelDehelmintization.getAllDehelmintization(petNameThis);
                         } else if (listUiState.getClass() == UiState.Failure.class) {
                             progressBarDehelmintization.setVisibility(View.INVISIBLE);
-                            Toast.makeText(requireContext(), "error", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(requireContext(), getString(R.string.error), Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(requireContext(), "", Toast.LENGTH_SHORT).show();
                         }

@@ -79,8 +79,7 @@ class VetPassportActivity : AppCompatActivity() {
                 R.id.nav_dehelmintization,
                 R.id.nav_reproduction,
                 R.id.nav_identification,
-                R.id.nav_settings,
-                R.id.nav_signOut
+                R.id.nav_settings
             ),
             drawerLayout
         )
