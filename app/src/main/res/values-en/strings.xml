@@ -4,7 +4,7 @@
     <string name="create_button">Create</string>
     <string name="update_button">Update</string>
     <string name="delete_pet_button">Delete this pet profile</string>
-    <string name="delete_user_button">Delete user profile</string>
+    <string name="delete_user_button">Delete all profile data</string>
     <string name="back_button">Back</string>
     <string name="to_main_fragment_button">To the main page</string>
     <string name="signed_out_toast">You have signed out of your profile</string>

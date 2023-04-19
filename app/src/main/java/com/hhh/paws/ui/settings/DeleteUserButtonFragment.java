@@ -1,34 +1,33 @@
 package com.hhh.paws.ui.settings;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.navigation.Navigation;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceViewHolder;
 
 import com.firebase.ui.auth.AuthUI;
-import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.hhh.paws.MainActivity;
 import com.hhh.paws.R;
 import com.hhh.paws.util.FireStoreTables;
+import com.jakewharton.processphoenix.ProcessPhoenix;
+
+import java.util.concurrent.TimeUnit;
+
 
 public class DeleteUserButtonFragment extends Preference {
 
@@ -76,21 +75,41 @@ public class DeleteUserButtonFragment extends Preference {
                                                             }
                                                         }
                                                     });
+                                            FirebaseFirestore.getInstance().collection(FireStoreTables.USER).document(uID)
+                                                    .collection(FireStoreTables.PET).document(queryDocumentSnapshots.getDocuments().get(i).getId())
+                                                    .delete();
+
                                         }
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Log.d("DELETE", "ERROR");
                                     }
                                 });
 
-                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                        user.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    Log.d("DELETE", "user deleted");
-                                    AuthUI.getInstance().delete(getContext());
-                                    System.exit(0);
-                                }
-                            }
-                        });
+                        FirebaseFirestore.getInstance().collection(FireStoreTables.USER).document(uID)
+                                .delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
+                                        Log.d("DELETE", "USER DELETED");
+                                        Toast.makeText(
+                                                getContext().getApplicationContext(),
+                                                getContext().getString(R.string.deleted),
+                                                Toast.LENGTH_SHORT
+                                        ).show();
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Log.d("DELETE", "ERROR");
+                                        Toast.makeText(
+                                                getContext().getApplicationContext(),
+                                                getContext().getString(R.string.error),
+                                                Toast.LENGTH_SHORT
+                                        ).show();
+                                    }
+                                });
                     }
                 });
                 alertDialog.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {

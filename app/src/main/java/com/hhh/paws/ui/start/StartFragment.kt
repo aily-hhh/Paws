@@ -28,7 +28,7 @@ class StartFragment : Fragment() {
         _binding = FragmentStartBinding.inflate(inflater, container, false)
 
         CoroutineScope(Dispatchers.Main).launch {
-            delay(1500)
+            delay(500)
             if (viewPager2StartFinish()) {
                 Navigation.findNavController(requireActivity(), R.id.navHostFragment)
                     .navigate(R.id.action_startFragment_to_authFragment)

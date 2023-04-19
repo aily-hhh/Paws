@@ -4,7 +4,7 @@
     <string name="create_button">Создать</string>
     <string name="update_button">Обновить</string>
     <string name="delete_pet_button">Удалить профиль питомца</string>
-    <string name="delete_user_button">Удалить профиль пользователя</string>
+    <string name="delete_user_button">Удалить все данные профиля</string>
     <string name="back_button">Назад</string>
     <string name="to_main_fragment_button">На главную страницу</string>
     <string name="signed_out_toast">Вы вышли из профиля</string>
@@ -80,7 +80,6 @@
     <string name="galleryImage">Картинка</string>
     <string name="pin">Закрепить/Открепить</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="finish">ЗАВЕРШИТЬ</string>
     <string name="skip">пропустить</string>
     <string name="next">ДАЛЬШЕ</string>

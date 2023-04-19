@@ -2,6 +2,7 @@ package com.hhh.paws.ui.auth;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -34,7 +35,7 @@ public class AuthFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         _binding = FragmentAuthBinding.inflate(getLayoutInflater(), container, false);
