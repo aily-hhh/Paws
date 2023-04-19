@@ -29,6 +29,7 @@
     <string name="birthday">Birthday</string>
     <string name="hair">Hair</string>
     <string name="error">Error</string>
+    <string name="errorNewPet">This field cannot be empty</string>
     <string name="not_elem">there are no elements here yet</string>
     <string name="delete_note">Do you really want to delete the note?</string>
     <string name="delete_profile">Do you really want to delete the profile?</string>

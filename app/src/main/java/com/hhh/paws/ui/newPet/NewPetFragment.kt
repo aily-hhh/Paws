@@ -1,5 +1,6 @@
 package com.hhh.paws.ui.newPet
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -72,16 +73,21 @@ class NewPetFragment : Fragment() {
 
         buttonCreate = mBinding.buttonCreate
         buttonCreate?.setOnClickListener{
-            pet = Pet(
-                petNameNew?.text.toString().trim(),
-                petSpeciesNew?.text.toString().trim(),
-                "",
-                spinnerSexNew?.text.toString().trim(),
-                "",
-                "",
-                ""
-            )
-            viewModelPet.newPet(pet!!)
+            if (petNameNew?.text.toString().trim().isNullOrEmpty()) {
+                petNameNew?.requestFocus()
+                petNameNew?.error = getString(R.string.errorNewPet)
+            } else {
+                pet = Pet(
+                    petNameNew?.text.toString().trim(),
+                    petSpeciesNew?.text.toString().trim(),
+                    "",
+                    spinnerSexNew?.text.toString().trim(),
+                    "",
+                    "",
+                    ""
+                )
+                viewModelPet.newPet(pet!!)
+            }
         }
 
         buttonCancel = mBinding.buttonCancel
