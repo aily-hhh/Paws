@@ -7,7 +7,7 @@
             app:entryValues="@array/theme_values"
             app:key="themeApp"
             app:title="@string/default_settings"
-            app:useSimpleSummaryProvider="true" />
+            app:useSimpleSummaryProvider="true"/>
 
     </PreferenceCategory>
 
@@ -19,7 +19,7 @@
             app:entryValues="@array/language_values"
             app:key="language"
             app:title="@string/default_settings"
-            app:useSimpleSummaryProvider="true" />
+            app:useSimpleSummaryProvider="true"/>
 
     </PreferenceCategory>
 

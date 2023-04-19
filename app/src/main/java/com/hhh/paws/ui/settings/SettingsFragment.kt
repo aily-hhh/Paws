@@ -2,6 +2,8 @@ package com.hhh.paws.ui.settings
 
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.os.LocaleListCompat
 import androidx.preference.PreferenceFragmentCompat
 import com.hhh.paws.R
 import com.jakewharton.processphoenix.ProcessPhoenix
@@ -22,9 +24,41 @@ class SettingsFragment : PreferenceFragmentCompat() {
         setPreferencesFromResource(R.xml.root_preferences, rootKey)
         listener =
             OnSharedPreferenceChangeListener { sharedPreferences, key ->
-                CoroutineScope(Dispatchers.Main).launch {
-                    delay(150)
-                    ProcessPhoenix.triggerRebirth(requireContext().applicationContext);
+                if (key.equals("language")) {
+                    when (sharedPreferences.getString("language", "Системный")) {
+                        "Системный", "System" -> {
+                            CoroutineScope(Dispatchers.Main).launch {
+                                delay(100)
+                                AppCompatDelegate.setApplicationLocales(
+                                    LocaleListCompat.getEmptyLocaleList()
+                                )
+                                ProcessPhoenix.triggerRebirth(requireContext().applicationContext)
+                            }
+                        }
+                        "Русский" -> {
+                            val appLocale: LocaleListCompat =
+                                LocaleListCompat.forLanguageTags("ru")
+                            CoroutineScope(Dispatchers.Main).launch {
+                                delay(100)
+                                AppCompatDelegate.setApplicationLocales(appLocale)
+                                ProcessPhoenix.triggerRebirth(requireContext().applicationContext)
+                            }
+                        }
+                        "English" -> {
+                            val appLocale: LocaleListCompat =
+                                LocaleListCompat.forLanguageTags("en")
+                            CoroutineScope(Dispatchers.Main).launch {
+                                delay(100)
+                                AppCompatDelegate.setApplicationLocales(appLocale)
+                                ProcessPhoenix.triggerRebirth(requireContext().applicationContext)
+                            }
+                        }
+                    }
+                } else {
+                    CoroutineScope(Dispatchers.Main).launch {
+                        delay(100)
+                        ProcessPhoenix.triggerRebirth(requireContext().applicationContext)
+                    }
                 }
             }
 
