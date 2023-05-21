@@ -93,33 +93,22 @@ public class IdentificationRepository implements IdentificationDao {
 
     @Override
     public void setIdentification(String petName, Identification identification) {
-        Disposable dispose = Observable.fromSingle(new Single<Identification>() {
-            @Override
-            protected void subscribeActual(@io.reactivex.rxjava3.annotations.NonNull SingleObserver<? super Identification> observer) {
-                observer.onSuccess(identification);
-            }
-        }).subscribeOn(Schedulers.newThread()).subscribe(it -> {
-            String uID = FirebaseAuth.getInstance().getUid();
+        String uID = FirebaseAuth.getInstance().getUid();
 
-            database.collection(FireStoreTables.USER).document(uID)
-                    .collection(FireStoreTables.PET).document(petName)
-                    .collection(FireStoreTables.IDENTIFICATION).document(petName)
-                    .set(it).addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void unused) {
-                            Log.d("Firestore", "Identification success");
+        database.collection(FireStoreTables.USER).document(uID)
+                .collection(FireStoreTables.PET).document(petName)
+                .collection(FireStoreTables.IDENTIFICATION).document(petName)
+                .set(identification).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Log.d("Firestore", "Identification success");
 
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Log.d("Firestore", "Identification failed");
-                        }
-                    });
-        }, it -> {
-            Log.d("RxJava", "Identification failed");
-        });
-
-        dispose.dispose();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d("Firestore", "Identification failed");
+                    }
+                });
     }
 }

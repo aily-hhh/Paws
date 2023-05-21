@@ -14,6 +14,9 @@ class ViewPager2GalleryAdapter: RecyclerView.Adapter<ViewPager2GalleryAdapter.Vi
 
     private var list = mutableListOf<String>()
     fun setListViewPager(list: MutableList<String>) {
+        if (this.list.isNotEmpty()) {
+            this.list.clear()
+        }
         this.list = list
     }
 

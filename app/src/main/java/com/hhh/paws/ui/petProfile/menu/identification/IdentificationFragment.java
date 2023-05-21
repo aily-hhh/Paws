@@ -85,8 +85,7 @@ public class IdentificationFragment extends Fragment implements DatePickerDialog
         super.onViewCreated(view, savedInstanceState);
 
         viewModelIdentification = new ViewModelProvider(
-                IdentificationFragment.this).get(IdentificationViewModel.class
-        );
+                IdentificationFragment.this).get(IdentificationViewModel.class);
 
         petNameThis = PetName.INSTANCE.getName();
 

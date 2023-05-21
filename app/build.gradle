@@ -43,29 +43,25 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.core:core-ktx:1.10.1'
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.8.0'
+    implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.1'
     implementation 'androidx.preference:preference:1.2.0'
-    implementation 'com.google.firebase:firebase-storage-ktx:20.1.0'
+    implementation 'com.google.firebase:firebase-storage-ktx:20.2.0'
     implementation 'androidx.benchmark:benchmark-common:1.1.1'
     testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'org.junit.jupiter:junit-jupiter'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
     // Lifecycle
-    def lifecycleVersion = "2.5.1"
+    def lifecycleVersion = "2.6.1"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
-
-    // Room
-    def roomVersion = "2.5.0"
-    implementation "androidx.room:room-runtime:$roomVersion"
-    implementation "androidx.room:room-ktx:$roomVersion"
-    kapt "androidx.room:room-compiler:$roomVersion"
 
     // Coroutines
     def coroutinesVersion = '1.6.4'
@@ -92,8 +88,8 @@ dependencies {
     // Firebase
     implementation platform('com.google.firebase:firebase-bom:31.2.2')
     implementation 'com.google.firebase:firebase-analytics'
-    implementation 'com.google.firebase:firebase-firestore:24.4.3'
-    implementation 'com.google.firebase:firebase-firestore-ktx:24.4.3'
+    implementation 'com.google.firebase:firebase-firestore:24.6.0'
+    implementation 'com.google.firebase:firebase-firestore-ktx:24.6.0'
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation platform('com.google.firebase:firebase-auth:21.1.0')
     implementation 'com.google.firebase:firebase-auth'
@@ -109,7 +105,8 @@ dependencies {
     // PhotoView
     implementation 'com.github.chrisbanes:PhotoView:2.3.0'
 
-    //
+    // Update Configuration
     implementation 'com.jakewharton:process-phoenix:2.0.0'
+
 }
 
