@@ -35,7 +35,7 @@ class PetRepository @Inject constructor(private val database: FirebaseFirestore)
                 result.invoke((UiState.Success(pet)))
             }
             .addOnFailureListener{
-                result.invoke(UiState.Failure(R.string.error.toString()))
+                result.invoke(UiState.Failure("${R.string.error}"))
             }
     }
 

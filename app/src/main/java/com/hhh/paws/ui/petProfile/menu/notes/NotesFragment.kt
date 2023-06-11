@@ -84,21 +84,6 @@ class NotesFragment: Fragment() {
             }
         })
 
-        viewModelNotes.update.observe(viewLifecycleOwner) {
-            when(it) {
-                is UiState.Loading -> {
-                    progressBarNotes?.visibility = View.VISIBLE
-                }
-                is UiState.Success -> {
-                    progressBarNotes?.visibility = View.INVISIBLE
-                    viewModelNotes.getAllNotes(petNameThis!!)
-                }
-                is UiState.Failure -> {
-                    progressBarNotes?.visibility = View.INVISIBLE
-                }
-            }
-        }
-
         addNotesButton = mBinding.addNotesButton
         addNotesButton?.setOnClickListener {
             findNavController(requireActivity(), R.id.nav_host_fragment_content_vet_passport)
