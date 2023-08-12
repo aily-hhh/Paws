@@ -1,7 +1,7 @@
 # Paws
 
 #### Видео работы приложения
-<video src='https://disk.yandex.ru/i/TH84njPJOCSXew' width=180/>
+https://disk.yandex.ru/i/TH84njPJOCSXew
 
 #### Скриншоты приложения
 ![](https://github.com/aily-hhh/Paws/assets/78144867/e29e9076-3f93-4507-b109-09f5c85d5d78)
